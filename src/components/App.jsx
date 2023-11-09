@@ -1,3 +1,10 @@
+import { Route, Routes } from 'react-router-dom';
+import SharedLayout from './SharedLayout';
+
 export const App = () => {
-  return <div>Hihihi</div>;
+  return (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}></Route>
+    </Routes>
+  );
 };
