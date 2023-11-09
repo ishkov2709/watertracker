@@ -1,7 +1,9 @@
 {
   "files": {
-    "main.css": "/watertracker/static/css/main.09667a02.css",
-    "main.js": "/watertracker/static/js/main.8e3c52f5.js",
+    "main.css": "/watertracker/static/css/main.c9402ea5.css",
+    "main.js": "/watertracker/static/js/main.54f09b2b.js",
+    "static/media/img_bg.png": "/watertracker/static/media/img_bg.a0d79c3b82dd6a1f5639.png",
+    "static/media/img_bg_1.png": "/watertracker/static/media/img_bg_1.f64e661baefac36f8e09.png",
     "static/media/roboto-latin-500-normal.woff2": "/watertracker/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/watertracker/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
     "static/media/roboto-latin-400-normal.woff2": "/watertracker/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
@@ -14,6 +16,7 @@
     "static/media/roboto-cyrillic-ext-400-normal.woff": "/watertracker/static/media/roboto-cyrillic-ext-400-normal.af4d91666ea345601bea.woff",
     "static/media/roboto-cyrillic-ext-500-normal.woff": "/watertracker/static/media/roboto-cyrillic-ext-500-normal.268f264f58eba5c07c88.woff",
     "static/media/roboto-cyrillic-ext-700-normal.woff": "/watertracker/static/media/roboto-cyrillic-ext-700-normal.198a421f279162d59143.woff",
+    "static/media/img_bg_2.png": "/watertracker/static/media/img_bg_2.aebdcb013b3a8eef40c4.png",
     "static/media/roboto-latin-ext-400-normal.woff2": "/watertracker/static/media/roboto-latin-ext-400-normal.861b791f9de857a6e7bc.woff2",
     "static/media/roboto-latin-ext-700-normal.woff2": "/watertracker/static/media/roboto-latin-ext-700-normal.ed67ad54b1a8f5d21150.woff2",
     "static/media/roboto-latin-ext-500-normal.woff2": "/watertracker/static/media/roboto-latin-ext-500-normal.9165081d10e1ba601384.woff2",
@@ -45,11 +48,11 @@
     "static/media/roboto-greek-ext-400-normal.woff": "/watertracker/static/media/roboto-greek-ext-400-normal.f708607d2a7290fb8bfa.woff",
     "static/media/roboto-greek-ext-700-normal.woff": "/watertracker/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/watertracker/index.html",
-    "main.09667a02.css.map": "/watertracker/static/css/main.09667a02.css.map",
-    "main.8e3c52f5.js.map": "/watertracker/static/js/main.8e3c52f5.js.map"
+    "main.c9402ea5.css.map": "/watertracker/static/css/main.c9402ea5.css.map",
+    "main.54f09b2b.js.map": "/watertracker/static/js/main.54f09b2b.js.map"
   },
   "entrypoints": [
-    "static/css/main.09667a02.css",
-    "static/js/main.8e3c52f5.js"
+    "static/css/main.c9402ea5.css",
+    "static/js/main.54f09b2b.js"
   ]
 }
