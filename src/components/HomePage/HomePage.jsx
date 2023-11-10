@@ -1,5 +1,11 @@
+import MonthStatsTable from 'components/MonthStatsTable';
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <MonthStatsTable />
+    </div>
+  );
 };
 
 export default HomePage;

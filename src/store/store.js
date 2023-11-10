@@ -11,16 +11,19 @@ import { waterDataReducer } from './waterData/waterDataSlice';
 const rootPersistConfig = {
   key: 'root',
   storage,
+  whitelist: ['user'],
 };
 
 const userConfig = {
   key: 'user',
   storage,
+  whitelist: ['token'],
 };
 
 const waterDataConfig = {
   key: 'waterData',
   storage,
+  whitelist: [],
 };
 
 const customizedMiddleware = getDefaultMiddleware({
