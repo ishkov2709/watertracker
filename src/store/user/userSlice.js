@@ -3,7 +3,7 @@ import initialState from 'store/initialState';
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: initialState,
+  initialState: initialState.user,
   reducers: {},
 });
 
