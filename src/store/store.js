@@ -28,8 +28,8 @@ const customizedMiddleware = getDefaultMiddleware({
 });
 
 const rootReducer = combineReducers({
-  auth: persistReducer(userConfig, userReducer),
-  films: persistReducer(waterDataConfig, waterDataReducer),
+  user: persistReducer(userConfig, userReducer),
+  waterData: persistReducer(waterDataConfig, waterDataReducer),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

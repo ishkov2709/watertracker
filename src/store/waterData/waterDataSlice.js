@@ -3,7 +3,7 @@ import initialState from 'store/initialState';
 
 const waterDataSlice = createSlice({
   name: 'waterData',
-  initialState: initialState,
+  initialState: initialState.waterData,
   reducers: {},
 });
 

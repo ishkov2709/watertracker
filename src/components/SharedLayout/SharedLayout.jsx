@@ -1,4 +1,3 @@
-import Container from 'components/Container';
 import Header from 'components/Header';
 import { Outlet } from 'react-router-dom';
 import { Layout } from './SharedLayout.styled';
@@ -8,11 +7,8 @@ const SharedLayout = () => {
     <Layout>
       <Header />
       <main>
-        <Container>
-          <p>hihihi</p>
-        </Container>
+        <Outlet />
       </main>
-      <Outlet />
     </Layout>
   );
 };
