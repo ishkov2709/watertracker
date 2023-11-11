@@ -9,7 +9,9 @@ const initialState = {
     token: '',
     error: '',
   },
-  waterData: {},
+  waterData: {
+    dateCoords: null,
+  },
 };
 
 export default initialState;

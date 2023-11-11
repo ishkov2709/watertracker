@@ -1,32 +1,37 @@
-import MonthStatsTable from 'components/MonthStatsTable';
 import Container from 'components/Container';
-import { Wrapper, Box, DailyNorma, WaterList, Calendar} from './HomePage.styled';
+import { Wrapper, Box, DailyNorma, WaterList } from './HomePage.styled';
+import MonthStatsTable from './MonthStatsTable';
+import DaysGeneralStats from './DaysGeneralStats';
+import { useSelector } from 'react-redux';
+import { dateCoodrsSelector } from 'store/waterData/selectors';
 
 const HomePage = () => {
+  const dateCoords = useSelector(dateCoodrsSelector);
+
   return (
     <Wrapper>
-        <Container>
-          <Box>
-            <DailyNorma>
-              <div>1.7</div>
-              <form action="">
-                <input type="range" />
-                <button>add Water</button>
-              </form>
-            </DailyNorma>
-            <WaterList>
-                <ul>
-                  <li>awd123</li>
-                  <li>awd123</li>
-                  <li>awd123</li>
-                  <li>awd123</li>
-                </ul>
-                <MonthStatsTable />
-            </WaterList>
-          </Box>
-        </Container> 
-      </Wrapper>
-
+      <Container>
+        <Box>
+          <DailyNorma>
+            <div>1.7</div>
+            <form action="">
+              <input type="range" />
+              <button>add Water</button>
+            </form>
+          </DailyNorma>
+          <WaterList>
+            <ul>
+              <li>awd123</li>
+              <li>awd123</li>
+              <li>awd123</li>
+              <li>awd123</li>
+            </ul>
+            <MonthStatsTable />
+            {dateCoords && <DaysGeneralStats dateCoords={dateCoords} />}
+          </WaterList>
+        </Box>
+      </Container>
+    </Wrapper>
   );
 };
 

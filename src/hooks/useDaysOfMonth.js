@@ -10,7 +10,7 @@ export const useDaysOfMonth = date => {
     }
   }, [date]);
 
-  for (let i = 0; i < days; i++) {
+  for (let i = 1; i <= days; i++) {
     arrMonth.push({ year: date.year, month: date.month, day: i });
   }
 
