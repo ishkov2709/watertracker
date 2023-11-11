@@ -1,6 +1,6 @@
-import Icon from "../Icon/index.js";
+import Icon from "components/Icon";
 import { color } from 'styles/colors.js';
-import { Circle } from './UserAuth.styled.jsx';
+// import { Circle } from './UserAuth.styled.jsx';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,20 @@ const UserAuth = () => {
             {isLoggedIn ? (
                 <button>
                     <span>${email}</span> 
-                    <Circle/>
+                    <div
+                        style={{
+                            circle: {
+                                display: "flex",
+                                width: "100px",
+                                height: "100px",
+                                backgroundColor: "white",
+                                borderRadius: "50%",
+                                textAlign: "center",
+                            },
+                        }}
+                    >
+                         <p>V</p>
+                    </div>
                 </button>
             ) : (
                 <Link to='/signin'>
