@@ -5,13 +5,13 @@ import {
 } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { userReducer } from './auth/authSlice';
+import { authReducer } from './auth/authSlice';
 import { waterDataReducer } from './waterData/waterDataSlice';
 
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'],
+  whitelist: ['auth'],
 };
 
 const authConfig = {
@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
   waterData: waterDataReducer,
 });
 
-const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
+const persistedReducer = rootReducer;
 
 export const store = configureStore({
   reducer: persistedReducer,
