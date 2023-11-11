@@ -15,13 +15,13 @@ const SigninPage = () => {
     dispatch(signInUser(body));
   };
 
-  useEffect(() => {
-    isAuth && navigate('/sighup');
-  }, [isAuth, navigate]);
+  // useEffect(() => {
+  //   isAuth && navigate('/sighup');
+  // }, [isAuth, navigate]);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
 
   return (
     <>

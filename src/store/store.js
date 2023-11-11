@@ -15,7 +15,7 @@ const rootPersistConfig = {
 };
 
 const authConfig = {
-  key: 'user',
+  key: 'auth',
   storage,
   whitelist: ['token'],
 };
@@ -25,11 +25,11 @@ const customizedMiddleware = getDefaultMiddleware({
 });
 
 const rootReducer = combineReducers({
-  auth: persistReducer(authConfig, userReducer),
+  auth: persistReducer(authConfig, authReducer),
   waterData: waterDataReducer,
 });
 
-const persistedReducer = rootReducer;
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
