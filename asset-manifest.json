@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/watertracker/static/css/main.feb50ffb.css",
-    "main.js": "/watertracker/static/js/main.fe69f940.js",
+    "main.js": "/watertracker/static/js/main.cb0cf12e.js",
     "static/media/bgHomeButleDesc.png": "/watertracker/static/media/bgHomeButleDesc.60d0b8920db86989f0f4.png",
     "static/media/bgHomeTabButle.png": "/watertracker/static/media/bgHomeTabButle.30548c686fee02197f31.png",
     "static/media/bgHomeTabBubble.png": "/watertracker/static/media/bgHomeTabBubble.f5b814e94afbc9a117df.png",
@@ -56,10 +56,10 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/watertracker/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/watertracker/index.html",
     "main.feb50ffb.css.map": "/watertracker/static/css/main.feb50ffb.css.map",
-    "main.fe69f940.js.map": "/watertracker/static/js/main.fe69f940.js.map"
+    "main.cb0cf12e.js.map": "/watertracker/static/js/main.cb0cf12e.js.map"
   },
   "entrypoints": [
     "static/css/main.feb50ffb.css",
-    "static/js/main.fe69f940.js"
+    "static/js/main.cb0cf12e.js"
   ]
 }
