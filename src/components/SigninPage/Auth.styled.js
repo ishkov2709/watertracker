@@ -22,13 +22,8 @@ export const Input = styled.input`
   padding: 8px;
   font-size: 16px;
   margin-left: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
 
-  &:focus {
-    outline: none;
-    border-color: #d1bff5;
-  }
+  margin-bottom: 10px;
 `;
 
 export const RegisterButton = styled.button`
@@ -36,13 +31,7 @@ export const RegisterButton = styled.button`
   margin-right: 10px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #5526e0;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-
-  &:hover {
-    background-color: #4621b5;
-  }
 `;
