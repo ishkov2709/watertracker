@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { signInUser, signUpUser, logOut, refreshUser } from './thunk';
+import initialState from '../initialState';
 
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    user: '',
-    token: null,
-    isAuth: false,
-    isRefreshed: false,
-    error: '',
+    user: initialState.user,
+    token: initialState.token,
+    isAuth: initialState.isAuth,
+    isRefreshing: initialState.isRefreshing,
+    error: initialState.error,
   },
 
   extraReducers: builder => {
@@ -20,7 +21,7 @@ const userSlice = createSlice({
         state.error = '';
       })
       .addCase(signInUser.rejected, (state, action) => {
-        state.isRefreshed = false;
+        state.isRefreshing = false;
         state.error = 'Wrong email or password';
         state.isAuth = false;
         state.token = '';
@@ -32,7 +33,7 @@ const userSlice = createSlice({
         state.error = '';
       })
       .addCase(signUpUser.rejected, (state, action) => {
-        state.isRefreshed = false;
+        state.isRefreshing = false;
         state.error = 'Entered values are not valid, try again';
         state.isAuth = false;
         state.token = '';
@@ -44,18 +45,18 @@ const userSlice = createSlice({
         state.error = '';
       })
       .addCase(refreshUser.pending, (state, action) => {
-        state.isRefreshed = true;
+        state.isRefreshing = true;
         state.isAuth = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isAuth = true;
 
-        state.isRefreshed = false;
+        state.isRefreshing = false;
         state.error = '';
       })
       .addCase(refreshUser.rejected, (state, { error, payload }) => {
-        state.isRefreshed = false;
+        state.isRefreshing = false;
         state.error = payload ?? error.message;
         state.isAuth = false;
         state.token = '';

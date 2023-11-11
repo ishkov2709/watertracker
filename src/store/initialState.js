@@ -1,8 +1,10 @@
 const initialState = {
   user: {
+    user: '',
+    token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    token: '',
+    error: '',
   },
   waterData: {},
 };
