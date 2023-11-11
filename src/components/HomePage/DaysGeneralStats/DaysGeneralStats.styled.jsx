@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { color } from 'styles/colors';
 
 export const Wrapper = styled.div`
-  position: relative;
+  position: absolute;
+  top: -64px;
+  left: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -20,6 +22,8 @@ export const Wrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 24px 16px;
+    top: ${props => props.top}px;
+    left: ${props => props.left}px;
   }
 `;
 
