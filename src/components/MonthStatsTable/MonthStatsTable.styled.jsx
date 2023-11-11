@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { color } from 'styles/colors';
 
 export const CalendarBox = styled.div`
-  outline: 1px solid tomato;
 
   width: 264px;
 
