@@ -1,9 +1,71 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
+import { Btn, Month, Wrapper } from './PaginationMonth.styled';
+import Icon from 'components/Icon';
+import { color } from 'styles/colors';
 
-const PaginationMonth = () => {
-  const [month, setMonth] = useState(new Date().getMonth());
+const PaginationMonth = ({ date, setDate }) => {
+  const [titleMonth, setTitleMonth] = useState(
+    format(new Date(date.year, date.month, date.day), 'MMMM')
+  );
 
-  return <div></div>;
+  useEffect(() => {
+    if (date) {
+      setTitleMonth(format(new Date(date.year, date.month, date.day), 'MMMM'));
+    }
+  }, [date]);
+
+  const handleIncrementMonth = () => {
+    if (date.month + 1 > 11) {
+      return setDate(prevState => ({
+        ...prevState,
+        year: prevState.year + 1,
+        month: 0,
+      }));
+    }
+    return setDate(prevState => ({
+      ...prevState,
+      month: prevState.month + 1,
+    }));
+  };
+
+  const handleDecrementMonth = () => {
+    if (date.month - 1 < 0) {
+      return setDate(prevState => ({
+        ...prevState,
+        year: prevState.year - 1,
+        month: 11,
+      }));
+    }
+    return setDate(prevState => ({
+      ...prevState,
+      month: prevState.month - 1,
+    }));
+  };
+
+  return (
+    <Wrapper>
+      <Btn onClick={handleDecrementMonth}>
+        <Icon
+          name="arrow-down"
+          fill={color.primary.brue}
+          stroke={color.primary.brue}
+          width={14}
+          height={14}
+        />
+      </Btn>
+      <Month>{titleMonth}</Month>
+      <Btn onClick={handleIncrementMonth}>
+        <Icon
+          name="arrow-down"
+          fill={color.primary.brue}
+          stroke={color.primary.brue}
+          width={14}
+          height={14}
+        />
+      </Btn>
+    </Wrapper>
+  );
 };
 
 export default PaginationMonth;

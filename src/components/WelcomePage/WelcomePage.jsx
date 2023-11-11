@@ -1,6 +1,5 @@
 import Container from 'components/Container';
 import { Wrapper } from './WelcomePage.styled';
-import Icon from 'components/Icon';
 
 const WelcomePage = () => {
   return (
