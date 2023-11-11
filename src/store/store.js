@@ -11,6 +11,12 @@ import { waterDataReducer } from './waterData/waterDataSlice';
 const rootPersistConfig = {
   key: 'root',
   storage,
+  whitelist: ['auth'],
+};
+
+const authConfig = {
+  key: 'user',
+  storage,
   whitelist: ['token'],
 };
 
@@ -19,7 +25,7 @@ const customizedMiddleware = getDefaultMiddleware({
 });
 
 const rootReducer = combineReducers({
-  auth: persistReducer(rootPersistConfig, authReducer),
+  auth: persistReducer(authConfig, userReducer),
   waterData: waterDataReducer,
 });
 

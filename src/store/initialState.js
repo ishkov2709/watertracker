@@ -3,11 +3,11 @@ const initialState = {
     user: {
       name: '',
       email: '',
-      gender: '',
     },
     isLoggedIn: false,
     isRefreshing: false,
     token: '',
+    error: '',
   },
   waterData: {},
 };
