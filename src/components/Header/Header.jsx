@@ -10,12 +10,18 @@ const Header = () => {
       <Container>
         {isLoggedIn ? (
           <nav>
-            <Link to='/HomePage'>
-            </>
+            <Link to='/Home'>
+                <button><img src='./img/logo/Logo.png' alt='logo'/></button>
+            </Link>
           </nav>
         ) : (
-            
+            <nav>
+              <Link to='/'>
+                  <button><img src='./img/logo/Logo.png' alt='logo'/></button>
+              </Link>
+          </nav>
         )}
+        <UserAuth/>
       </Container>
     </header>
   );
