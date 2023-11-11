@@ -7,7 +7,7 @@ export const Backdrop = styled.div`
   z-index: 1200;
 
   width: 100%;
-  heigth: 100%;
+  height: 100%;
 
   display: flex;
   justify-content: center;
@@ -16,4 +16,15 @@ export const Backdrop = styled.div`
   background: rgba(0, 0, 0, 0.8);
 `;
 
-export const ModalContainer = styled;
+const Container = styled.div(({ type }) => ({
+  borderRadius: '10px',
+  background: '#fff',
+
+  padding: type === 'settings' ? '32px 12px' : '24px 12px',
+}));
+
+export const ModalContainer = styled(Container)`
+  @media (min-width: 768px) {
+    padding: 32px 24px;
+  }
+`;

@@ -1,7 +1,11 @@
-export const Modal = ({ children }) => {
+import { Backdrop, ModalContainer } from './Modal.styled';
+
+const Modal = ({ type = 'default', children }) => {
   return (
     <Backdrop>
-      <Modal></Modal>
+      <ModalContainer type={type}>{children}</ModalContainer>
     </Backdrop>
   );
 };
+
+export default Modal;
