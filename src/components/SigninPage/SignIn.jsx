@@ -1,4 +1,4 @@
-import Container from 'components/Container';
+import Container from 'components/common/Container';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';

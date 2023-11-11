@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { Btn, Month, Wrapper } from './PaginationMonth.styled';
-import Icon from 'components/Icon';
+import Icon from 'components/common/Icon';
 import { color } from 'styles/colors';
 
 const PaginationMonth = ({ date, setDate }) => {

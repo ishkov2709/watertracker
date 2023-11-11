@@ -1,4 +1,4 @@
-import Container from 'components/Container';
+import Container from 'components/common/Container';
 import { Wrapper, Box, DailyNorma, WaterList } from './HomePage.styled';
 import MonthStatsTable from './MonthStatsTable';
 import DaysGeneralStats from './DaysGeneralStats';
