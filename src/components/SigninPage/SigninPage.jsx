@@ -3,8 +3,8 @@ import Signin from './SignIn';
 
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { refreshUser, signInUser } from '../../store/user/thunk';
-import { tokenSelector } from '../../store/user/selectors';
+import { refreshUser, signInUser } from '../../store/auth/thunk';
+import { tokenSelector } from '../../store/auth/selectors';
 
 const SigninPage = () => {
   const dispatch = useDispatch();

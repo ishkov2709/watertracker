@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { userReducer } from './user/userSlice';
+import { userReducer } from './auth/authSlice';
 import { waterDataReducer } from './waterData/waterDataSlice';
 
 const rootPersistConfig = {
@@ -14,16 +14,10 @@ const rootPersistConfig = {
   whitelist: ['user'],
 };
 
-const userConfig = {
+const authConfig = {
   key: 'user',
   storage,
   whitelist: ['token'],
-};
-
-const waterDataConfig = {
-  key: 'waterData',
-  storage,
-  whitelist: [],
 };
 
 const customizedMiddleware = getDefaultMiddleware({
@@ -31,8 +25,8 @@ const customizedMiddleware = getDefaultMiddleware({
 });
 
 const rootReducer = combineReducers({
-  user: persistReducer(userConfig, userReducer),
-  waterData: persistReducer(waterDataConfig, waterDataReducer),
+  auth: persistReducer(authConfig, userReducer),
+  waterData: waterDataReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

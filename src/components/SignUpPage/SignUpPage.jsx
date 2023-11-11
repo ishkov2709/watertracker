@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshUser, signUpUser } from '../../store/user/thunk';
-import { tokenSelector } from '../../store/user/selectors';
+import { refreshUser, signUpUser } from '../../store/auth/thunk';
+import { tokenSelector } from '../../store/auth/selectors';
 import { useNavigate } from 'react-router-dom';
 import SignUp from './SignUp';
 

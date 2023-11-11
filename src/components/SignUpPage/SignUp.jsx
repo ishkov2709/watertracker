@@ -2,7 +2,7 @@ import Container from 'components/Container';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { errorSelector } from '../../store/user/selectors';
+import { errorSelector } from '../../store/auth/selectors';
 
 import {
   RegisterButton,
