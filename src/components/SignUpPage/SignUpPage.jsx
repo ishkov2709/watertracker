@@ -1,11 +1,32 @@
-import Container from 'components/Container';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshUser, signUpUser } from '../../store/user/thunk';
+import { tokenSelector } from '../../store/user/selectors';
+import { useNavigate } from 'react-router-dom';
+import SignUp from './SignUp';
 
-const SignUpPage = () => {
+const SignupPage = () => {
+  const isAuth = useSelector(tokenSelector);
+  const navigate = useNavigate();
+
+  const signup = body => {
+    dispatch(signUpUser(body));
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    isAuth && navigate('/signin');
+  }, [isAuth, navigate]);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   return (
-    <section>
-      <Container>SignUpPage</Container>
-    </section>
+    <>
+      <SignUp signup={signup} />
+    </>
   );
 };
 
-export default SignUpPage;
+export default SignupPage;
