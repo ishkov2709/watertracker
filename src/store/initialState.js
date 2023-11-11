@@ -1,5 +1,10 @@
 const initialState = {
-  user: {
+  auth: {
+    user: {
+      name: '',
+      email: '',
+      gender: '',
+    },
     isLoggedIn: false,
     isRefreshing: false,
     token: '',

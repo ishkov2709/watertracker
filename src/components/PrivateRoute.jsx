@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import SigninPage from './SigninPage';
 
 const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
-  const isRefreshing = useSelector(state => state.user.isRefreshing);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
   console.log(isLoggedIn);
   console.log(isRefreshing);
 
