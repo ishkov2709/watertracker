@@ -1,13 +1,17 @@
 import Container from 'components/Container';
 import { Wrapper } from './WelcomePage.styled';
-import DaysGeneralStats from 'components/DaysGeneralStats';
+import WelcomeTracker from './WaterTracker/WaterTracker';
+import WhyDrinkWater from './WhyDrinkWater/WhyDrinkWater';
+import { WelcomeWrapper } from './WelcomePage.styled';
 
 const WelcomePage = () => {
   return (
     <Wrapper>
       <Container>
-        <p>WelcomePage</p>
-        <DaysGeneralStats />
+        <WelcomeWrapper>
+          <WelcomeTracker />
+          <WhyDrinkWater />
+        </WelcomeWrapper>
       </Container>
     </Wrapper>
   );
