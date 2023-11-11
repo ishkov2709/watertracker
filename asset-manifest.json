@@ -1,9 +1,15 @@
 {
   "files": {
-    "main.css": "/watertracker/static/css/main.fc78551d.css",
-    "main.js": "/watertracker/static/js/main.061ac47d.js",
+    "main.css": "/watertracker/static/css/main.feb50ffb.css",
+    "main.js": "/watertracker/static/js/main.fe69f940.js",
+    "static/media/bgHomeButleDesc.png": "/watertracker/static/media/bgHomeButleDesc.60d0b8920db86989f0f4.png",
+    "static/media/bgHomeTabButle.png": "/watertracker/static/media/bgHomeTabButle.30548c686fee02197f31.png",
+    "static/media/bgHomeTabBubble.png": "/watertracker/static/media/bgHomeTabBubble.f5b814e94afbc9a117df.png",
     "static/media/img_bg.png": "/watertracker/static/media/img_bg.a0d79c3b82dd6a1f5639.png",
     "static/media/img_bg_1.png": "/watertracker/static/media/img_bg_1.f64e661baefac36f8e09.png",
+    "static/media/bgHomeBubbleDesc.png": "/watertracker/static/media/bgHomeBubbleDesc.d96a6e1bd75f352348cc.png",
+    "static/media/bgHomePhoneButle.png": "/watertracker/static/media/bgHomePhoneButle.220c86799c8644830eed.png",
+    "static/media/bgHomePhoneBubble.png": "/watertracker/static/media/bgHomePhoneBubble.5cc5bc95123c37965ef8.png",
     "static/media/roboto-latin-500-normal.woff2": "/watertracker/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/watertracker/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
     "static/media/roboto-latin-400-normal.woff2": "/watertracker/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
@@ -20,6 +26,7 @@
     "static/media/roboto-latin-ext-400-normal.woff2": "/watertracker/static/media/roboto-latin-ext-400-normal.861b791f9de857a6e7bc.woff2",
     "static/media/roboto-latin-ext-700-normal.woff2": "/watertracker/static/media/roboto-latin-ext-700-normal.ed67ad54b1a8f5d21150.woff2",
     "static/media/roboto-latin-ext-500-normal.woff2": "/watertracker/static/media/roboto-latin-ext-500-normal.9165081d10e1ba601384.woff2",
+    "static/media/sprites.svg": "/watertracker/static/media/sprites.1894ab0770c111afe89e4cb209cbd776.svg",
     "static/media/roboto-latin-ext-400-normal.woff": "/watertracker/static/media/roboto-latin-ext-400-normal.e757c42df6aaa3e11b62.woff",
     "static/media/roboto-latin-ext-500-normal.woff": "/watertracker/static/media/roboto-latin-ext-500-normal.252057e589a0379208ed.woff",
     "static/media/roboto-latin-ext-700-normal.woff": "/watertracker/static/media/roboto-latin-ext-700-normal.c1cc6d6fc851b3a2f79d.woff",
@@ -48,11 +55,11 @@
     "static/media/roboto-greek-ext-400-normal.woff": "/watertracker/static/media/roboto-greek-ext-400-normal.f708607d2a7290fb8bfa.woff",
     "static/media/roboto-greek-ext-700-normal.woff": "/watertracker/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/watertracker/index.html",
-    "main.fc78551d.css.map": "/watertracker/static/css/main.fc78551d.css.map",
-    "main.061ac47d.js.map": "/watertracker/static/js/main.061ac47d.js.map"
+    "main.feb50ffb.css.map": "/watertracker/static/css/main.feb50ffb.css.map",
+    "main.fe69f940.js.map": "/watertracker/static/js/main.fe69f940.js.map"
   },
   "entrypoints": [
-    "static/css/main.fc78551d.css",
-    "static/js/main.061ac47d.js"
+    "static/css/main.feb50ffb.css",
+    "static/js/main.fe69f940.js"
   ]
 }
