@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../../styles/colors';
+import { color } from '../../styles/colors';
 
 export const WaterRatioPanelContainer = styled.div`
   width: 592px;

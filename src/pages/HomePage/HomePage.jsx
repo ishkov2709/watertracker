@@ -1,8 +1,8 @@
 import Container from 'components/common/Container';
 import { Wrapper, Box, DailyNorma, WaterList } from './HomePage.styled';
-import MonthStatsTable from './MonthStatsTable';
-import WaterRatioPanel from './WaterRatioPanel';
-import DaysGeneralStats from './DaysGeneralStats';
+import MonthStatsTable from '../../components/MonthStatsTable';
+import WaterRatioPanel from '../../components/WaterRatioPanel';
+import DaysGeneralStats from '../../components/DaysGeneralStats';
 import { useSelector } from 'react-redux';
 import { dateCoodrsSelector } from 'store/waterData/selectors';
 
