@@ -24,7 +24,7 @@ const DaysGeneralStats = ({ dateCoords: { day, month, top, left } }) => {
       left={firstOfFourDaysArr.find(el => el === day) ? left : left - 252}
     >
       <Btn onClick={handleClose}>
-        <Icon name="plus" stroke={color.primary.brue} />
+        <Icon name="plus" stroke={color.primary.blue} />
       </Btn>
       <DateMonthTitle>
         {day}, {month}
