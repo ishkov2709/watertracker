@@ -4,13 +4,13 @@ import Icon from 'components/Icon';
 import { color } from 'styles/colors.js';
 
 const Avatar = () => { 
-    const email = useSelector(state => state.auth.user.email);
-    const firstLetter = email.slice(0, 1);
+    const name = useSelector(state => state.auth.user.name);
+    const firstLetter = name.slice(0, 1);
 
-    if (email) { 
+    if (name) { 
         return (
             <AvatarBtn>
-                <UserName>{email}</UserName> 
+                <UserName>{name}</UserName> 
                 <>
                     <Circle>
                         <p>{firstLetter.toUpperCase()}</p>
@@ -29,7 +29,7 @@ const Avatar = () => {
     }
      return (
             <AvatarBtn>
-                <UserName>{email}</UserName> 
+                <UserName>{name}</UserName> 
                 <>
                     <Circle>
                         <p>V</p>

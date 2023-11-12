@@ -1,8 +1,8 @@
 const initialState = {
   auth: {
     user: {
-      name: '',
-      email: 'tam@gmail.com',
+      name: 'Tam',
+      email: '',
       gender: '',
     },
     isLoggedIn: true,
