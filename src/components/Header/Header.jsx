@@ -5,9 +5,6 @@ import UserAuth from 'components/UserAuth/UserAuth';
 import Logo from 'img/logo/Logo.png';
 import { LogoBtn, LogoImg, HeaderItm } from './Header.styled';
 
-
-
-
 const Header = () => {
  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (

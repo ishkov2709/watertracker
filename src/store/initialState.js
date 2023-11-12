@@ -5,7 +5,7 @@ const initialState = {
       email: '',
       gender: '',
     },
-    isLoggedIn: true,
+    isLoggedIn: false,
     isRefreshing: false,
     token: '',
   },
