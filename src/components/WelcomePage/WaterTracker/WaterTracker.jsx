@@ -26,7 +26,7 @@ const WelcomeTracker = () => {
             name={'calendar'}
             width={iconWidth}
             height={iconWidth}
-            stroke={color.primary.brue}
+            stroke={color.primary.blue}
           ></Icon>
           <BenefitsInfo>Habit drive</BenefitsInfo>
         </BenefitsItem>
@@ -35,7 +35,7 @@ const WelcomeTracker = () => {
             name={'graphic'}
             width={iconWidth}
             height={iconWidth}
-            stroke={color.primary.brue}
+            stroke={color.primary.blue}
           ></Icon>
           <BenefitsInfo>View statistics</BenefitsInfo>
         </BenefitsItem>
@@ -44,7 +44,7 @@ const WelcomeTracker = () => {
             name={'tools'}
             width={iconWidth}
             height={iconWidth}
-            stroke={color.primary.brue}
+            stroke={color.primary.blue}
           ></Icon>
           <BenefitsInfo>Personal rate setting</BenefitsInfo>
         </BenefitsItem>
