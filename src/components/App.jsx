@@ -2,11 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout';
 import WelcomePage from './WelcomePage/WelcomePage';
 import PrivateRoute from './PrivateRoute';
-// import HomePage from './HomePage';
 import RestrictedRoute from './RestrictedRoute';
 import { lazy } from 'react';
-// import SigninPage from './SigninPage';
-// import SignUpPage from './SignUpPage';
 
 const HomePage = lazy(() => import('./HomePage'));
 const SigninPage = lazy(() => import('./SigninPage'));
