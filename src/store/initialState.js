@@ -1,7 +1,7 @@
 const initialState = {
   auth: {
     user: {
-      name: 'Tam',
+      name: '',
       email: '',
       gender: '',
     },
