@@ -3,13 +3,15 @@ const initialState = {
     user: {
       name: 'Tam',
       email: '',
-      gender: '',
     },
     isLoggedIn: false,
     isRefreshing: false,
     token: '',
+    error: '',
   },
-  waterData: {},
+  waterData: {
+    dateCoords: null,
+  },
 };
 
 export default initialState;
