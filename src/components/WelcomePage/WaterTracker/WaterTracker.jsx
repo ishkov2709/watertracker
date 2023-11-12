@@ -50,7 +50,7 @@ const WelcomeTracker = () => {
         </BenefitsItem>
       </BenefitsList>
       <TryTrackerBtn>
-        <TryTrackerLink to="/">Try Tracker</TryTrackerLink>
+        <TryTrackerLink to="/signup">Try Tracker</TryTrackerLink>
       </TryTrackerBtn>
     </TrackerWrapper>
   );

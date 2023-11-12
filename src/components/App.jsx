@@ -13,7 +13,7 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<WelcomePage />} />
+        <Route index element={<RestrictedRoute component={WelcomePage} />} />
         <Route path="Home" element={<PrivateRoute component={HomePage} />} />
         <Route
           path="signin"
