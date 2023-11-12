@@ -4,6 +4,7 @@ import MonthStatsTable from './MonthStatsTable';
 import DaysGeneralStats from './DaysGeneralStats';
 import { useSelector } from 'react-redux';
 import { dateCoodrsSelector } from 'store/waterData/selectors';
+import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
 
 const HomePage = () => {
   const dateCoords = useSelector(dateCoodrsSelector);
@@ -29,6 +30,7 @@ const HomePage = () => {
             <MonthStatsTable />
             {dateCoords && <DaysGeneralStats dateCoords={dateCoords} />}
           </WaterList>
+          <WaterRatioPanel />
         </Box>
       </Container>
     </Wrapper>
