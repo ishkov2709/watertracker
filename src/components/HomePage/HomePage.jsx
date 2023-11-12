@@ -1,6 +1,7 @@
 import Container from 'components/common/Container';
 import { Wrapper, Box, DailyNorma, WaterList } from './HomePage.styled';
 import MonthStatsTable from './MonthStatsTable';
+import WaterRatioPanel from './WaterRatioPanel';
 import DaysGeneralStats from './DaysGeneralStats';
 import { useSelector } from 'react-redux';
 import { dateCoodrsSelector } from 'store/waterData/selectors';
@@ -14,10 +15,8 @@ const HomePage = () => {
         <Box>
           <DailyNorma>
             <div>1.7</div>
-            <form action="">
-              <input type="range" />
-              <button>add Water</button>
-            </form>
+
+            <WaterRatioPanel />
           </DailyNorma>
           <WaterList>
             <ul>
