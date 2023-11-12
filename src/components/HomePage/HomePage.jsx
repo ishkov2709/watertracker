@@ -1,10 +1,10 @@
 import Container from 'components/common/Container';
 import { Wrapper, Box, DailyNorma, WaterList } from './HomePage.styled';
 import MonthStatsTable from './MonthStatsTable';
+import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
 import DaysGeneralStats from './DaysGeneralStats';
 import { useSelector } from 'react-redux';
 import { dateCoodrsSelector } from 'store/waterData/selectors';
-import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
 
 const HomePage = () => {
   const dateCoords = useSelector(dateCoodrsSelector);
