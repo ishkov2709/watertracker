@@ -20,8 +20,8 @@ const WhyDrinkWater = () => {
               name={'Ellipse'}
               width={8}
               height={8}
-              fill={color.primary.brue}
-              stroke={color.primary.brue}
+              fill={color.primary.blue}
+              stroke={color.primary.blue}
             ></Icon>
           </WdwIconBox>
           <WdwItemText>Supply of nutrients to all organs</WdwItemText>
@@ -32,8 +32,8 @@ const WhyDrinkWater = () => {
               name={'Ellipse'}
               width={8}
               height={8}
-              fill={color.primary.brue}
-              stroke={color.primary.brue}
+              fill={color.primary.blue}
+              stroke={color.primary.blue}
             ></Icon>
           </WdwIconBox>
           <WdwItemText>Providing oxygen to the lungs</WdwItemText>
@@ -44,8 +44,8 @@ const WhyDrinkWater = () => {
               name={'Ellipse'}
               width={8}
               height={8}
-              fill={color.primary.brue}
-              stroke={color.primary.brue}
+              fill={color.primary.blue}
+              stroke={color.primary.blue}
             ></Icon>
           </WdwIconBox>
           <WdwItemText>Maintaining the work of the heart</WdwItemText>
@@ -56,8 +56,8 @@ const WhyDrinkWater = () => {
               name={'Ellipse'}
               width={8}
               height={8}
-              fill={color.primary.brue}
-              stroke={color.primary.brue}
+              fill={color.primary.blue}
+              stroke={color.primary.blue}
             ></Icon>
           </WdwIconBox>
           <WdwItemText>Release of processed substances</WdwItemText>
@@ -68,8 +68,8 @@ const WhyDrinkWater = () => {
               name={'Ellipse'}
               width={8}
               height={8}
-              fill={color.primary.brue}
-              stroke={color.primary.brue}
+              fill={color.primary.blue}
+              stroke={color.primary.blue}
             ></Icon>
           </WdwIconBox>
           <WdwItemText>
@@ -82,8 +82,8 @@ const WhyDrinkWater = () => {
               name={'Ellipse'}
               width={8}
               height={8}
-              fill={color.primary.brue}
-              stroke={color.primary.brue}
+              fill={color.primary.blue}
+              stroke={color.primary.blue}
             ></Icon>
           </WdwIconBox>
           <WdwItemText>Maintaining within the normal temperature</WdwItemText>
@@ -94,8 +94,8 @@ const WhyDrinkWater = () => {
               name={'Ellipse'}
               width={8}
               height={8}
-              fill={color.primary.brue}
-              stroke={color.primary.brue}
+              fill={color.primary.blue}
+              stroke={color.primary.blue}
             ></Icon>
           </WdwIconBox>
           <WdwItemText>

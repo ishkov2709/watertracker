@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { color } from 'styles/colors';
-import imgHomeBgButle from '../../img/background/HomePage/desktop/bgHomeButleDesc.png';
-import imgHomeBgButleTablet from '../../img/background/HomePage/tab/bgHomeTabButle.png';
-import imgHomeBgButlePhone from '../../img/background/HomePage/mob/bgHomePhoneButle.png';
+import imgHomeBgButle from '../../img/background/homePage/desktop/bgHomeButleDesc.png';
+import imgHomeBgButleTablet from '../../img/background/homePage/tab/bgHomeTabButle.png';
+import imgHomeBgButlePhone from '../../img/background/homePage/mob/bgHomePhoneButle.png';
 import { Link } from 'react-router-dom';
 import { Form } from 'formik';
 
 export const Box = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 68px);
 
   background-image: url(${imgHomeBgButlePhone});
   background-size: 100%;
@@ -23,7 +23,7 @@ export const Box = styled.div`
 
   @media screen and (min-width: 1440px) {
     background-image: url(${imgHomeBgButle});
-    background-size: 80%;
+    background-size: contain;
     background-position: bottom 80% left -51%;
     background-repeat: no-repeat;
   }
@@ -100,7 +100,7 @@ export const StyledInput = styled.input`
 `;
 
 export const SigninButton = styled.button`
-  background-color: ${color.primary.brue};
+  background-color: ${color.primary.blue};
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   border-radius: 10px;
   border: none;
@@ -129,7 +129,7 @@ export const LinkToPage = styled(Link)`
   line-height: 20px;
   text-decoration: none;
   margin-bottom: 6px;
-  color: ${color.primary.brue};
+  color: ${color.primary.blue};
   @media screen and (min-width: 1440px) {
     margin-right: 198px;
     margin-left: 833px;

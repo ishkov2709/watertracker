@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
 `;
 
 export const DateMonthTitle = styled.p`
-  color: ${color.primary.brue};
+  color: ${color.primary.blue};
 `;
 
 export const MarkTitle = styled.p`
@@ -36,7 +36,7 @@ export const MarkTitle = styled.p`
 `;
 
 export const Mark = styled.span`
-  color: ${color.primary.brue};
+  color: ${color.primary.blue};
 
   font-weight: 500;
   font-size: 18px;

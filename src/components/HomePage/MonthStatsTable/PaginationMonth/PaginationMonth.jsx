@@ -48,8 +48,8 @@ const PaginationMonth = ({ date, setDate }) => {
       <Btn onClick={handleDecrementMonth}>
         <Icon
           name="arrow-down"
-          fill={color.primary.brue}
-          stroke={color.primary.brue}
+          fill={color.primary.blue}
+          stroke={color.primary.blue}
           width={14}
           height={14}
         />
@@ -58,8 +58,8 @@ const PaginationMonth = ({ date, setDate }) => {
       <Btn onClick={handleIncrementMonth}>
         <Icon
           name="arrow-down"
-          fill={color.primary.brue}
-          stroke={color.primary.brue}
+          fill={color.primary.blue}
+          stroke={color.primary.blue}
           width={14}
           height={14}
         />

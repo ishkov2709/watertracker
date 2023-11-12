@@ -1,28 +1,22 @@
 import styled from 'styled-components';
-import imgHomeBgbubbles from '../../img/background/HomePage/desktop/bgHomeBubbleDesc.png';
-import imgHomeBgButle from '../../img/background/HomePage/desktop/bgHomeButleDesc.png';
-import imgHomeBgButleTablet from '../../img/background/HomePage/tab/bgHomeTabButle.png';
-import imgHomeBgBubbleTablet from '../../img/background/HomePage/tab/bgHomeTabBubble.png';
-import imgHomeBgBubblePhone from '../../img/background/HomePage/mob/bgHomePhoneBubble.png';
-import imgHomeBgButlePhone from '../../img/background/HomePage/mob/bgHomePhoneButle.png';
+import imgHomeBgbubbles from '../../img/background/homePage/desktop/bgHomeBubbleDesc.png';
+import imgHomeBgButle from '../../img/background/homePage/desktop/bgHomeButleDesc.png';
+import imgHomeBgButleTablet from '../../img/background/homePage/tab/bgHomeTabButle.png';
+import imgHomeBgBubbleTablet from '../../img/background/homePage/tab/bgHomeTabBubble.png';
+import imgHomeBgBubblePhone from '../../img/background/homePage/mob/bgHomePhoneBubble.png';
+import imgHomeBgButlePhone from '../../img/background/homePage/mob/bgHomePhoneButle.png';
 
 export const Wrapper = styled.section`
-  min-height: 96vh;
-
   background-image: url(${imgHomeBgBubblePhone});
   background-size: cover;
   background-position: bottom center;
   background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
 
   @media screen and (min-width: 768px) {
     background-image: url(${imgHomeBgBubbleTablet});
     background-size: cover;
     background-position: bottom center;
     background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
   }
 
   @media screen and (min-width: 1440px) {
@@ -30,14 +24,10 @@ export const Wrapper = styled.section`
     background-size: contain;
     background-position: bottom center;
     background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
   }
 `;
 
 export const Box = styled.div`
-  min-height: 96vh;
-
   background-image: url(${imgHomeBgButlePhone});
   background-position: top 15px right 50%;
   background-size: 280px;
@@ -116,6 +106,7 @@ export const WaterList = styled.div`
     justify-content: space-between;
     margin: 30px 0;
     width: 592px;
+    max-height: 680px;
     background-color: #ecf2ff;
     padding: 32px 24px 32px 24px;
     border-radius: 10px;

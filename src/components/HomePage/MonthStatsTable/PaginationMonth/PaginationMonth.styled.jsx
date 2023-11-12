@@ -12,7 +12,7 @@ export const Month = styled.p`
   text-align: center;
   font-size: 16px;
 
-  color: ${color.primary.brue};
+  color: ${color.primary.blue};
 `;
 
 export const Btn = styled.button`
