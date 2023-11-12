@@ -1,8 +1,8 @@
-import PaginationMonth from './PaginationMonth';
+import PaginationMonth from '../PaginationMonth';
+import DayItemCalendar from '../DayItemCalendar';
 import { CalendarBox, HeadBox, List, TitleBox } from './MonthStatsTable.styled';
 import { useState } from 'react';
 import { useDaysOfMonth } from 'hooks/useDaysOfMonth';
-import DayItemCalendar from './DayItemCalendar';
 import { format } from 'date-fns';
 
 const dateNow = new Date();

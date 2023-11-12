@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import SigninPage from './SigninPage';
+import SigninPage from '../pages/SigninPage';
 
 const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);

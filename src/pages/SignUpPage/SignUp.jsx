@@ -1,46 +1,54 @@
 import Container from 'components/common/Container';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Formik, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import { errorSelector } from '../../store/auth/selectors';
 
 import {
-  Box,
   Label,
+  Title,
+  LinkToPage,
+  Box,
   StyledForm,
   StyledInput,
   SigninButton,
-  Title,
-  LinkToPage,
   ErrorM,
-} from './Auth.styled';
-import { Wrapper } from 'components/HomePage/HomePage.styled';
-import { Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+} from '../SigninPage/Auth.styled';
+import { Wrapper } from '../HomePage/HomePage.styled';
 
-// function Signin({ signin }) {
+// function Signup({ signup }) {
+//   const error = useSelector(errorSelector);
 //   const [email, setEmail] = useState('');
 //   const [password, setPassword] = useState('');
-//   const error = useSelector(errorSelector);
+
+//   const dispatch = useDispatch();
 
 //   const handleSubmit = e => {
 //     e.preventDefault();
-//     signin({ email, password });
+//     dispatch(signup({ email, password }));
 //   };
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().required('Password is required'),
+  repeatPassword: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Repeat password is required'),
 });
 
 const initialValues = {
   email: '',
   password: '',
+  repeatPassword: '',
 };
 
-const Signin = ({ signin }) => {
+const Signup = ({ signup }) => {
   const error = useSelector(errorSelector);
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, { setSubmitting }) => {
-    signin(values);
+    dispatch(signup({ email: values.email, password: values.password }));
     setSubmitting(false);
   };
   return (
@@ -49,7 +57,7 @@ const Signin = ({ signin }) => {
         <Box>
           <div>
             {error && <h4>{error}</h4>}
-            <Title>Sign In</Title>
+            <Title>Sign Up</Title>
             {/* <Form onSubmit={handleSubmit}>
               <div>
                 <Label>Enter your email</Label>
@@ -73,7 +81,20 @@ const Signin = ({ signin }) => {
                   required
                 />
               </div>
-              <RegisterButton type="submit">Sign In</RegisterButton>
+              <div>
+                <Label>Repeat password</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="Repeat pasword"
+                  onChange={({ target: { value } }) => setPassword(value)}
+                  required
+                />
+              </div>
+              <RegisterButton type="submit">Sign Up</RegisterButton>
+
+              <LinkToPage to="/signin">Sign in</LinkToPage>
             </Form> */}
             <Formik
               initialValues={initialValues}
@@ -103,13 +124,21 @@ const Signin = ({ signin }) => {
                   />
                   <ErrorMessage name="password" component={ErrorM} />
                 </div>
-                <SigninButton type="submit">Sign In</SigninButton>
+                <div>
+                  <Label>Repeat password</Label>
+                  <Field
+                    as={StyledInput}
+                    type="password"
+                    name="repeatPassword"
+                    placeholder="Repeat password"
+                    required
+                  />
+                  <ErrorMessage name="repeatPassword" component={ErrorM} />
+                </div>
+                <SigninButton type="submit">Sign Up</SigninButton>
               </StyledForm>
             </Formik>
-
-            <LinkToPage to="/forgot-password">Forgot password?</LinkToPage>
-
-            <LinkToPage to="/signup">Sign up</LinkToPage>
+            <LinkToPage to="/signin">Sign in</LinkToPage>
           </div>
         </Box>
       </Container>
@@ -117,4 +146,4 @@ const Signin = ({ signin }) => {
   );
 };
 
-export default Signin;
+export default Signup;

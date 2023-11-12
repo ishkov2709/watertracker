@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Icon from 'components/common/Icon';
-import { color } from 'styles/colors';
+import { color } from '../../styles/colors';
 import {
   WaterRatioPanelContainer,
   WaterRangeHeader,
