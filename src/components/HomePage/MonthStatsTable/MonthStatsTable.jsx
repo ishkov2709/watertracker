@@ -1,8 +1,9 @@
-import PaginationMonth from 'components/PaginationMonth';
+import PaginationMonth from './PaginationMonth';
 import { CalendarBox, HeadBox, List, TitleBox } from './MonthStatsTable.styled';
 import { useState } from 'react';
 import { useDaysOfMonth } from 'hooks/useDaysOfMonth';
-import DayItemCalendar from 'components/DayItemCalendar';
+import DayItemCalendar from './DayItemCalendar';
+import { format } from 'date-fns';
 
 const dateNow = new Date();
 
@@ -21,10 +22,14 @@ const MonthStatsTable = () => {
         <TitleBox>Month</TitleBox>
         <PaginationMonth date={date} setDate={setDate} />
       </HeadBox>
-      {days.length && (
+      {days.length > 0 && (
         <List>
           {days.map(({ year, month, day }) => (
-            <DayItemCalendar key={`${year}${month}${day}`} day={day + 1} />
+            <DayItemCalendar
+              key={`${year}${month}${day}`}
+              day={day}
+              month={format(new Date(date.year, date.month, date.day), 'MMMM')}
+            />
           ))}
         </List>
       )}
