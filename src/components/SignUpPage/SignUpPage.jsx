@@ -15,13 +15,13 @@ const SignupPage = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    isAuth && navigate('/signin');
-  }, [isAuth, navigate]);
+  // useEffect(() => {
+  //   isAuth && navigate('/signin');
+  // }, [isAuth, navigate]);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
   return (
     <>
       <SignUp signup={signup} />
