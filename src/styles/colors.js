@@ -2,7 +2,7 @@ export const color = {
   primary: {
     white: '#FFFFFF',
     black: '#2F2F2F',
-    brue: '#407BFF',
+    blue: '#407BFF',
   },
   secondary: {
     white: '#ECF2FF',

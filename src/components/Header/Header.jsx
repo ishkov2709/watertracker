@@ -2,28 +2,31 @@ import Container from 'components/Container';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import UserAuth from 'components/UserAuth/UserAuth';
+import Logo from 'img/logo/Logo.png';
+import { LogoBtn, LogoImg, HeaderItm } from './Header.styled';
 
 const Header = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (
-    <header>
+    
       <Container>
+        <HeaderItm>
             {isLoggedIn ? (
-          <nav>
-            <Link to='/Home'>
-                <button><img src='./img/logo/Logo.png' alt='logo'/></button>
-            </Link>
-          </nav>
-        ) : (
             <nav>
-              <Link to='/'>
-                  <button><img src='./img/logo/Logo.png' alt='logo'/></button>
+              <Link to='/Home'>
+                <LogoBtn><LogoImg src={Logo} alt='logo'/></LogoBtn>
               </Link>
-          </nav>
-        )}
-        <UserAuth/>
+            </nav>
+          ) : (
+              <nav>
+                <Link to='/'>
+                  <LogoBtn><LogoImg src={Logo}  alt='logo'/></LogoBtn>
+                </Link>
+            </nav>
+          )}
+          <UserAuth />
+        </HeaderItm>
       </Container>
-    </header>
   );
 };
 

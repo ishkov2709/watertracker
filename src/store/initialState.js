@@ -2,10 +2,10 @@ const initialState = {
   auth: {
     user: {
       name: '',
-      email: '',
+      email: 'tam@gmail.com',
       gender: '',
     },
-    isLoggedIn: false,
+    isLoggedIn: true,
     isRefreshing: false,
     token: '',
   },
