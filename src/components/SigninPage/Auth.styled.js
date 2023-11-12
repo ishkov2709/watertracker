@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { color } from 'styles/colors';
-import imgHomeBgButle from '../../img/background/homePage/desktop/bgHomeButleDesc.png';
-import imgHomeBgButleTablet from '../../img/background/homePage/tab/bgHomeTabButle.png';
-import imgHomeBgButlePhone from '../../img/background/homePage/mob/bgHomePhoneButle.png';
+import imgHomeBgButle from '../../img/background/HomePage/desktop/bgHomeButleDesc.png';
+import imgHomeBgButleTablet from '../../img/background/HomePage/tab/bgHomeTabButle.png';
+import imgHomeBgButlePhone from '../../img/background/HomePage/mob/bgHomePhoneButle.png';
 import { Link } from 'react-router-dom';
 import { Form } from 'formik';
 
