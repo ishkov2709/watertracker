@@ -1,11 +1,19 @@
 import styled from 'styled-components';
+import { color } from 'styles/colors';
 
-const Btn = styled.button(({ width, type }) => ({
+const Btn = styled.button(({ width, buttonType }) => ({
   width: `${width}px`,
 
-  color: type === 'cancel' ? '#407BFF' : '#fff',
+  color:
+    buttonType === 'cancel'
+      ? `${color.primary.blue}`
+      : `${color.primary.white}`,
   backgroundColor:
-    type === 'cancel' ? '#D7E3FF' : type === 'delete' ? '#EF5050' : '#407bff',
+    buttonType === 'cancel'
+      ? `${color.secondary.gray}`
+      : buttonType === 'delete'
+      ? `${color.secondary.tomato}`
+      : `${color.primary.blue}`,
 }));
 
 export const ButtonContainer = styled(Btn)`
