@@ -4,10 +4,10 @@ import MonthStatsTable from '../../components/MonthStatsTable';
 import WaterRatioPanel from '../../components/WaterRatioPanel';
 import DaysGeneralStats from '../../components/DaysGeneralStats';
 import { useSelector } from 'react-redux';
-import { dateCoodrsSelector } from 'store/waterData/selectors';
+import { targetDaySelector } from 'store/waterData/selectors';
 
 const HomePage = () => {
-  const targetDay = useSelector(dateCoodrsSelector);
+  const targetDay = useSelector(targetDaySelector);
 
   return (
     <Wrapper>
