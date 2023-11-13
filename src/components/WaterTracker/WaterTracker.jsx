@@ -8,13 +8,12 @@ import {
   BenefitsInfo,
   TryTrackerBtn,
   TryTrackerLink,
+  IconBox,
 } from './WaterTracker.styled';
 import Icon from 'components/common/Icon';
 import { color } from 'styles/colors';
 
 const WelcomeTracker = () => {
-  const iconWidth = window.screen.width > 768 ? 40 : 32;
-
   return (
     <TrackerWrapper>
       <WelcomeTitle>Water consumption tracker</WelcomeTitle>
@@ -22,30 +21,36 @@ const WelcomeTracker = () => {
       <BenefitsTitle>Tracker Benefits</BenefitsTitle>
       <BenefitsList>
         <BenefitsItem>
-          <Icon
+          <IconBox>
+            <Icon
             name={'calendar'}
-            width={iconWidth}
-            height={iconWidth}
+            width={"100%"}
+            height={"100%"}
             stroke={color.primary.blue}
-          ></Icon>
+          ></Icon> 
+          </IconBox>
           <BenefitsInfo>Habit drive</BenefitsInfo>
         </BenefitsItem>
         <BenefitsItem>
-          <Icon
+          <IconBox>
+            <Icon
             name={'graphic'}
-            width={iconWidth}
-            height={iconWidth}
+            width={"100%"}
+            height={"100%"}
             stroke={color.primary.blue}
           ></Icon>
+          </IconBox>
           <BenefitsInfo>View statistics</BenefitsInfo>
         </BenefitsItem>
         <BenefitsItem>
-          <Icon
+          <IconBox>
+            <Icon
             name={'tools'}
-            width={iconWidth}
-            height={iconWidth}
+            width={"100%"}
+            height={"100%"}
             stroke={color.primary.blue}
           ></Icon>
+          </IconBox>
           <BenefitsInfo>Personal rate setting</BenefitsInfo>
         </BenefitsItem>
       </BenefitsList>
