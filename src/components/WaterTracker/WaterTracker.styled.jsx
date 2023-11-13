@@ -125,3 +125,12 @@ export const TryTrackerLink = styled(NavLink)`
     line-height: 1.33;
   }
 `;
+
+export const IconBox = styled.div`
+    width: 32px;
+    height: 32px;
+      @media screen and (min-width: 768px) {
+        width: 40px;
+        height: 40px;
+      }
+`;
