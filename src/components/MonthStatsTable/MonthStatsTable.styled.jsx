@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { color } from 'styles/colors';
 
 export const CalendarBox = styled.div`
-
   width: 264px;
+  height: 474px;
 
   background-color: ${color.secondary.white};
 
   @media screen and (min-width: 768px) {
     width: 646px;
+    height: 318px;
   }
 
   @media screen and (min-width: 1440px) {

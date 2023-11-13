@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { dateCoodrsSelector } from 'store/waterData/selectors';
 
 const HomePage = () => {
-  const dateCoords = useSelector(dateCoodrsSelector);
+  const targetDay = useSelector(dateCoodrsSelector);
 
   return (
     <Wrapper>
@@ -26,7 +26,7 @@ const HomePage = () => {
               <li>awd123</li>
             </ul>
             <MonthStatsTable />
-            {dateCoords && <DaysGeneralStats dateCoords={dateCoords} />}
+            {targetDay && <DaysGeneralStats targetDay={targetDay} />}
           </WaterList>
         </Box>
       </Container>

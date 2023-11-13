@@ -11,7 +11,8 @@ export const Btn = styled.button`
 
   background-color: ${color.primary.white};
 
-  border: none;
+  border: ${props =>
+    props.isDone ? 'none' : `1px solid ${color.secondary.orange}`};
 
   margin-bottom: 4px;
 

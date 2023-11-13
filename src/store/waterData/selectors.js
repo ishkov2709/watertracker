@@ -1,1 +1,5 @@
-export const dateCoodrsSelector = state => state.waterData.dateCoords;
+export const dateCoodrsSelector = state => state.waterData.targetDay;
+
+export const daysOfMonthSelector = state => state.waterData.daysOfMonth;
+
+export const isLoadingSelector = state => state.waterData.isLoading;
