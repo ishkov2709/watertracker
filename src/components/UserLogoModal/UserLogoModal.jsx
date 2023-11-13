@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { MenuButton, Menu, MenuItem } from './UserLogoModal.styled';
+import SettingModal from 'components/SettingModal';
 
 const UserLogoModal = () => {
-  const [isVisible, setVisible] = useState(false);
+  const [isSettingModalVisible, setIsSettingModalVisible] = useState(false);
 
   const toggleMenu = () => {
-    setVisible(!isVisible);
+    setIsSettingModalVisible(!isSettingModalVisible);
   };
 
   return (
@@ -13,8 +14,9 @@ const UserLogoModal = () => {
       <MenuButton onClick={toggleMenu}>User</MenuButton>
       {isVisible && (
         <Menu>
-          <MenuItem>Setting</MenuItem>
-          <MenuItem>Log out</MenuItem>
+          <MenuItem onClick={toggleMenu}>Setting</MenuItem>
+          {isSettingModalVisible && <SettingModal onClose={toggleMenu} />}
+          <MenuItem onClick={toggleMenu}>Log out</MenuItem>
         </Menu>
       )}
     </div>
