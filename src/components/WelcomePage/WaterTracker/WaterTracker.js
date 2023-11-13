@@ -1,11 +1,9 @@
-import { TrackerWrapper, WelcomeTitle, WelcomeSubTitle, BenefitsTitle, BenefitsList, BenefitsItem, BenefitsInfo, TryTrackerBtn, TryTrackerLink} from './WaterTracker.styled'
+import { TrackerWrapper, WelcomeTitle, WelcomeSubTitle, BenefitsTitle, BenefitsList, BenefitsItem, BenefitsInfo, TryTrackerBtn, TryTrackerLink, IconBox} from './WaterTracker.styled'
 import Icon from 'components/Icon';
 import { color } from 'styles/colors';
 
 
 const WelcomeTracker = () => {
-    const iconWidth = window.screen.width > 768 ? 40 : 32;
-
     return (
         <TrackerWrapper>
             <WelcomeTitle>Water consumption tracker</WelcomeTitle>
@@ -13,20 +11,26 @@ const WelcomeTracker = () => {
             <BenefitsTitle>Tracker Benefits</BenefitsTitle>
             <BenefitsList>
                 <BenefitsItem>
-                    <Icon name={"calendar"} width={iconWidth} height={iconWidth} stroke={color.primary.brue}></Icon>
+                    <IconBox>
+                        <Icon name={"calendar"} width={"100%"} height={"100%"} stroke={color.primary.brue}></Icon>
+                    </IconBox>
                     <BenefitsInfo>Habit drive</BenefitsInfo>
                 </BenefitsItem>
                 <BenefitsItem>
-                    <Icon name={"graphic"} width={iconWidth} height={iconWidth} stroke={color.primary.brue}></Icon>
+                    <IconBox>
+                        <Icon name={"graphic"} width={"100%"} height={"100%"} stroke={color.primary.brue}></Icon>
+                    </IconBox>
                     <BenefitsInfo>View statistics</BenefitsInfo>
                 </BenefitsItem>
                 <BenefitsItem>
-                    <Icon name={"tools"} width={iconWidth} height={iconWidth} stroke={color.primary.brue}></Icon>
+                    <IconBox>
+                        <Icon name={"tools"} width={"100%"} height={"100%"} stroke={color.primary.brue}></Icon>
+                    </IconBox>
                     <BenefitsInfo>Personal rate setting</BenefitsInfo>
                 </BenefitsItem>
             </BenefitsList>
             <TryTrackerBtn>
-                <TryTrackerLink to="/">Try Tracker</TryTrackerLink>
+                <TryTrackerLink to="/register">Try Tracker</TryTrackerLink>
             </TryTrackerBtn>
         </TrackerWrapper>
         

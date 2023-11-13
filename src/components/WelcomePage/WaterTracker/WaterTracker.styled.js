@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { color } from 'styles/colors';
 import { NavLink } from 'react-router-dom';
+import sprite from "../../../img/sprites.svg"
 
 export const TrackerWrapper = styled.div`
     width: 280px;
@@ -106,10 +107,10 @@ export const TryTrackerBtn = styled.button`
     border-radius: 10px;
     border: none;
     width: 100%;
-    padding: 8px 30px 8px 30px;
-
+    &:hover {
+      cursor: url("${sprite}#${"Ellipse"}"), auto;
+    }
      @media screen and (min-width: 768px) {
-        padding: 10px 30px 10px 30px;
         max-width: 276px;
     }
 
@@ -121,13 +122,27 @@ export const TryTrackerBtn = styled.button`
 export const TryTrackerLink = styled(NavLink)`
      color: ${color.primary.white};
      text-decoration:none;
+     display: inline-block;
      text-align: center;
+     width: 100%;
+     height: 100%;
      font-size: 16px;
     line-height: 1.25;
     font-weight: 500;
+    padding: 8px 30px 8px 30px;
+
           @media screen and (min-width: 768px) {
     padding: 10px 30px 10px 30px;
      font-size: 18px;
     line-height: 1.33;
     }
+`
+export const IconBox = styled.div`
+    width: 32px;
+    height: 32px;
+
+      @media screen and (min-width: 768px) {
+        width: 40px;
+        height: 40px;
+      }
 `
