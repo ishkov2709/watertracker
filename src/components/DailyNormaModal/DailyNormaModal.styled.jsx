@@ -139,25 +139,54 @@ export const FrameChild = styled.img`
   height: 14px;
 `;
 
-export const ForGirl1 = styled.div`
-  line-height: 20px;
-`;
 
-export const GroupParent = styled.div`
+
+export const GroupParent = styled.label`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
+  cursor: pointer;
 `;
 
-export const FrameItem = styled.div`
+export const FrameItem = styled.input`
+  appearance: none;
   border-radius: 50%;
   background-color: #fff;
   border: 1px solid #407bff;
   box-sizing: border-box;
   width: 14px;
   height: 14px;
+  margin: 0;
+  position: relative;
+
+  &:checked {
+    &::before {
+      content: '\u2022';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      background-color: #407bff;
+      border-radius: 50%;
+      color: #fff;
+    }
+  }
+`;
+
+export const ForGirl1 = styled.div`
+  line-height: 20px;
+`;
+
+export const EllipseParent = styled.label`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  cursor: pointer;
 `;
 
 export const ForMan1 = styled.div`
@@ -165,14 +194,6 @@ export const ForMan1 = styled.div`
   display: inline-block;
   width: 60px;
   flex-shrink: 0;
-`;
-
-export const EllipseParent = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
 `;
 
 export const YourWeightIn1 = styled.div`

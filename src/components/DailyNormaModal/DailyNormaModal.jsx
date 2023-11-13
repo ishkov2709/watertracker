@@ -19,7 +19,6 @@ import {
   CalculateYourRate1,
   FrameParent2,
   GroupParent,
-  FrameChild,
   ForGirl1,
   EllipseParent,
   FrameItem,
@@ -128,7 +127,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
           <FrameParent2>
             <FrameParent1>
               <GroupParent>
-                <FrameChild alt="" src="Group 11.svg" />
+                <FrameItem type="radio" />
                 <ForGirl1>For girl</ForGirl1>
               </GroupParent>
               <EllipseParent>
