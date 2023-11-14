@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { errorSelector } from '../../store/auth/selectors';
+import sprite from '../../img/sprites.svg';
 
 import {
   Label,
@@ -15,6 +16,7 @@ import {
   StyledInput,
   SigninButton,
   ErrorM,
+  StyledPasswordInput,
 } from '../SigninPage/Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 
@@ -44,6 +46,8 @@ const initialValues = {
 };
 
 const Signup = ({ signup }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
 
@@ -51,13 +55,20 @@ const Signup = ({ signup }) => {
     dispatch(signup({ email: values.email, password: values.password }));
     setSubmitting(false);
   };
+  const togglePasswordVisibility = field => {
+    if (field === 'password') {
+      setPasswordVisible(!passwordVisible);
+    } else if (field === 'repeatPassword') {
+      setRepeatPasswordVisible(!repeatPasswordVisible);
+    }
+  };
   return (
     <Wrapper>
       <Container>
         <Box>
           <div>
             {error && <h4>{error}</h4>}
-            <Title>Sign Up</Title>
+
             {/* <Form onSubmit={handleSubmit}>
               <div>
                 <Label>Enter your email</Label>
@@ -102,6 +113,7 @@ const Signup = ({ signup }) => {
               onSubmit={handleSubmit}
             >
               <StyledForm>
+                <Title>Sign Up</Title>
                 <div>
                   <Label>Enter your email</Label>
                   <Field
@@ -115,24 +127,52 @@ const Signup = ({ signup }) => {
                 </div>
                 <div>
                   <Label>Enter your password</Label>
-                  <Field
-                    as={StyledInput}
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                  />
+                  <StyledPasswordInput>
+                    <Field
+                      as={StyledInput}
+                      type={passwordVisible ? 'text' : 'password'}
+                      name="password"
+                      placeholder="Password"
+                      required
+                    />
+                    <span onClick={() => togglePasswordVisibility('password')}>
+                      {passwordVisible ? (
+                        <svg className="eye">
+                          <use href={sprite + '#eye'} />
+                        </svg>
+                      ) : (
+                        <svg className="eye">
+                          <use href={sprite + '#hidden'} />
+                        </svg>
+                      )}
+                    </span>
+                  </StyledPasswordInput>
                   <ErrorMessage name="password" component={ErrorM} />
                 </div>
                 <div>
                   <Label>Repeat password</Label>
-                  <Field
-                    as={StyledInput}
-                    type="password"
-                    name="repeatPassword"
-                    placeholder="Repeat password"
-                    required
-                  />
+                  <StyledPasswordInput>
+                    <Field
+                      as={StyledInput}
+                      type={repeatPasswordVisible ? 'text' : 'password'}
+                      name="repeatPassword"
+                      placeholder="Repeat password"
+                      required
+                    />
+                    <span
+                      onClick={() => togglePasswordVisibility('repeatPassword')}
+                    >
+                      {repeatPasswordVisible ? (
+                        <svg className="eye">
+                          <use href={sprite + '#eye'} />
+                        </svg>
+                      ) : (
+                        <svg className="eye">
+                          <use href={sprite + '#hidden'} />
+                        </svg>
+                      )}
+                    </span>
+                  </StyledPasswordInput>
                   <ErrorMessage name="repeatPassword" component={ErrorM} />
                 </div>
                 <SigninButton type="submit">Sign Up</SigninButton>
