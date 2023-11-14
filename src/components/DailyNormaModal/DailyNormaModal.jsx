@@ -1,6 +1,6 @@
 import { Box } from 'components/common/Container/Container.styled';
 import React, { useState, useEffect, useCallback } from 'react';
-import { FormInput } from 'components/common/FormInput/FormInput';
+import FormInput from 'components/common/FormInput/FormInput';
 import {
   MyDailyNorma,
   XMarkoutlineIcon1,
@@ -139,8 +139,8 @@ const DailyNormaModal = ({ setModalOpen }) => {
             <YourWeightInKilogramsParent>
               <YourWeightIn1>Your weight in kilograms:</YourWeightIn1>
               <Wrapper>
-                <input
-                  type="text"
+                <FormInput
+                  inputType="settings"
                   value={weight}
                   onChange={handleWeightChange}
                 />
@@ -152,8 +152,8 @@ const DailyNormaModal = ({ setModalOpen }) => {
                 with a high physical. load:
               </TheTimeOf1>
               <Wrapper>
-                <input
-                  type="text"
+                <FormInput
+                  inputType="settings"
                   value={activityTime}
                   onChange={handleActivityTimeChange}
                 />
@@ -173,8 +173,8 @@ const DailyNormaModal = ({ setModalOpen }) => {
           </WriteDownHow1>
           <Frame1>
             <Wrapper>
-              <input
-                type="text"
+              <FormInput
+                inputType="dailyNorma"
                 value={drankWaterAmount}
                 onChange={handleDrankWaterChange}
               />
