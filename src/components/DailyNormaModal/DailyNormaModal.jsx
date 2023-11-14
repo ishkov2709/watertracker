@@ -1,15 +1,19 @@
-import { Box } from 'components/common/Container/Container.styled';
 import React, { useState, useEffect, useCallback } from 'react';
+
+import { Box } from 'components/common/Container/Container.styled';
+import FormInput from 'components/common/FormInput/FormInput';
+import Button from 'components/common/Button';
+import Icon from 'components/common/Icon/Icon';
+
 import {
   MyDailyNorma,
-  XMarkoutlineIcon1,
   MyDailyNormaParent,
   FrameGroup,
   FrameDiv,
   FrameParent1,
   ForGirlParent,
+  ForManParent,
   ForGirl,
-  Vm003T04,
   ForMan,
   VIsTheVolumeOfTheWaterNWrapper,
   VIsTheContainer,
@@ -30,9 +34,9 @@ import {
   TheRequiredAmount1,
   L,
   SaveWrapper,
-  Save,
   WriteDownHow1,
   Frame1,
+  IconWrapper,
 } from './DailyNormaModal.styled';
 
 const DailyNormaModal = ({ setModalOpen }) => {
@@ -42,6 +46,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
   const [drankWaterAmount, setDrankWaterAmount] = useState(0);
 
   const closeModal = () => {
+    console.log('Closing modal');
     setModalOpen(false);
   };
 
@@ -85,29 +90,34 @@ const DailyNormaModal = ({ setModalOpen }) => {
 
   useEffect(() => {
     setModalOpen(true);
-  });
+  }, [setModalOpen]);
 
   return (
     <Box>
       <MyDailyNormaParent>
         <MyDailyNorma>My daily norma</MyDailyNorma>
-        <XMarkoutlineIcon1
-          alt=""
-          src="x-mark/outline.svg"
-          onClick={() => setModalOpen(false)}
-        />
+        <IconWrapper onClick={closeModal}>
+          <Icon
+            name="plus"
+            width={24}
+            height={24}
+            fill="#ffffff00"
+            stroke="#000000"
+            className="icon"
+          />
+        </IconWrapper>
       </MyDailyNormaParent>
       <FrameGroup>
         <FrameDiv>
           <FrameParent1>
             <ForGirlParent>
               <ForGirl>For girl:</ForGirl>
-              <Vm003T04>V=(M*0,03) + (T*0,4)</Vm003T04>
+              <calculation>V=(M*0,03) + (T*0,4)</calculation>
             </ForGirlParent>
-            <ForGirlParent>
+            <ForManParent>
               <ForMan>For man:</ForMan>
-              <Vm003T04>V=(M*0,04) + (T*0,6)</Vm003T04>
-            </ForGirlParent>
+              <calculation>V=(M*0,04) + (T*0,6)</calculation>
+            </ForManParent>
           </FrameParent1>
           <VIsTheVolumeOfTheWaterNWrapper>
             <VIsTheContainer>
@@ -138,8 +148,8 @@ const DailyNormaModal = ({ setModalOpen }) => {
             <YourWeightInKilogramsParent>
               <YourWeightIn1>Your weight in kilograms:</YourWeightIn1>
               <Wrapper>
-                <input
-                  type="text"
+                <FormInput
+                  inputType="settings"
                   value={weight}
                   onChange={handleWeightChange}
                 />
@@ -151,8 +161,8 @@ const DailyNormaModal = ({ setModalOpen }) => {
                 with a high physical. load:
               </TheTimeOf1>
               <Wrapper>
-                <input
-                  type="text"
+                <FormInput
+                  inputType="settings"
                   value={activityTime}
                   onChange={handleActivityTimeChange}
                 />
@@ -172,8 +182,8 @@ const DailyNormaModal = ({ setModalOpen }) => {
           </WriteDownHow1>
           <Frame1>
             <Wrapper>
-              <input
-                type="text"
+              <FormInput
+                inputType="dailyNorma"
                 value={drankWaterAmount}
                 onChange={handleDrankWaterChange}
               />
@@ -182,7 +192,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
         </CalculateYourRateParent>
       </FrameGroup>
       <SaveWrapper>
-        <Save onClick={handleSave}>Save</Save>
+        <Button onClick={handleSave}>Save</Button>
       </SaveWrapper>
     </Box>
   );

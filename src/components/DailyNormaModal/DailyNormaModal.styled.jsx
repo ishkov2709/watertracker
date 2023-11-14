@@ -1,78 +1,38 @@
 import styled from 'styled-components';
 
-export const ModalContent = styled.div`
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  width: 300px;
-
-  @media screen and (min-width: 768px) {
-    width: 500px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 600px;
-  }
-`;
-
-export const CloseButton = styled.button`
-  background: none;
-  border: none;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 20px;
-  color: #333;
-`;
-
 export const ModalTitle = styled.h2`
   color: #333;
 `;
 
 export const MyDailyNorma = styled.div`
-  line-height: 32px;
-  font-weight: 500;
-  width: 180px;
-  flex-shrink: 0;
-`;
-
-export const XMarkoutlineIcon1 = styled.img`
-  width: 24px;
-  height: 24px;
-  overflow: hidden;
-  flex-shrink: 0;
+  position: relative;
 `;
 
 export const MyDailyNormaParent = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
   gap: 20px;
   font-size: 22px;
 `;
 
+export const IconWrapper = styled.div`
+  margin-left: auto;
+`;
+
 export const ForGirl = styled.div`
-  line-height: 20px;
   width: 54px;
   flex-shrink: 0;
 `;
 
-export const Vm003T04 = styled.div`
-  font-size: 18px;
-  line-height: 24px;
-  color: #407bff;
-  width: 168px;
-  flex-shrink: 0;
+export const ForGirlParent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
 `;
 
-export const ForGirlParent = styled.div`
+export const ForManParent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -107,6 +67,7 @@ export const VIsTheContainer = styled.div`
 `;
 
 export const VIsTheVolumeOfTheWaterNWrapper = styled.div`
+  margin-top: 12px;
   border-radius: 10px;
   border: 1px solid #d7e3ff;
   display: flex;
@@ -119,7 +80,7 @@ export const VIsTheVolumeOfTheWaterNWrapper = styled.div`
 `;
 
 export const FrameDiv = styled.div`
-  display: flex;
+  margin-top: 26px;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -138,8 +99,6 @@ export const FrameChild = styled.img`
   width: 14px;
   height: 14px;
 `;
-
-
 
 export const GroupParent = styled.label`
   display: flex;
@@ -209,12 +168,9 @@ export const Div = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 12px 10px;
-  color: #407bff;
 `;
 
 export const YourWeightInKilogramsParent = styled.div`
@@ -243,7 +199,6 @@ export const L = styled.b`
   line-height: 24px;
   display: inline-block;
   color: #407bff;
-  width: 42px;
   flex-shrink: 0;
 `;
 
@@ -289,24 +244,8 @@ export const FrameGroup = styled.div`
   gap: 24px;
 `;
 
-export const Save = styled.div`
-  line-height: 24px;
-  font-weight: 500;
-  display: inline-block;
-  width: 100px;
-  flex-shrink: 0;
-`;
+export const FormInput = styled.div``;
 
 export const SaveWrapper = styled.div`
-  border-radius: 10px;
-  background-color: #407bff;
-  box-shadow: 0px 4px 8px rgba(64, 123, 255, 0.34);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 10px 20px;
-  text-align: center;
-  color: #fff;
-  cursor: pointer;
+  line-height: 20px;
 `;
