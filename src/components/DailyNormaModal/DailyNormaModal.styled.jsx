@@ -66,6 +66,17 @@ export const VIsTheContainer = styled.div`
   width: 100%;
 `;
 
+export const Vm004T06Root = styled.div`
+  position: relative;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: Roboto;
+  color: #407bff;
+  text-align: left;
+  display: inline-block;
+  width: 168px;
+`;
+
 export const VIsTheVolumeOfTheWaterNWrapper = styled.div`
   margin-top: 12px;
   border-radius: 10px;

@@ -37,6 +37,7 @@ import {
   WriteDownHow1,
   Frame1,
   IconWrapper,
+  Vm004T06Root,
 } from './DailyNormaModal.styled';
 
 const DailyNormaModal = ({ setModalOpen }) => {
@@ -112,11 +113,11 @@ const DailyNormaModal = ({ setModalOpen }) => {
           <FrameParent1>
             <ForGirlParent>
               <ForGirl>For girl:</ForGirl>
-              <calculation>V=(M*0,03) + (T*0,4)</calculation>
+              <Vm004T06Root>V=(M*0,03) + (T*0,4)</Vm004T06Root>
             </ForGirlParent>
             <ForManParent>
               <ForMan>For man:</ForMan>
-              <calculation>V=(M*0,04) + (T*0,6)</calculation>
+              <Vm004T06Root>V=(M*0,04) + (T*0,6)</Vm004T06Root>
             </ForManParent>
           </FrameParent1>
           <VIsTheVolumeOfTheWaterNWrapper>

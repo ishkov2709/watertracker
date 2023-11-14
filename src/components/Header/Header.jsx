@@ -1,4 +1,3 @@
-// Header.js
 import React, { useState } from 'react';
 import Container from 'components/common/Container';
 import { useSelector } from 'react-redux';
