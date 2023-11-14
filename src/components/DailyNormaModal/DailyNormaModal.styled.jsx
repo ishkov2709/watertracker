@@ -258,5 +258,9 @@ export const FrameGroup = styled.div`
 export const FormInput = styled.div``;
 
 export const SaveWrapper = styled.div`
-  line-height: 20px;
+  display: flex;
+  justify-content: flex-end;
+  line-height: 24px;
 `;
+
+export const Button = styled.button``;
