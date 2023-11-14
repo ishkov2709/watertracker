@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import HomePage from './HomePage';
+import HomePage from '../pages/HomePage';
 
 const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);

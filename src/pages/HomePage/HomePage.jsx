@@ -37,7 +37,6 @@ const HomePage = () => {
             <MonthStatsTable />
             {dateCoords && <DaysGeneralStats dateCoords={dateCoords} />}
           </WaterList>
-          <WaterRatioPanel />
         </Box>
       </Container>
     </Wrapper>

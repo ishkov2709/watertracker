@@ -1,63 +1,63 @@
 import Container from 'components/common/Container';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { errorSelector } from '../../store/auth/selectors';
-
+import sprite from '../../img/sprites.svg';
 import {
-  Label,
-  Title,
-  LinkToPage,
   Box,
+  Label,
   StyledForm,
   StyledInput,
   SigninButton,
+  Title,
+  LinkToPage,
   ErrorM,
-} from '../SigninPage/Auth.styled';
-import { Wrapper } from 'components/HomePage/HomePage.styled';
+  StyledPasswordInput,
+  AllForm,
+} from './Auth.styled';
+import { Wrapper } from '../HomePage/HomePage.styled';
+import { Formik, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-// function Signup({ signup }) {
-//   const error = useSelector(errorSelector);
+// function Signin({ signin }) {
 //   const [email, setEmail] = useState('');
 //   const [password, setPassword] = useState('');
-
-//   const dispatch = useDispatch();
+//   const error = useSelector(errorSelector);
 
 //   const handleSubmit = e => {
 //     e.preventDefault();
-//     dispatch(signup({ email, password }));
+//     signin({ email, password });
 //   };
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().required('Password is required'),
-  repeatPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Repeat password is required'),
 });
 
 const initialValues = {
   email: '',
   password: '',
-  repeatPassword: '',
 };
 
-const Signup = ({ signup }) => {
+const Signin = ({ signin }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const error = useSelector(errorSelector);
-  const dispatch = useDispatch();
-
   const handleSubmit = (values, { setSubmitting }) => {
-    dispatch(signup({ email: values.email, password: values.password }));
+    signin(values);
     setSubmitting(false);
   };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <Wrapper>
       <Container>
         <Box>
-          <div>
+          <AllForm>
             {error && <h4>{error}</h4>}
-            <Title>Sign Up</Title>
+
             {/* <Form onSubmit={handleSubmit}>
               <div>
                 <Label>Enter your email</Label>
@@ -81,20 +81,7 @@ const Signup = ({ signup }) => {
                   required
                 />
               </div>
-              <div>
-                <Label>Repeat password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="Repeat pasword"
-                  onChange={({ target: { value } }) => setPassword(value)}
-                  required
-                />
-              </div>
-              <RegisterButton type="submit">Sign Up</RegisterButton>
-
-              <LinkToPage to="/signin">Sign in</LinkToPage>
+              <RegisterButton type="submit">Sign In</RegisterButton>
             </Form> */}
             <Formik
               initialValues={initialValues}
@@ -102,6 +89,7 @@ const Signup = ({ signup }) => {
               onSubmit={handleSubmit}
             >
               <StyledForm>
+                <Title>Sign In</Title>
                 <div>
                   <Label>Enter your email</Label>
                   <Field
@@ -115,35 +103,40 @@ const Signup = ({ signup }) => {
                 </div>
                 <div>
                   <Label>Enter your password</Label>
-                  <Field
-                    as={StyledInput}
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                  />
+                  <StyledPasswordInput>
+                    <Field
+                      as={StyledInput}
+                      type={passwordVisible ? 'text' : 'password'}
+                      name="password"
+                      placeholder="Password"
+                      required
+                    />
+                    <span onClick={togglePasswordVisibility}>
+                      {passwordVisible ? (
+                        <svg className="eye">
+                          <use href={sprite + '#eye'} />
+                        </svg>
+                      ) : (
+                        <svg className="eye">
+                          <use href={sprite + '#hidden'} />
+                        </svg>
+                      )}
+                    </span>
+                  </StyledPasswordInput>
                   <ErrorMessage name="password" component={ErrorM} />
                 </div>
-                <div>
-                  <Label>Repeat password</Label>
-                  <Field
-                    as={StyledInput}
-                    type="password"
-                    name="repeatPassword"
-                    placeholder="Repeat password"
-                    required
-                  />
-                  <ErrorMessage name="repeatPassword" component={ErrorM} />
-                </div>
-                <SigninButton type="submit">Sign Up</SigninButton>
+                <SigninButton type="submit">Sign In</SigninButton>
               </StyledForm>
             </Formik>
-            <LinkToPage to="/signin">Sign in</LinkToPage>
-          </div>
+
+            <LinkToPage to="/forgot-password">Forgot password?</LinkToPage>
+
+            <LinkToPage to="/signup">Sign up</LinkToPage>
+          </AllForm>
         </Box>
       </Container>
     </Wrapper>
   );
 };
 
-export default Signup;
+export default Signin;

@@ -12,7 +12,7 @@ const Header = () => {
       <HeaderItm>
         {isLoggedIn ? (
           <nav>
-            <Link to="/Home">
+            <Link to="/home">
               <LogoBtn>
                 <LogoImg src={Logo} alt="logo" />
               </LogoBtn>
