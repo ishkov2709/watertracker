@@ -1,5 +1,5 @@
 import React from 'react';
-import { Backdrop, ModalWrapper, CloseButton } from './StyledModal';
+import { Backdrop, ModalWrapper, CloseButton } from './logout.styled';
 
 const LogOut = ({ isOpen, onClose }) => {
   if (!isOpen) return null;

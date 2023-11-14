@@ -59,7 +59,6 @@ export const Input = styled.input`
 export const RadioGroup = styled.div`
   display: flex;
   align-items: center;
-
   & > * {
     margin-right: 12px;
   }

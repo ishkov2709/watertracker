@@ -7,17 +7,25 @@ export const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
 export const ModalWrapper = styled.div`
   background: white;
-  padding: 20px;
+  padding: 32px 24px;
   border-radius: 5px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    width: 592px;
+  }
 `;
 
 export const CloseButton = styled.button`

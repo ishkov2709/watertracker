@@ -10,17 +10,17 @@ import {
   Input,
   RadioGroup,
   SubmitButton,
-} from './SettingModal.styled.jsx';
-import { Backdrop } from 'components/common/Modal/Modal.styled.jsx';
+} from './Setting.styled.jsx';
+
+import Modal from '../modal/modal.jsx';
 const SettingsModal = ({ onClose }) => {
   const handleCloseClick = e => {
     e.preventDefault();
     onClose();
   };
   return (
-    <Backdrop onClick={handleCloseClick}>
+    <Modal onClose={handleCloseClick} type="settings">
       <ModalContainer onClick={e => e.stopPropagation()}>
-        {' '}
         <ModalHeader>
           <ModalTitle>Setting</ModalTitle>
           <CloseButton onClick={handleCloseClick}>&times;</CloseButton>
@@ -80,7 +80,7 @@ const SettingsModal = ({ onClose }) => {
           <SubmitButton type="submit">Save</SubmitButton>
         </ModalBody>
       </ModalContainer>
-    </Backdrop>
+    </Modal>
   );
 };
 

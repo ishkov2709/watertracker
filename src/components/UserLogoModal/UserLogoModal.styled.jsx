@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import { ReactComponent as ArrowIcon } from '../assets/solid.svg';
 export const MenuButton = styled.button`
   cursor: pointer;
   border: none;
@@ -8,6 +9,20 @@ export const MenuButton = styled.button`
   padding: 8px 16px;
   font-size: 16px;
   position: relative;
+`;
+export const UserPhoto = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+`;
+export const DropdownIcon = styled(ArrowIcon)`
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  ${({ isMenuVisible }) =>
+    isMenuVisible &&
+    css`
+      transform: rotate(180deg);
+    `}
 `;
 
 export const Menu = styled.div`

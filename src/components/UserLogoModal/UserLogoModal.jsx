@@ -1,26 +1,50 @@
 import React, { useState } from 'react';
-import { MenuButton, Menu, MenuItem } from './UserLogoModal.styled';
-import SettingModal from 'components/SettingModal';
+import {
+  MenuButton,
+  Menu,
+  MenuItem,
+  UserPhoto,
+  DropdownIcon,
+} from './UserLogoModal.styled';
+import SettingsModal from '../setting/Settig';
+import LogOut from '../logout/logout';
 
 const UserLogoModal = () => {
-  const [isSettingModalVisible, setIsSettingModalVisible] = useState(false);
-
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+  const [isLogoutVisible, setIsLogoutVisible] = useState(false);
+  const userPhotoURL = '';
   const toggleMenu = () => {
-    setIsSettingModalVisible(!isSettingModalVisible);
+    setIsMenuVisible(!isMenuVisible);
+  };
+  const toggleSettings = () => {
+    setIsSettingsVisible(!isSettingsVisible);
+    setIsMenuVisible(false);
+  };
+
+  const toggleLogout = () => {
+    setIsLogoutVisible(!isLogoutVisible);
+    setIsMenuVisible(false);
   };
 
   return (
     <div>
-      <MenuButton onClick={toggleMenu}>User</MenuButton>
-      {isVisible && (
+      <MenuButton onClick={toggleMenu}>
+        <UserPhoto src={userPhotoURL} alt="User" />
+        User
+        <DropdownIcon isMenuVisible={isMenuVisible} />{' '}
+      </MenuButton>
+      {isMenuVisible && (
         <Menu>
-          <MenuItem onClick={toggleMenu}>Setting</MenuItem>
-          {isSettingModalVisible && <SettingModal onClose={toggleMenu} />}
-          <MenuItem onClick={toggleMenu}>Log out</MenuItem>
+          <MenuItem onClick={toggleSettings}>Setting</MenuItem>
+          <MenuItem onClick={toggleLogout}>Log out</MenuItem>
         </Menu>
+      )}
+      {isSettingsVisible && <SettingsModal onClose={toggleSettings} />}
+      {isLogoutVisible && (
+        <LogOut isOpen={isLogoutVisible} onClose={toggleLogout} />
       )}
     </div>
   );
 };
-
 export default UserLogoModal;
