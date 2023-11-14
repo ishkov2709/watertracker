@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { errorSelector } from '../../store/auth/selectors';
-
+import sprite from '../../img/sprites.svg';
 import {
   Box,
   Label,
@@ -13,6 +13,8 @@ import {
   Title,
   LinkToPage,
   ErrorM,
+  StyledPasswordInput,
+  AllForm,
 } from './Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { Formik, Field, ErrorMessage } from 'formik';
@@ -38,18 +40,24 @@ const initialValues = {
 };
 
 const Signin = ({ signin }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const error = useSelector(errorSelector);
   const handleSubmit = (values, { setSubmitting }) => {
     signin(values);
     setSubmitting(false);
   };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <Wrapper>
       <Container>
         <Box>
-          <div>
+          <AllForm>
             {error && <h4>{error}</h4>}
-            <Title>Sign In</Title>
+
             {/* <Form onSubmit={handleSubmit}>
               <div>
                 <Label>Enter your email</Label>
@@ -81,6 +89,7 @@ const Signin = ({ signin }) => {
               onSubmit={handleSubmit}
             >
               <StyledForm>
+                <Title>Sign In</Title>
                 <div>
                   <Label>Enter your email</Label>
                   <Field
@@ -94,13 +103,26 @@ const Signin = ({ signin }) => {
                 </div>
                 <div>
                   <Label>Enter your password</Label>
-                  <Field
-                    as={StyledInput}
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                  />
+                  <StyledPasswordInput>
+                    <Field
+                      as={StyledInput}
+                      type={passwordVisible ? 'text' : 'password'}
+                      name="password"
+                      placeholder="Password"
+                      required
+                    />
+                    <span onClick={togglePasswordVisibility}>
+                      {passwordVisible ? (
+                        <svg className="eye">
+                          <use href={sprite + '#eye'} />
+                        </svg>
+                      ) : (
+                        <svg className="eye">
+                          <use href={sprite + '#hidden'} />
+                        </svg>
+                      )}
+                    </span>
+                  </StyledPasswordInput>
                   <ErrorMessage name="password" component={ErrorM} />
                 </div>
                 <SigninButton type="submit">Sign In</SigninButton>
@@ -110,7 +132,7 @@ const Signin = ({ signin }) => {
             <LinkToPage to="/forgot-password">Forgot password?</LinkToPage>
 
             <LinkToPage to="/signup">Sign up</LinkToPage>
-          </div>
+          </AllForm>
         </Box>
       </Container>
     </Wrapper>
