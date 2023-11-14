@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Icon from "components/Icon"
+import Icon from "components/common/Icon"
 import { color } from "styles/colors"
 import {
     WaterRatioPanelContainer, WaterRangeHeader, WaterRangeContainer,WaterRange,
@@ -30,7 +30,7 @@ const WaterRatioPanel = () => {
             minValue={0}
             value={rangeWaterPercentage}
                 onChange={(event) => {
-                    console.log(event.target);
+                    // console.log(event.target);
                     setRangeWaterPercentage(event.currentTarget.value)
                 }}
         />

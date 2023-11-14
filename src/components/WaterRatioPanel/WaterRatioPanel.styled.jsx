@@ -39,7 +39,7 @@ export const WaterRange = styled.input`
   width: 14px;
   border-radius: 50%;
   background: ${color.primary.white};
-  border: solid 1px ${color.primary.brue}; 
+  border: solid 1px ${color.primary.blue}; 
     // box-shadow: -80px 0 4px 0px rgba(0,0,0, 1);
   cursor: pointer;
   -webkit-appearance: none;
@@ -59,7 +59,7 @@ font-weight: 400;
 line-height: 24px;
 letter-spacing: 0em;
 text-align: left;
-color: ${color.primary.brue};
+color: ${color.primary.blue};
 `
 export const WaterRangeContainer = styled.div`
   position: relative;
@@ -86,7 +86,7 @@ export const Mark = styled.span`
     display: flex;
     flex-direction: column;
     gap: 4px;
-    color: ${color.primary.brue};
+    color: ${color.primary.blue};
 
 
   &::before {
@@ -103,7 +103,7 @@ export const LeftMark = styled.span`
     line-height: 16px;
     letter-spacing: 0em;
     text-align: center;
-    color: ${color.primary.brue};
+    color: ${color.primary.blue};
 
   &::before {
   color: ${color.secondary.azure};
@@ -123,7 +123,7 @@ export const RightMark = styled.span`
     line-height: 16px;
     letter-spacing: 0em;
     text-align: center;
-    color: ${color.primary.brue};
+    color: ${color.primary.blue};
   
   &::before {
   color: ${color.secondary.azure};
@@ -145,6 +145,6 @@ width: 178px;
 height: 44px;
 padding: 10px 30px 10px 30px;
 border-radius: 10px;
-background-color: ${color.primary.brue};
+background-color: ${color.primary.blue};
 color: ${color.primary.white};
 border: none;`
