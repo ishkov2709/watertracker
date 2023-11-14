@@ -36,6 +36,7 @@ export const Percent = styled.p`
   text-align: center;
 
   font-size: 10px;
+  line-height: 1.25;
 
   @media screen and (min-width: 768px) {
     font-size: 13px;
