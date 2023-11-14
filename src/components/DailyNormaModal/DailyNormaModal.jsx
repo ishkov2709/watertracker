@@ -1,5 +1,6 @@
 import { Box } from 'components/common/Container/Container.styled';
 import React, { useState, useEffect, useCallback } from 'react';
+import { FormInput } from 'components/common/FormInput/FormInput';
 import {
   MyDailyNorma,
   XMarkoutlineIcon1,

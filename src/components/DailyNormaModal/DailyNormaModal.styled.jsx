@@ -1,24 +1,24 @@
 import styled from 'styled-components';
 
-export const ModalContent = styled.div`
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  width: 300px;
+// export const ModalContent = styled.div`
+//   background-color: #fff;
+//   border: 1px solid #ddd;
+//   padding: 20px;
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   z-index: 1000;
+//   width: 300px;
 
-  @media screen and (min-width: 768px) {
-    width: 500px;
-  }
+//   @media screen and (min-width: 768px) {
+//     width: 500px;
+//   }
 
-  @media screen and (min-width: 1440px) {
-    width: 600px;
-  }
-`;
+//   @media screen and (min-width: 1440px) {
+//     width: 600px;
+//   }
+// `;
 
 export const CloseButton = styled.button`
   background: none;
@@ -243,7 +243,6 @@ export const L = styled.b`
   line-height: 24px;
   display: inline-block;
   color: #407bff;
-  width: 42px;
   flex-shrink: 0;
 `;
 

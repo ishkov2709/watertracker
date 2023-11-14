@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout';
-import WelcomePage from '../pages/WelcomePage';
+// import WelcomePage from '../pages/WelcomePage';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
 import { lazy } from 'react';
@@ -13,7 +13,7 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<RestrictedRoute component={WelcomePage} />} />
+        {/* <Route index element={<RestrictedRoute component={WelcomePage} />} /> */}
         <Route path="Home" element={<PrivateRoute component={HomePage} />} />
         <Route
           path="signin"
