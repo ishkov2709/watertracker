@@ -6,12 +6,12 @@ import MonthStatsTable from './MonthStatsTable';
 import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
 import DaysGeneralStats from './DaysGeneralStats';
 import { useSelector } from 'react-redux';
-import { dateCoodrsSelector } from 'store/waterData/selectors';
+import { targetDaySelector } from 'store/waterData/selectors';
 import DailyNorma from './DailyNorma/DailyNorma';
 import TodayWaterList from './TodayWaterList/TodayWaterList';
 
 const HomePage = () => {
-  const dateCoords = useSelector(dateCoodrsSelector);
+  const targetDay = useSelector(targetDaySelector);
 
   return (
     <Wrapper>
@@ -35,7 +35,7 @@ const HomePage = () => {
               <li>awd123</li>
             </ul> */}
             <MonthStatsTable />
-            {dateCoords && <DaysGeneralStats dateCoords={dateCoords} />}
+            {targetDay && <DaysGeneralStats targetDay={targetDay} />}
           </WaterList>
         </Box>
       </Container>
