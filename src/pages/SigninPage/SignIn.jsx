@@ -1,7 +1,6 @@
 import Container from 'components/common/Container';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { errorSelector } from '../../store/auth/selectors';
 import sprite from '../../img/sprites.svg';
 import {
@@ -18,21 +17,7 @@ import {
 } from './Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-
-// function Signin({ signin }) {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const error = useSelector(errorSelector);
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     signin({ email, password });
-//   };
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  password: Yup.string().required('Password is required'),
-});
+import { singinSchema } from 'schemas/singinSchema';
 
 const initialValues = {
   email: '',
@@ -57,35 +42,9 @@ const Signin = ({ signin }) => {
         <Box>
           <AllForm>
             {error && <h4>{error}</h4>}
-
-            {/* <Form onSubmit={handleSubmit}>
-              <div>
-                <Label>Enter your email</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  value={email}
-                  placeholder="Email"
-                  onChange={({ target: { value } }) => setEmail(value)}
-                  required
-                />
-              </div>
-              <div>
-                <Label>Enter your password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="Password"
-                  onChange={({ target: { value } }) => setPassword(value)}
-                  required
-                />
-              </div>
-              <RegisterButton type="submit">Sign In</RegisterButton>
-            </Form> */}
             <Formik
               initialValues={initialValues}
-              validationSchema={validationSchema}
+              validationSchema={singinSchema}
               onSubmit={handleSubmit}
             >
               <StyledForm>
