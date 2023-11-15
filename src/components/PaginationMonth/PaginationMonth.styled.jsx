@@ -26,11 +26,18 @@ export const Btn = styled.button`
 
   border: none;
 
+  transition: transform 250ms ease-in-out;
+
   &:first-of-type .icon {
     transform: rotate(90deg);
   }
 
   &:last-of-type .icon {
     transform: rotate(270deg);
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale(1.3);
   }
 `;

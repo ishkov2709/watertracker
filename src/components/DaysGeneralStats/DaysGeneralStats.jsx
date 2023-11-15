@@ -27,6 +27,7 @@ const DaysGeneralStats = ({
     <Wrapper
       top={top - 188}
       left={firstOfFourDaysArr.find(el => el === day) ? left : left - 252}
+      month={month}
     >
       <Btn onClick={handleClose}>
         <Icon name="plus" stroke={color.primary.blue} />
