@@ -10,7 +10,11 @@ const initialState = {
     error: '',
   },
   waterData: {
-    dateCoords: null,
+    dailyNorma: 1.5,
+    dateCoords: [],
+    dataToday: [],
+    isLoading: false,
+    todayListModalOpen: false
   },
 };
 

@@ -1,28 +1,17 @@
 import Container from 'components/common/Container';
 import { Wrapper, Box, WaterList } from './HomePage.styled';
 // DailyNorma,
-//import TodayWaterListItem from './TodayWaterListItem';
-import MonthStatsTable from 'components/MonthStatsTable';
+import TodayWaterListItem from './TodayWaterListItem/TodayWaterListItem';
+import MonthStatsTable from './MonthStatsTable';
 import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
-import DaysGeneralStats from 'components/DaysGeneralStats';
-import { useDispatch, useSelector } from 'react-redux';
-import { dateCoodrsSelector, selectTodayListModalOpen } from 'store/waterData/selectors';
-import DailyNorma from 'components/DailyNorma/DailyNorma';
-import TodayWaterList from 'components/TodayWaterList/TodayWaterList';
-import TodayListModal from 'components/TodayListModal/TodayListModal';
-import { useEffect } from 'react';
-import { getWaterToday } from 'store/waterData/thunk';
+import DaysGeneralStats from './DaysGeneralStats';
+import { useSelector } from 'react-redux';
+import { dateCoodrsSelector } from 'store/waterData/selectors';
+import DailyNorma from '../DailyNorma/DailyNorma';
+import TodayWaterList from './TodayWaterList/TodayWaterList';
 
 const HomePage = () => {
-
-  const dispatch = useDispatch()
-
-   useEffect(() => {dispatch(getWaterToday())}, [dispatch])
-  
-  //dispatch(getWaterToday())
-
   const dateCoords = useSelector(dateCoodrsSelector);
-  const ListModalOpen = useSelector(selectTodayListModalOpen)
 
   return (
     <Wrapper>
@@ -36,8 +25,6 @@ const HomePage = () => {
             </form> */}
           </DailyNorma>
           
-          {ListModalOpen && <TodayListModal></TodayListModal>}
-
           <WaterList>
             <TodayWaterList/>
             {/* <ul>
@@ -48,9 +35,9 @@ const HomePage = () => {
               <li>awd123</li>
             </ul> */}
             <MonthStatsTable />
-             <WaterRatioPanel />
             {dateCoords && <DaysGeneralStats dateCoords={dateCoords} />}
           </WaterList>
+          <WaterRatioPanel />
         </Box>
       </Container>
     </Wrapper>

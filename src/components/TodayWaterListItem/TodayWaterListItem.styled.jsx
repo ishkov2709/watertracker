@@ -1,14 +1,7 @@
 import styled from "styled-components";
 import { color } from "styles/colors";
 
-export const TodayWaterListItemContainer = styled.div`
-width: 534px;
-height: 36px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 1px solid ${color.secondary.gray}
-`
+
 
 export const WaterInfoContainer = styled.div`
 width: 206px;
@@ -42,7 +35,7 @@ align-items: center;
 gap: 18px
 `
 
-export const ButtonControl = styled.div`
+export const ButtonControl = styled.button`
 width: 16px;
 height: 16px;
 background-color: transparent;

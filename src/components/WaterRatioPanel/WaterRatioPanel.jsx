@@ -12,9 +12,19 @@ import {
   Mark,
   AddWaterButton,
 } from './WaterRatioPanel.styled';
+import { useDispatch, useSelector } from "react-redux";
+import { selectTotalTodayDailyWater } from "store/waterData/selectors";
+import { todayListModalOpen } from "store/waterData/waterDataSlice";
 
 const WaterRatioPanel = () => {
-  const [rangeWaterPercentage, setRangeWaterPercentage] = useState([30]);
+  //const [rangeWaterPercentage, setRangeWaterPercentage] = useState([30]);
+  const rangeWaterPercentage = useSelector(selectTotalTodayDailyWater);
+  const dispatch = useDispatch();
+  
+ const handleClickAdd = () => {
+        // console.log(id);
+         dispatch(todayListModalOpen())
+    }
 
   useEffect(() => {
     const ele = document.querySelector('#mark');
@@ -34,11 +44,12 @@ const WaterRatioPanel = () => {
             type="range"
             maxValue={100}
             minValue={0}
-            value={rangeWaterPercentage}
-                onChange={(event) => {
-                    // console.log(event.target);
-                    setRangeWaterPercentage(event.currentTarget.value)
-                }}
+          value={rangeWaterPercentage}
+          readOnly={true}
+                // onChange={(event) => {
+                //     // console.log(event.target);
+                //     setRangeWaterPercentage(event.currentTarget.value)
+                // }}
         />
         <MarksContainer>
           <LeftMark>0%</LeftMark>
@@ -46,10 +57,10 @@ const WaterRatioPanel = () => {
           <RightMark>100%</RightMark>
         </MarksContainer>
       </WaterRangeContainer>
-      <AddWaterButton>
+      <AddWaterButton onClick={handleClickAdd}>
         {' '}
         <Icon name="add" stroke={color.primary.white} /> Add Water
-      </AddWaterButton>
+      </AddWaterButton >
     </WaterRatioPanelContainer>
   );
 };
