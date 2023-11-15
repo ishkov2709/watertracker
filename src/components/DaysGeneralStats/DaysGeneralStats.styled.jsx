@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
     left: ${props => props.left}px;
   }
 
-  animation: 250ms ease-in-out smoothAppearance 1;
+  animation: 250ms ease-in-out smoothAppearance;
 `;
 
 export const DateMonthTitle = styled.p`
