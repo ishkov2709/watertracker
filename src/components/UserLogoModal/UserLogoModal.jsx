@@ -5,6 +5,8 @@ import {
   MenuItem,
   UserPhoto,
   DropdownIcon,
+  SettingIcon,
+  LogOutIcon,
 } from './UserLogoModal.styled';
 import SettingsModal from '../setting/Settig';
 import LogOut from '../logout/logout';
@@ -36,8 +38,14 @@ const UserLogoModal = () => {
       </MenuButton>
       {isMenuVisible && (
         <Menu>
-          <MenuItem onClick={toggleSettings}>Setting</MenuItem>
-          <MenuItem onClick={toggleLogout}>Log out</MenuItem>
+          <MenuItem onClick={toggleSettings}>
+            <SettingIcon />
+            Setting
+          </MenuItem>
+          <MenuItem onClick={toggleLogout}>
+            <LogOutIcon />
+            Log out
+          </MenuItem>
         </Menu>
       )}
       {isSettingsVisible && <SettingsModal onClose={toggleSettings} />}

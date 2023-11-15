@@ -1,5 +1,13 @@
 import React from 'react';
-import { Backdrop, ModalWrapper, CloseButton } from './logout.styled';
+import {
+  Backdrop,
+  ModalWrapper,
+  Content,
+  ButtonGroup,
+  CancelButton,
+  LogoutButton,
+  CloseIcon,
+} from './logout.styled';
 
 const LogOut = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -7,10 +15,15 @@ const LogOut = ({ isOpen, onClose }) => {
   return (
     <Backdrop onClick={onClose}>
       <ModalWrapper onClick={e => e.stopPropagation()}>
-        <h2>Log out</h2>
-        <p>Do you really want to leave?</p>
-        <CloseButton onClick={onClose}>Cancel</CloseButton>
-        <CloseButton onClick={onClose}>Log out</CloseButton>
+        <CloseIcon onClick={onClose} />
+        <Content>
+          <h2>Log out</h2>
+          <p>Do you really want to leave?</p>
+        </Content>
+        <ButtonGroup>
+          <CancelButton onClick={onClose}>Cancel</CancelButton>
+          <LogoutButton onClick={onClose}>Log out</LogoutButton>
+        </ButtonGroup>
       </ModalWrapper>
     </Backdrop>
   );

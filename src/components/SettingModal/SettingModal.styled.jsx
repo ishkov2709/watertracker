@@ -2,13 +2,27 @@ import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
   background-color: #fff;
-  padding: 32px;
+
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 960px;
+  width: 280px;
+  height: 852px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media (min-width: 768px) {
+    width: 704px;
+    height: 860px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 1440px;
+    height: auto;
+
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
 `;
 
 export const ModalHeader = styled.div`
@@ -36,13 +50,39 @@ export const ModalBody = styled.div`
 
 export const FormRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
   margin-bottom: 24px;
-`;
 
+  @media (min-width: 768px) {
+    width: 392px;
+    justify-content: space-between;
+  }
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
 export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 24px;
+
+  @media (min-width: 768px) {
+    flex: 1;
+
+    @media (min-width: 1024px) {
+      &:not(:last-child) {
+        margin-right: 32px;
+      }
+    }
+  }
 `;
 
 export const Label = styled.label`
@@ -71,5 +111,17 @@ export const SubmitButton = styled.button`
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 24px;
+  width: 256px;
+  height: 36px;
+  @media (min-width: 768px) {
+    width: 160px;
+    height: 44px;
+    margin-left: 552px;
+  }
+  @media (min-width: 1024px) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: auto;
+    padding: 16px 64px;
+  }
 `;
