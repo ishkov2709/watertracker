@@ -4,7 +4,7 @@ import Icon from 'components/common/Icon';
 import { color } from 'styles/colors.js';
 
 const Avatar = () => {
-  const name = useSelector(state => state.auth.user.name);
+  const name = useSelector(state => state.auth.user.username);
   const firstLetter = name.slice(0, 1);
 
   if (name) {
