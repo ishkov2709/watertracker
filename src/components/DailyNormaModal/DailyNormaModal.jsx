@@ -1,44 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
 import { Box } from 'components/common/Container/Container.styled';
 import FormInput from 'components/common/FormInput/FormInput';
 import Button from 'components/common/Button';
 import Icon from 'components/common/Icon/Icon';
-
-import {
-  MyDailyNorma,
-  MyDailyNormaParent,
-  FrameGroup,
-  FrameDiv,
-  FrameParent1,
-  ForGirlParent,
-  ForManParent,
-  ForGirl,
-  ForMan,
-  VIsTheVolumeOfTheWaterNWrapper,
-  VIsTheContainer,
-  Span,
-  VIsThe1,
-  CalculateYourRateParent,
-  CalculateYourRate1,
-  FrameParent2,
-  GroupParent,
-  ForGirl1,
-  EllipseParent,
-  FrameItem,
-  ForMan1,
-  YourWeightInKilogramsParent,
-  YourWeightIn1,
-  Wrapper,
-  TheTimeOf1,
-  TheRequiredAmount1,
-  L,
-  SaveWrapper,
-  WriteDownHow1,
-  Frame1,
-  IconWrapper,
-  Vm004T06Root,
-} from './DailyNormaModal.styled';
+import * as Styled from './DailyNormaModal.styled';
 
 const DailyNormaModal = ({ setModalOpen }) => {
   const [weight, setWeight] = useState(0);
@@ -47,7 +12,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
   const [drankWaterAmount, setDrankWaterAmount] = useState(0);
 
   const closeModal = () => {
-    console.log('Closing modal');
     setModalOpen(false);
   };
 
@@ -95,9 +59,10 @@ const DailyNormaModal = ({ setModalOpen }) => {
 
   return (
     <Box>
-      <MyDailyNormaParent>
-        <MyDailyNorma>My daily norma</MyDailyNorma>
-        <IconWrapper onClick={closeModal}>
+      <Styled.ModalHeader>
+        {' '}
+        My daily norma
+        <Styled.CloseButton onClick={closeModal}>
           <Icon
             name="plus"
             width={24}
@@ -106,95 +71,69 @@ const DailyNormaModal = ({ setModalOpen }) => {
             stroke="#000000"
             className="icon"
           />
-        </IconWrapper>
-      </MyDailyNormaParent>
-      <FrameGroup>
-        <FrameDiv>
-          <FrameParent1>
-            <ForGirlParent>
-              <ForGirl>For girl:</ForGirl>
-              <Vm004T06Root>V=(M*0,03) + (T*0,4)</Vm004T06Root>
-            </ForGirlParent>
-            <ForManParent>
-              <ForMan>For man:</ForMan>
-              <Vm004T06Root>V=(M*0,04) + (T*0,6)</Vm004T06Root>
-            </ForManParent>
-          </FrameParent1>
-          <VIsTheVolumeOfTheWaterNWrapper>
-            <VIsTheContainer>
-              <Span>*</Span>
-              <VIsThe1>
-                {' '}
-                V is the volume of the water norm in liters per day, M is your
-                body weight, T is the time of active sports, or another type of
-                activity commensurate in terms of loads (in the absence of
-                these, you must set 0)
-              </VIsThe1>
-            </VIsTheContainer>
-          </VIsTheVolumeOfTheWaterNWrapper>
-        </FrameDiv>
-        <CalculateYourRateParent>
-          <CalculateYourRate1>Calculate your rate:</CalculateYourRate1>
-          <FrameParent2>
-            <FrameParent1>
-              <GroupParent>
-                <FrameItem type="radio" />
-                <ForGirl1>For girl</ForGirl1>
-              </GroupParent>
-              <EllipseParent>
-                <FrameItem type="radio" />
-                <ForMan1>For man</ForMan1>
-              </EllipseParent>
-            </FrameParent1>
-            <YourWeightInKilogramsParent>
-              <YourWeightIn1>Your weight in kilograms:</YourWeightIn1>
-              <Wrapper>
-                <FormInput
-                  inputType="settings"
-                  value={weight}
-                  onChange={handleWeightChange}
-                />
-              </Wrapper>
-            </YourWeightInKilogramsParent>
-            <YourWeightInKilogramsParent>
-              <TheTimeOf1>
-                The time of active participation in sports or other activities
-                with a high physical. load:
-              </TheTimeOf1>
-              <Wrapper>
-                <FormInput
-                  inputType="settings"
-                  value={activityTime}
-                  onChange={handleActivityTimeChange}
-                />
-              </Wrapper>
-            </YourWeightInKilogramsParent>
-            <EllipseParent>
-              <TheRequiredAmount1>
-                The required amount of water in liters per day:
-              </TheRequiredAmount1>
-              <L>{calculatedWaterAmount} L</L>
-            </EllipseParent>
-          </FrameParent2>
-        </CalculateYourRateParent>
-        <CalculateYourRateParent>
-          <WriteDownHow1>
-            Write down how much water you will drink:
-          </WriteDownHow1>
-          <Frame1>
-            <Wrapper>
-              <FormInput
-                inputType="dailyNorma"
-                value={drankWaterAmount}
-                onChange={handleDrankWaterChange}
-              />
-            </Wrapper>
-          </Frame1>
-        </CalculateYourRateParent>
-      </FrameGroup>
-      <SaveWrapper>
+        </Styled.CloseButton>
+      </Styled.ModalHeader>
+      <Styled.DailyNormas>
+        <>For girl:</>
+        <Styled.ColorTextNormal>V=(M*0.03) + (T*0.4)</Styled.ColorTextNormal>
+        <Styled.Forman>For man:</Styled.Forman>
+        <Styled.ColorTextNormal>V=(M*0.04) + (T*0.6)</Styled.ColorTextNormal>
+      </Styled.DailyNormas>
+      <Styled.VolumeNorm>
+        <Styled.TextNormal>
+          *V is the volume of the water norm in liters per day, M is your body
+          weight, T is the time of active sports, or another type of activity
+          commensurate in terms of loads (in the absence of these, you must set
+          0)
+        </Styled.TextNormal>
+      </Styled.VolumeNorm>
+      <Styled.CalculateYourRate>Calculate your rate:</Styled.CalculateYourRate>
+      <Styled.FrameParent>
+        <Styled.FrameItem type="radio" id="forGirl" />
+        <>For girl</>
+        <Styled.FrameItem type="radio" id="forMan" />
+        <>For man</>
+      </Styled.FrameParent>
+      <Styled.YourWeight>
+        <>Your weight in kilograms:</>
+        <FormInput
+          inputType="settings"
+          value={weight}
+          onChange={handleWeightChange}
+        />
+      </Styled.YourWeight>
+      <Styled.YourTime>
+        <p>
+          The time of active participation in sports or other activities with a
+          high physical. load:
+        </p>
+        <FormInput
+          inputType="settings"
+          value={activityTime}
+          onChange={handleActivityTimeChange}
+        />
+      </Styled.YourTime>
+
+      <Styled.Required>
+        <p>
+          The required amount of water in liters per day:
+          <Styled.L>{calculatedWaterAmount} L</Styled.L>
+        </p>
+      </Styled.Required>
+      <Styled.Write>
+        <p>Write down how much water you will drink:</p>
+      </Styled.Write>
+      <Styled.Frame>
+        <FormInput
+          inputType="dailyNorma"
+          value={drankWaterAmount}
+          onChange={handleDrankWaterChange}
+        />
+      </Styled.Frame>
+
+      <Styled.SaveWrapper>
         <Button onClick={handleSave}>Save</Button>
-      </SaveWrapper>
+      </Styled.SaveWrapper>
     </Box>
   );
 };

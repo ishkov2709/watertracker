@@ -1,72 +1,37 @@
 import styled from 'styled-components';
 
-export const ModalTitle = styled.h2`
-  color: #333;
-`;
-
-export const MyDailyNorma = styled.div`
-  position: relative;
-`;
-
-export const MyDailyNormaParent = styled.div`
+export const ModalHeader = styled.div`
   display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 22px;
+  color: #333;
+  font-size: 26px;
+  font-weight: 500px;
 `;
 
-export const IconWrapper = styled.div`
+export const CloseButton = styled.div`
+  position: relative;
   margin-left: auto;
 `;
 
-export const ForGirl = styled.div`
-  width: 54px;
-  flex-shrink: 0;
-`;
-
-export const ForGirlParent = styled.div`
+export const DailyNormas = styled.div`
+  margin-top: 24px;
+  margin-left: auto;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  gap: 4px;
 `;
 
-export const ForManParent = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 4px;
+export const Man = styled.div`
+  margin-left: 24px;
 `;
 
-export const ForMan = styled.div`
-  line-height: 20px;
-  width: 64px;
-  flex-shrink: 0;
-`;
-
-export const FrameParent1 = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 24px;
-`;
-
-export const Span = styled.span``;
-
-export const VIsThe1 = styled.span`
+export const TextNormal = styled.span`
   color: #8f8f8f;
 `;
 
-export const VIsTheContainer = styled.div`
-  line-height: 16px;
-  display: inline-block;
-  width: 100%;
+export const Forman = styled.span`
+  margin-left: 24px;
 `;
 
-export const Vm004T06Root = styled.div`
+export const ColorTextNormal = styled.div`
   position: relative;
   font-size: 18px;
   line-height: 24px;
@@ -77,7 +42,7 @@ export const Vm004T06Root = styled.div`
   width: 168px;
 `;
 
-export const VIsTheVolumeOfTheWaterNWrapper = styled.div`
+export const VolumeNorm = styled.div`
   margin-top: 12px;
   border-radius: 10px;
   border: 1px solid #d7e3ff;
@@ -88,36 +53,26 @@ export const VIsTheVolumeOfTheWaterNWrapper = styled.div`
   padding: 10px;
   font-size: 12px;
   color: #407bff;
+  line-height: 16px;
+  display: inline-block;
+  width: 100%;
+  word-wrap: break-word;
 `;
 
-export const FrameDiv = styled.div`
-  margin-top: 26px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  font-size: 16px;
-`;
-
-export const CalculateYourRate1 = styled.div`
+export const CalculateYourRate = styled.div`
+  margin-top: 24px;
+  margin-bottom: 16px;
   line-height: 20px;
   font-weight: 500;
   display: inline-block;
   width: 156px;
 `;
 
-export const FrameChild = styled.img`
-  width: 14px;
-  height: 14px;
-`;
-
-export const GroupParent = styled.label`
+export const FrameParent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  cursor: pointer;
+  gap: 10px;
 `;
 
 export const FrameItem = styled.input`
@@ -146,45 +101,8 @@ export const FrameItem = styled.input`
   }
 `;
 
-export const ForGirl1 = styled.div`
-  line-height: 20px;
-`;
-
-export const EllipseParent = styled.label`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
-  cursor: pointer;
-`;
-
-export const ForMan1 = styled.div`
-  line-height: 20px;
-  display: inline-block;
-  width: 60px;
-  flex-shrink: 0;
-`;
-
-export const YourWeightIn1 = styled.div`
-  line-height: 20px;
-  display: inline-block;
-  width: 182px;
-`;
-
-export const Div = styled.div`
-  line-height: 20px;
-  display: inline-block;
-  width: 524px;
-`;
-
-export const Wrapper = styled.div`
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-`;
-
-export const YourWeightInKilogramsParent = styled.div`
+export const YourWeight = styled.div`
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -192,17 +110,12 @@ export const YourWeightInKilogramsParent = styled.div`
   gap: 8px;
 `;
 
-export const TheTimeOf1 = styled.div`
-  line-height: 20px;
-  display: inline-block;
-  width: 544px;
+export const YourTime = styled.div`
+  margin-top: 16px;
 `;
 
-export const TheRequiredAmount1 = styled.div`
-  line-height: 20px;
-  display: inline-block;
-  width: 328px;
-  flex-shrink: 0;
+export const Required = styled.div`
+  margin-top: 16px;
 `;
 
 export const L = styled.b`
@@ -213,51 +126,20 @@ export const L = styled.b`
   flex-shrink: 0;
 `;
 
-export const FrameParent2 = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 16px;
-  font-size: 16px;
-`;
+//
 
-export const CalculateYourRateParent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 16px;
-`;
-
-export const WriteDownHow1 = styled.div`
+export const Write = styled.div`
+  margin-top: 24px;
   line-height: 20px;
   font-weight: 500;
   display: inline-block;
   width: 348px;
 `;
 
-export const Frame1 = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 12px 0px;
-  font-size: 16px;
-  color: #407bff;
-`;
-
-export const FrameGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 24px;
-`;
-
-export const FormInput = styled.div``;
+export const Frame = styled.div``;
 
 export const SaveWrapper = styled.div`
+  margin-top: 24px;
   display: flex;
   justify-content: flex-end;
   line-height: 24px;
