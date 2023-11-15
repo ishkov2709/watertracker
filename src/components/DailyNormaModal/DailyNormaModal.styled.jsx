@@ -126,7 +126,7 @@ export const L = styled.b`
   flex-shrink: 0;
 `;
 
-//
+
 
 export const Write = styled.div`
   margin-top: 24px;
@@ -136,7 +136,10 @@ export const Write = styled.div`
   width: 348px;
 `;
 
-export const Frame = styled.div``;
+export const Frame = styled.div`
+  margin-top: 16px;
+`;
+
 
 export const SaveWrapper = styled.div`
   margin-top: 24px;

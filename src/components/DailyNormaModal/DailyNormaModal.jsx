@@ -4,17 +4,14 @@ import FormInput from 'components/common/FormInput/FormInput';
 import Button from 'components/common/Button';
 import Icon from 'components/common/Icon/Icon';
 import * as Styled from './DailyNormaModal.styled';
-
 const DailyNormaModal = ({ setModalOpen }) => {
   const [weight, setWeight] = useState(0);
   const [activityTime, setActivityTime] = useState(0);
   const [calculatedWaterAmount, setCalculatedWaterAmount] = useState(0);
   const [drankWaterAmount, setDrankWaterAmount] = useState(0);
-
   const closeModal = () => {
     setModalOpen(false);
   };
-
   const handleSave = () => {
     console.log('Data to be sent:', {
       weight,
@@ -22,41 +19,32 @@ const DailyNormaModal = ({ setModalOpen }) => {
       calculatedWaterAmount,
       drankWaterAmount,
     });
-
     const backendSuccess = true;
-
     if (backendSuccess) {
       closeModal();
     } else {
       console.error('Failed to save data. Please try again.');
     }
   };
-
   const handleWeightChange = event => {
     setWeight(event.target.value);
   };
-
   const handleActivityTimeChange = event => {
     setActivityTime(event.target.value);
   };
-
   const handleDrankWaterChange = event => {
     setDrankWaterAmount(event.target.value);
   };
-
   const calculateWaterAmount = useCallback(() => {
     const calculatedAmount = weight * 0.03 + activityTime * 0.4;
     setCalculatedWaterAmount(calculatedAmount.toFixed(2));
   }, [weight, activityTime]);
-
   useEffect(() => {
     calculateWaterAmount();
   }, [calculateWaterAmount]);
-
   useEffect(() => {
     setModalOpen(true);
   }, [setModalOpen]);
-
   return (
     <Box>
       <Styled.ModalHeader>
@@ -113,7 +101,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
           onChange={handleActivityTimeChange}
         />
       </Styled.YourTime>
-
       <Styled.Required>
         <p>
           The required amount of water in liters per day:
@@ -130,7 +117,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
           onChange={handleDrankWaterChange}
         />
       </Styled.Frame>
-
       <Styled.SaveWrapper>
         <Button onClick={handleSave}>Save</Button>
       </Styled.SaveWrapper>
