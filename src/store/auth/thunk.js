@@ -12,6 +12,7 @@ export const deleteToken = () =>
 
 export const signInUser = createAsyncThunk('auth/signin', async user => {
   const response = await axios.post('/users/login', user);
+  setToken(response.data.token);
   return response.data;
 });
 
