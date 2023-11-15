@@ -17,9 +17,11 @@ import {
   SigninButton,
   ErrorM,
   StyledPasswordInput,
+  CaughtError,
 } from '../SigninPage/Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { signupSchema } from 'schemas/signupSchema';
+import Button from 'components/common/Button';
 
 const initialValues = {
   email: '',
@@ -55,77 +57,94 @@ const Signup = ({ signup }) => {
       <Container>
         <Box>
           <div>
-            {error && <h4>{error}</h4>}
+            {error && <CaughtError>{error}</CaughtError>}
             <Formik
               initialValues={initialValues}
               validationSchema={signupSchema}
               onSubmit={handleSubmit}
             >
-              <StyledForm>
-                <Title>Sign Up</Title>
-                <div>
-                  <Label>Enter your email</Label>
-                  <Field
-                    as={StyledInput}
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                  />
-                  <ErrorMessage name="email" component={ErrorM} />
-                </div>
-                <div>
-                  <Label>Enter your password</Label>
-                  <StyledPasswordInput>
+              {({ isSubmitting, errors, touched }) => (
+                <StyledForm>
+                  <Title>Sign Up</Title>
+                  <div>
+                    <Label>Enter your email</Label>
                     <Field
                       as={StyledInput}
-                      type={passwordVisible ? 'text' : 'password'}
-                      name="password"
-                      placeholder="Password"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      hasError={touched.email && errors.email}
                       required
                     />
-                    <span onClick={() => togglePasswordVisibility('password')}>
-                      {passwordVisible ? (
-                        <svg className="eye">
-                          <use href={sprite + '#eye'} />
-                        </svg>
-                      ) : (
-                        <svg className="eye">
-                          <use href={sprite + '#hidden'} />
-                        </svg>
-                      )}
-                    </span>
-                  </StyledPasswordInput>
-                  <ErrorMessage name="password" component={ErrorM} />
-                </div>
-                <div>
-                  <Label>Repeat password</Label>
-                  <StyledPasswordInput>
-                    <Field
-                      as={StyledInput}
-                      type={repeatPasswordVisible ? 'text' : 'password'}
-                      name="repeatPassword"
-                      placeholder="Repeat password"
-                      required
-                    />
-                    <span
-                      onClick={() => togglePasswordVisibility('repeatPassword')}
-                    >
-                      {repeatPasswordVisible ? (
-                        <svg className="eye">
-                          <use href={sprite + '#eye'} />
-                        </svg>
-                      ) : (
-                        <svg className="eye">
-                          <use href={sprite + '#hidden'} />
-                        </svg>
-                      )}
-                    </span>
-                  </StyledPasswordInput>
-                  <ErrorMessage name="repeatPassword" component={ErrorM} />
-                </div>
-                <SigninButton type="submit">Sign Up</SigninButton>
-              </StyledForm>
+                    <ErrorMessage name="email" component={ErrorM} />
+                  </div>
+                  <div>
+                    <Label>Enter your password</Label>
+                    <StyledPasswordInput>
+                      <Field
+                        as={StyledInput}
+                        type={passwordVisible ? 'text' : 'password'}
+                        name="password"
+                        placeholder="Password"
+                        hasError={touched.password && errors.password}
+                        required
+                      />
+                      <span
+                        onClick={() => togglePasswordVisibility('password')}
+                      >
+                        {passwordVisible ? (
+                          <svg className="eye">
+                            <use href={sprite + '#eye'} />
+                          </svg>
+                        ) : (
+                          <svg className="eye">
+                            <use href={sprite + '#hidden'} />
+                          </svg>
+                        )}
+                      </span>
+                    </StyledPasswordInput>
+                    <ErrorMessage name="password" component={ErrorM} />
+                  </div>
+                  <div>
+                    <Label>Repeat password</Label>
+                    <StyledPasswordInput>
+                      <Field
+                        as={StyledInput}
+                        type={repeatPasswordVisible ? 'text' : 'password'}
+                        name="repeatPassword"
+                        placeholder="Repeat password"
+                        required
+                        hasError={
+                          touched.repeatPassword && errors.repeatPassword
+                        }
+                      />
+                      <span
+                        onClick={() =>
+                          togglePasswordVisibility('repeatPassword')
+                        }
+                      >
+                        {repeatPasswordVisible ? (
+                          <svg className="eye">
+                            <use href={sprite + '#eye'} />
+                          </svg>
+                        ) : (
+                          <svg className="eye">
+                            <use href={sprite + '#hidden'} />
+                          </svg>
+                        )}
+                      </span>
+                    </StyledPasswordInput>
+                    <ErrorMessage name="repeatPassword" component={ErrorM} />
+                  </div>
+                  <SigninButton
+                    type="submit"
+                    width={336}
+                    disabled={isSubmitting}
+                  >
+                    Sign Up
+                  </SigninButton>
+                </StyledForm>
+              )}
             </Formik>
             <LinkToPage to="/signin">Sign in</LinkToPage>
           </div>
