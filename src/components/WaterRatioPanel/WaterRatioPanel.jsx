@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import Icon from 'components/common/Icon';
-import { color } from '../../styles/colors';
+import { useEffect, useState } from "react"
+import Icon from "components/common/Icon"
+import { color } from "styles/colors"
 import {
   WaterRatioPanelContainer,
   WaterRangeHeader,
@@ -31,14 +31,14 @@ const WaterRatioPanel = () => {
       <WaterRangeContainer>
         <WaterRangeHeader>Today</WaterRangeHeader>
         <WaterRange
-          type="range"
-          maxValue={100}
-          minValue={0}
-          value={rangeWaterPercentage}
-          onChange={event => {
-            console.log(event.target);
-            setRangeWaterPercentage(event.currentTarget.value);
-          }}
+            type="range"
+            maxValue={100}
+            minValue={0}
+            value={rangeWaterPercentage}
+                onChange={(event) => {
+                    // console.log(event.target);
+                    setRangeWaterPercentage(event.currentTarget.value)
+                }}
         />
         <MarksContainer>
           <LeftMark>0%</LeftMark>
