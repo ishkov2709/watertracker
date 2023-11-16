@@ -57,11 +57,9 @@ const DailyNormaModal = ({ setModalOpen }) => {
   const handleWeightChange = event => {
     setWeight(event.target.value);
   };
-
   const handleActivityTimeChange = event => {
     setActivityTime(event.target.value);
   };
-
   const handleDrankWaterChange = event => {
     setDrankWaterAmount(event.target.value);
   };

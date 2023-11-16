@@ -12,7 +12,9 @@ export const CloseButton = styled.div`
   position: relative;
   margin-left: auto;
   transform: rotate(45deg);
-  stroke: #407bff;
+  svg {
+    stroke: #407bff;
+  }
 `;
 
 export const DailyNormas = styled.div`
