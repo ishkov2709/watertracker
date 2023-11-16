@@ -2,12 +2,12 @@ import { useSelector } from 'react-redux';
 import { Circle, AvatarBtn, UserName } from './Avatar.styled';
 import Icon from 'components/common/Icon';
 import { color } from 'styles/colors.js';
-import { fetchAvatar } from './FetchAvatar';
+
 
 const Avatar = () => {
   const name = useSelector(state => state.auth.user.username);
   const firstLetter = name.slice(0, 1);
-  const avatar = fetchAvatar();
+  const avatar = useSelector(state => state.auth.user.avatarURL);
   return (
     <AvatarBtn>
       <UserName>{name}</UserName>
