@@ -2,16 +2,16 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {MONTH} from "../../constants/month"
 
-export const setToken = () => {
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTRiZjk5YmU5ODQ2ZGY3YmZkM2VhNCIsImlhdCI6MTcwMDE1ODM4OSwiZXhwIjoxNzAwNzYzMTg5fQ.SrlDD_A8MMJhvmJYSOqiWCSpLvaTDVdjeDeIdie3E-s"
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
- // localStorage.setItem('token', token);
-};
-
 // export const setToken = () => {
-//   const token = localStorage.getItem('token');
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTRiZjk5YmU5ODQ2ZGY3YmZkM2VhNCIsImlhdCI6MTcwMDE1ODM4OSwiZXhwIjoxNzAwNzYzMTg5fQ.SrlDD_A8MMJhvmJYSOqiWCSpLvaTDVdjeDeIdie3E-s"
 //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//  // localStorage.setItem('token', token);
 // };
+
+export const setToken = () => {
+  const token = localStorage.getItem('token');
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
 export const getWaterToday = createAsyncThunk("waterData/getWaterToday", async (_, thunkAPI) => {
   try {
