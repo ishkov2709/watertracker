@@ -9,7 +9,7 @@ import {
   ModalHeader,
   CloseButton,
   DailyNormas,
-  Forman,
+  ForMan,
   ColorTextNormal,
   VolumeNorm,
   TextNormal,
@@ -21,7 +21,6 @@ import {
   Required,
   L,
   Write,
-  Frame,
   SaveWrapper,
 } from './DailyNormaModal.styled';
 
@@ -97,7 +96,7 @@ const DailyNormaModal = ({ setModalOpen: propSetModalOpen }) => {
           <DailyNormas>
             <>For girl:</>
             <ColorTextNormal>V=(M*0.03) + (T*0.4)</ColorTextNormal>
-            <Forman>For man:</Forman>
+            <ForMan>For man:</ForMan>
             <ColorTextNormal>V=(M*0.04) + (T*0.6)</ColorTextNormal>
           </DailyNormas>
           <VolumeNorm>
@@ -115,25 +114,26 @@ const DailyNormaModal = ({ setModalOpen: propSetModalOpen }) => {
             <FrameItem type="radio" id="forMan" />
             <>For man</>
           </FrameParent>
+
           <YourWeight>
             <>Your weight in kilograms:</>
-            <FormInput
-              inputType="settings"
-              value={weight}
-              onChange={handleWeightChange}
-            />
+          </YourWeight>
+          <FormInput
+            inputType="dailyNorma"
+            value={weight}
+            onChange={handleWeightChange}
+          />
+          <YourTime>
             <p>
               The time of active participation in sports or other activities
               with a high physical. load:
             </p>
-          </YourWeight>
-          <YourTime>
-            <FormInput
-              inputType="settings"
-              value={activityTime}
-              onChange={handleActivityTimeChange}
-            />
           </YourTime>
+          <FormInput
+            inputType="dailyNorma"
+            value={activityTime}
+            onChange={handleActivityTimeChange}
+          />
           <Required>
             <p>
               The required amount of water in liters per day:
@@ -143,13 +143,11 @@ const DailyNormaModal = ({ setModalOpen: propSetModalOpen }) => {
           <Write>
             <p>Write down how much water you will drink:</p>
           </Write>
-          <Frame>
-            <FormInput
-              inputType="dailyNorma"
-              value={drankWaterAmount}
-              onChange={handleDrankWaterChange}
-            />
-          </Frame>
+          <FormInput
+            inputType="dailyNorma"
+            value={drankWaterAmount}
+            onChange={handleDrankWaterChange}
+          />
           <SaveWrapper>
             <Button onClick={handleSave}>Save</Button>
           </SaveWrapper>

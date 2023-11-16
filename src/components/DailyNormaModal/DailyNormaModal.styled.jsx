@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ModalHeader = styled.div`
   display: flex;
-  color: #333;
+  line-height: 32px;
   font-size: 26px;
   font-weight: 500px;
 `;
@@ -27,7 +27,7 @@ export const TextNormal = styled.span`
   color: #8f8f8f;
 `;
 
-export const Forman = styled.span`
+export const ForMan = styled.span`
   margin-left: 24px;
 `;
 
@@ -102,23 +102,21 @@ export const FrameItem = styled.input`
 
 export const YourWeight = styled.div`
   margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 8px;
+  margin-bottom: 8px;
 `;
 
 export const YourTime = styled.div`
   margin-top: 16px;
+  margin-bottom: 8px;
 `;
 
 export const Required = styled.div`
+  margin-bottom: 8px;
   margin-top: 16px;
 `;
 
 export const L = styled.b`
-  margin-bottom: 8px;
+  margin-left: 8px;
   font-size: 18px;
   line-height: 24px;
   display: inline-block;
@@ -128,14 +126,9 @@ export const L = styled.b`
 
 export const Write = styled.div`
   margin-top: 24px;
+  margin-bottom: 8px;
   line-height: 20px;
   font-weight: 500;
-  display: inline-block;
-  width: 348px;
-`;
-
-export const Frame = styled.div`
-  margin-top: 16px;
 `;
 
 export const SaveWrapper = styled.div`
@@ -145,3 +138,21 @@ export const SaveWrapper = styled.div`
   line-height: 24px;
 `;
 
+// export const ModalContainer = styled.div`
+//   background-color: #fff;
+//   border-radius: 10px;
+//   padding: 20px;
+//   width: 592px;
+//   height: 712px;
+//   overflow-y: auto;
+
+//   @media only screen and (max-width: 768px) {
+//     width: 704px;
+//     height: 676px;
+//   }
+
+//   @media only screen and (max-width: 480px) {
+//     width: 280px;
+//     height: 816px;
+//   }
+// `;
