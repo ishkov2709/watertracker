@@ -1,14 +1,15 @@
 import Container from 'components/common/Container';
 import { Wrapper, Box, WaterList } from './HomePage.styled';
 // DailyNorma,
-// import TodayWaterListItem from './TodayWaterListItem/TodayWaterListItem';
-// import MonthStatsTable from './MonthStatsTable';
-// import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
-// import DaysGeneralStats from './DaysGeneralStats';
+
+import TodayWaterListItem from 'components/HomePage/TodayWaterListItem/TodayWaterListItem';
+import MonthStatsTable from 'components/MonthStatsTable/';
+import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
+import DaysGeneralStats from 'components/DaysGeneralStats';
 import { useSelector } from 'react-redux';
 import { targetDaySelector } from 'store/waterData/selectors';
-// import DailyNorma from './DailyNorma/DailyNorma';
-// import TodayWaterList from './TodayWaterList/TodayWaterList';
+import DailyNorma from 'components/HomePage/DailyNorma/DailyNorma';
+import TodayWaterList from 'components/HomePage/TodayWaterList/TodayWaterList';
 
 const HomePage = () => {
   const targetDay = useSelector(targetDaySelector);
@@ -17,16 +18,16 @@ const HomePage = () => {
     <Wrapper>
       <Container>
         <Box>
-          {/* <DailyNorma> */}
-            {/* <div>1.7</div>
+          <DailyNorma>
+            <div>1.7</div>
             <form action="">
               <input type="range" />
               <button>add Water</button>
-            </form> */}
-          {/* </DailyNorma> */}
-          
+            </form>
+          </DailyNorma>
+
           <WaterList>
-            {/* <TodayWaterList/> */}
+            <TodayWaterList />
             {/* <ul>
               <TodayWaterListItem></TodayWaterListItem>
               <li>awd123</li>
@@ -34,8 +35,8 @@ const HomePage = () => {
               <li>awd123</li>
               <li>awd123</li>
             </ul> */}
-            {/* <MonthStatsTable /> */}
-            {/* {targetDay && <DaysGeneralStats targetDay={targetDay} />} */}
+            <MonthStatsTable />
+            {targetDay && <DaysGeneralStats targetDay={targetDay} />}
           </WaterList>
         </Box>
       </Container>
