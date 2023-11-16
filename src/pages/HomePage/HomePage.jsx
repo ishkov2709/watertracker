@@ -21,7 +21,7 @@ const HomePage = () => {
   
   //dispatch(getWaterToday())
 
-  const dateCoords = useSelector(dateCoodrsSelector);
+  const targetDay = useSelector(targetDaySelector);
   const ListModalOpen = useSelector(selectTodayListModalOpen)
 
   return (
@@ -39,7 +39,7 @@ const HomePage = () => {
           {ListModalOpen && <TodayListModal></TodayListModal>}
 
           <WaterList>
-            <TodayWaterList/>
+            <TodayWaterList />
             {/* <ul>
               <TodayWaterListItem></TodayWaterListItem>
               <li>awd123</li>
@@ -49,7 +49,7 @@ const HomePage = () => {
             </ul> */}
             <MonthStatsTable />
              <WaterRatioPanel />
-            {dateCoords && <DaysGeneralStats dateCoords={dateCoords} />}
+            {targetDay && <DaysGeneralStats targetDay={targetDay} />}
           </WaterList>
         </Box>
       </Container>

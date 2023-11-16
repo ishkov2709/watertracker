@@ -17,3 +17,8 @@ export const selectTotalTodayDailyWater = createSelector(dataTodaySelector, sele
 export const selectIsLoading = state => state.waterData.isLoading;
 
 export const selectTodayListModalOpen = state => state.waterData.todayListModalOpen;
+export const targetDaySelector = state => state.waterData.targetDay;
+
+export const daysOfMonthSelector = state => state.waterData.daysOfMonth;
+
+export const isLoadingSelector = state => state.waterData.isLoading;

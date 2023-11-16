@@ -8,19 +8,24 @@ import {
 } from './DaysGeneralStats.styled';
 import { color } from 'styles/colors';
 import { useDispatch } from 'react-redux';
-import { removeCoordsDate } from 'store/waterData/waterDataSlice';
+import { removeTargetDay } from 'store/waterData/waterDataSlice';
 
 const firstOfFourDaysArr = [1, 2, 3, 4, 11, 12, 13, 14, 21, 22, 23, 24, 31];
 
-const DaysGeneralStats = ({ dateCoords: { day, month, top, left } }) => {
+const DaysGeneralStats = ({
+  targetDay: { day, month, top, left, servings = 0, percent },
+}) => {
   const dispatch = useDispatch();
 
   const handleClose = () => {
-    dispatch(removeCoordsDate());
+    dispatch(removeTargetDay());
   };
+
+  const dailyNorma = 1500;
+
   return (
     <Wrapper
-      top={top - 178}
+      top={top - 188}
       left={firstOfFourDaysArr.find(el => el === day) ? left : left - 252}
     >
       <Btn onClick={handleClose}>
@@ -30,13 +35,13 @@ const DaysGeneralStats = ({ dateCoords: { day, month, top, left } }) => {
         {day}, {month}
       </DateMonthTitle>
       <MarkTitle>
-        Daily norma: <Mark>{1.5} L</Mark>
+        Daily norma: <Mark>{dailyNorma / 1000} L</Mark>
       </MarkTitle>
       <MarkTitle>
-        Fulfillment of the daily norm: <Mark>{60}%</Mark>
+        Fulfillment of the daily norm: <Mark>{percent}%</Mark>
       </MarkTitle>
       <MarkTitle>
-        How many servings of water: <Mark>{6}</Mark>
+        How many servings of water: <Mark>{servings}</Mark>
       </MarkTitle>
     </Wrapper>
   );

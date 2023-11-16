@@ -1,7 +1,7 @@
 const initialState = {
   auth: {
     user: {
-      name: '',
+      username: '',
       email: '',
     },
     isLoggedIn: false,
@@ -14,7 +14,10 @@ const initialState = {
     dateCoords: [],
     dataToday: [],
     isLoading: false,
-    todayListModalOpen: false
+    todayListModalOpen: false,
+    targetDay: null,
+    daysOfMonth: [],
+    //isLoading: false,
   },
 };
 
