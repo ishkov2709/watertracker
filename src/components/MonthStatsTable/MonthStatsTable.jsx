@@ -10,7 +10,6 @@ import {
   daysOfMonthSelector,
   isLoadingSelector,
 } from 'store/waterData/selectors';
-import { isLoggedInSelector } from 'store/auth/selectors';
 
 const dateNow = new Date();
 
@@ -27,10 +26,9 @@ const MonthStatsTable = () => {
   const days = useDaysOfMonth(date);
   const daysOfMonth = useSelector(daysOfMonthSelector);
   const isLoading = useSelector(isLoadingSelector);
-  const isLoggedIn = useSelector(isLoggedInSelector);
 
   useEffect(() => {
-    if (date && isLoggedIn) {
+    if (date) {
       const { year, month, day } = date;
       const monthYear = {
         month: format(new Date(year, month, day), 'MMMM'),
@@ -39,7 +37,7 @@ const MonthStatsTable = () => {
       setTitleMonth(monthYear.month);
       dispatch(getMonthDays(monthYear));
     }
-  }, [date, isLoggedIn, dispatch]);
+  }, [date, dispatch]);
 
   return (
     <CalendarBox>
