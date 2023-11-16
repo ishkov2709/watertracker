@@ -5,7 +5,7 @@ import { color } from 'styles/colors.js';
 import { fetchAvatar } from './FetchAvatar';
 
 const Avatar = () => {
-  const name = useSelector(state => state.auth.user.name);
+  const name = useSelector(state => state.auth.user.username);
   const firstLetter = name.slice(0, 1);
   const avatar = fetchAvatar();
   return (
@@ -14,7 +14,7 @@ const Avatar = () => {
       <>
         <Circle>
           {!name && <p>{firstLetter.toUpperCase()}</p>}
-          {!avatar && <img scr={avatar} alt=''/>}
+          {!avatar && <img scr={avatar} alt="" />}
           {<p>V</p>}
         </Circle>
         <Icon
@@ -26,7 +26,7 @@ const Avatar = () => {
         ></Icon>
       </>
     </AvatarBtn>
-  )
+  );
 };
 
 export default Avatar;
