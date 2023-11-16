@@ -2,14 +2,16 @@ import styled from 'styled-components';
 
 export const ModalHeader = styled.div`
   display: flex;
+  align-items: center;
   line-height: 32px;
   font-size: 26px;
-  font-weight: 500px;
+  font-weight: 500;
 `;
 
 export const CloseButton = styled.div`
   position: relative;
   margin-left: auto;
+  transform: rotate(45deg);
 `;
 
 export const DailyNormas = styled.div`
@@ -17,10 +19,6 @@ export const DailyNormas = styled.div`
   margin-left: auto;
   display: flex;
   align-items: center;
-`;
-
-export const Man = styled.div`
-  margin-left: 24px;
 `;
 
 export const TextNormal = styled.span`
@@ -70,36 +68,11 @@ export const CalculateYourRate = styled.div`
 
 export const FrameParent = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 10px;
 `;
 
-export const FrameItem = styled.input`
-  appearance: none;
-  border-radius: 50%;
-  background-color: #fff;
-  border: 1px solid #407bff;
-  box-sizing: border-box;
-  width: 14px;
-  height: 14px;
-  margin: 0;
-  position: relative;
-
-  &:checked {
-    &::before {
-      content: '\u2022';
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 14px;
-      height: 14px;
-      background-color: #407bff;
-      border-radius: 50%;
-      color: #fff;
-    }
-  }
-`;
+export const FrameItem = styled.input``;
 
 export const YourWeight = styled.div`
   margin-top: 16px;
@@ -145,21 +118,3 @@ export const SaveWrapper = styled.div`
   }
 `;
 
-// export const ModalContainer = styled.div`
-//   background-color: #fff;
-//   border-radius: 10px;
-//   padding: 20px;
-//   width: 592px;
-//   height: 712px;
-//   overflow-y: auto;
-
-//   @media only screen and (max-width: 768px) {
-//     width: 704px;
-//     height: 676px;
-//   }
-
-//   @media only screen and (max-width: 480px) {
-//     width: 280px;
-//     height: 816px;
-//   }
-// `;
