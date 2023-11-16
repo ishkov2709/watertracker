@@ -13,9 +13,8 @@ const Avatar = () => {
       <UserName>{name}</UserName>
       <>
         <Circle>
-          {!name && <p>{firstLetter.toUpperCase()}</p>}
-          {!avatar && <img scr={avatar} alt="" />}
-          {<p>V</p>}
+          {!name ? (<p>V</p>) : (<p>{firstLetter.toUpperCase()}</p>)}
+          {avatar && <img scr={avatar} alt="logo" />}
         </Circle>
         <Icon
           name="arrow-down"
