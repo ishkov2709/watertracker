@@ -118,7 +118,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
             checked={selectedGender === 'forGirl'}
             onChange={() => setSelectedGender('forGirl')}
           />
-          <> For girl</>
+          <>For girl</>
           <FrameItem
             type="radio"
             id="forMan"
@@ -126,7 +126,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
             checked={selectedGender === 'forMan'}
             onChange={() => setSelectedGender('forMan')}
           />
-          <> For man</>
+          <>For man</>
         </FrameParent>
 
         <YourWeight>
