@@ -35,7 +35,6 @@ export const ColorTextNormal = styled.div`
   position: relative;
   font-size: 18px;
   line-height: 24px;
-  font-family: Roboto;
   color: #407bff;
   text-align: left;
   display: inline-block;
@@ -119,14 +118,13 @@ export const Required = styled.div`
 `;
 
 export const L = styled.b`
+  margin-bottom: 8px;
   font-size: 18px;
   line-height: 24px;
   display: inline-block;
   color: #407bff;
   flex-shrink: 0;
 `;
-
-
 
 export const Write = styled.div`
   margin-top: 24px;
@@ -140,7 +138,6 @@ export const Frame = styled.div`
   margin-top: 16px;
 `;
 
-
 export const SaveWrapper = styled.div`
   margin-top: 24px;
   display: flex;
@@ -148,4 +145,3 @@ export const SaveWrapper = styled.div`
   line-height: 24px;
 `;
 
-export const Button = styled.button``;

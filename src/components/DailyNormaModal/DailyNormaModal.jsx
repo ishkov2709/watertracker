@@ -122,12 +122,12 @@ const DailyNormaModal = ({ setModalOpen: propSetModalOpen }) => {
               value={weight}
               onChange={handleWeightChange}
             />
-          </YourWeight>
-          <YourTime>
             <p>
               The time of active participation in sports or other activities
               with a high physical. load:
             </p>
+          </YourWeight>
+          <YourTime>
             <FormInput
               inputType="settings"
               value={activityTime}
