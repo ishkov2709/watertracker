@@ -76,7 +76,6 @@ export const DailyNorma = styled.div`
 `;
 
 export const WaterList = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -88,7 +87,6 @@ export const WaterList = styled.div`
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 30%);
 
   @media screen and (min-width: 768px) {
-    position: static;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
