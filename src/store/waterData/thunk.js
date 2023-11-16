@@ -9,7 +9,7 @@ const setAuthHeader = token => {
 export const getMonthDays = createAsyncThunk(
   'get/daysMonth',
   async ({ token, date }) => {
-    setAuthHeader(token);
+    // setAuthHeader(token);
     const params = {
       month: format(new Date(date.year, date.month, date.day), 'MMMM'),
       year: date.year,
