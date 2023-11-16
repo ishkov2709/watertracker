@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 // }; /////////////////////////////////////////////////////////////// for tests
 
 export const getMonthDays = createAsyncThunk('get/daysMonth', async date => {
-  setAuthHeader();
+  // setAuthHeader();
   const params = {
     month: format(new Date(date.year, date.month, date.day), 'MMMM'),
     year: date.year,
