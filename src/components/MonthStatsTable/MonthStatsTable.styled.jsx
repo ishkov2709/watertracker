@@ -47,4 +47,6 @@ export const List = styled.ul`
   @media screen and (min-width: 1440px) {
     column-gap: 22px;
   }
+
+  animation: 250ms ease-in-out smoothAppearance;
 `;
