@@ -3,6 +3,7 @@ const initialState = {
     user: {
       username: '',
       email: '',
+      avatarURL: '',
     },
     isLoggedIn: false,
     isRefreshing: false,
