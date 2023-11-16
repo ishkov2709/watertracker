@@ -6,7 +6,7 @@ import MonthStatsTable from 'components/MonthStatsTable';
 import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
 import DaysGeneralStats from 'components/DaysGeneralStats';
 import { useDispatch, useSelector } from 'react-redux';
-import { dateCoodrsSelector, selectTodayListModalOpen } from 'store/waterData/selectors';
+import { dateCoodrsSelector, selectTodayListModalOpen, targetDaySelector } from 'store/waterData/selectors';
 import DailyNorma from 'components/DailyNorma/DailyNorma';
 import TodayWaterList from 'components/TodayWaterList/TodayWaterList';
 import TodayListModal from 'components/TodayListModal/TodayListModal';
