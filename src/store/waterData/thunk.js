@@ -1,21 +1,28 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-// export const setToken = () => {
-// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTRiZjk5YmU5ODQ2ZGY3YmZkM2VhNCIsImlhdCI6MTcwMDA1MjkzMiwiZXhwIjoxNzAwNjU3NzMyfQ.FSqbGP7YCGOOvDSTlBMCaqrG1Jv_Qk_C0wj8IfZY0EM"
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//  // localStorage.setItem('token', token);
-// };
+import {MONTH} from "../../constants/month"
 
 export const setToken = () => {
-  const token = localStorage.getItem('token');
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTRiZjk5YmU5ODQ2ZGY3YmZkM2VhNCIsImlhdCI6MTcwMDE1ODM4OSwiZXhwIjoxNzAwNzYzMTg5fQ.SrlDD_A8MMJhvmJYSOqiWCSpLvaTDVdjeDeIdie3E-s"
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+ // localStorage.setItem('token', token);
 };
 
+// export const setToken = () => {
+//   const token = localStorage.getItem('token');
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
+
 export const getWaterToday = createAsyncThunk("waterData/getWaterToday", async (_, thunkAPI) => {
-    try {
+  try {
+        const today = new Date()
+        const data = {
+            "day": today.getDate(),
+            "month": MONTH[today.getMonth()],
+            "year": today.getFullYear()
+        }
         setToken()
-        const response = await axios.get("https://water-tracker.onrender.com/api/records/today?day=15&month=November&year=2023");
+        const response = await axios.get(`https://water-tracker.onrender.com/api/records/today?day=${data.day}&month=${data.month}&year=${data.year}`);
         //console.log(response.data);
       return response.data;
     } catch (e) {

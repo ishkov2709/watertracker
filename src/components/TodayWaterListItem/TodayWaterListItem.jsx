@@ -8,13 +8,24 @@ import { color } from "styles/colors"
 
 const TodayWaterListItem = ({ waterInfo }) => {
 
+    function formatAMPM(date) {
+        const time = date.split(":");
+        const ampm = time[0] >= 12 ? 'PM' : 'AM';
+        time[0] = time[0] % 12;
+        time[0] = time[0] ? time[0] : 12; 
+        const strTime = time[0] + ':' + time[1] + ' ' + ampm;
+        return strTime;
+    }
+
     const dispatch = useDispatch()
     
     const handleClickEdit = (id) => {
         console.log(id);
         // dispatch(todayListModalOpen())
     }
-const handleClickDelete = (id)=> {  console.log(id); dispatch(deleteWaterTodayById(id))}
+
+
+    const handleClickDelete = (id)=> {  console.log(id); dispatch(deleteWaterTodayById(id))}
     // const  waterItem  = props
     // console.log("WaterInfo");
     // console.log(waterInfo);
@@ -22,7 +33,7 @@ const handleClickDelete = (id)=> {  console.log(id); dispatch(deleteWaterTodayBy
                 <WaterInfoContainer>
                     <Icon name="glass" stroke={color.primary.blue}/>
             <WaterInfo>{`${waterInfo.dosage}ml`}</WaterInfo>
-            <WaterTime>{`${waterInfo.time}`}</WaterTime>
+            <WaterTime>{`${formatAMPM(waterInfo.time)}`}</WaterTime>
                 </WaterInfoContainer>
         <ButtonControlContainer>
             <ButtonControl onClick={() => handleClickEdit(waterInfo._id) }>
