@@ -32,6 +32,7 @@ export const ForMan = styled.span`
 `;
 
 export const ColorTextNormal = styled.div`
+  margin-left: 4px;
   position: relative;
   font-size: 18px;
   line-height: 24px;
@@ -135,7 +136,13 @@ export const SaveWrapper = styled.div`
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-  line-height: 24px;
+
+  @media (min-width: 768px) {
+    button {
+      width: 160px;
+      height: 44px;
+    }
+  }
 `;
 
 // export const ModalContainer = styled.div`
