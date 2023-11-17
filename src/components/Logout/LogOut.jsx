@@ -7,7 +7,7 @@ import {
   CancelButton,
   LogoutButton,
   CloseIcon,
-} from './logout.styled';
+} from './LogOut.styled';
 
 const LogOut = ({ isOpen, onClose }) => {
   if (!isOpen) return null;

@@ -3,20 +3,6 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as ArrowIcon } from '../icons/solid.svg';
 import { ReactComponent as SettingIconSvg } from '../icons/arrow-right-on-rectangle/setting.svg';
 import { ReactComponent as LogOutIconSvg } from '../icons/cog-6-tooth/outline.svg';
-export const MenuButton = styled.button`
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  margin: 0;
-  padding: 8px 16px;
-  font-size: 16px;
-  position: relative;
-`;
-export const UserPhoto = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-`;
 
 export const SettingIcon = styled(SettingIconSvg)`
   width: 16px;

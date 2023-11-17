@@ -10,9 +10,9 @@ import {
   Input,
   RadioGroup,
   SubmitButton,
-} from './Setting.styled.jsx';
+} from './SettingModal.styled';
 
-import Modal from '../modal/modal.jsx';
+import Modal from 'components/common/Modal/Modal.jsx';
 const SettingsModal = ({ onClose }) => {
   const handleCloseClick = e => {
     e.preventDefault();
