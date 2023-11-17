@@ -88,7 +88,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
     if (isSendFormDane) {
       setTimeout(() => {
         closeModal();
-      }, 6000);
+      }, 2000);
     }
   });
 
@@ -144,37 +144,33 @@ const DailyNormaModal = ({ setModalOpen }) => {
               />
               <>For man</>
             </FrameParent>
-            <div className="wrap">
-              <YourWeight>
-                <>Your weight in kilograms:</>
-              </YourWeight>
-              <FormInput
-                inputType="dailyNorma"
-                value={weight}
-                onChange={handleWeightChange}
-              />
-            </div>
-            <div className="wrap">
-              <YourTime>
-                <p>
-                  The time of active participation in sports or other activities
-                  with a high physical. load:
-                </p>
-              </YourTime>
-              <FormInput
-                inputType="dailyNorma"
-                value={activityTime}
-                onChange={handleActivityTimeChange}
-              />
-              <Required>
-                <p>
-                  The required amount of water in liters per day:
-                  <L>{calculatedWaterAmount} L</L>
-                </p>
-              </Required>
-            </div>
+            <YourWeight>
+              <>Your weight in kilograms:</>
+            </YourWeight>
+            <FormInput
+              inputType="dailyNorma"
+              value={weight}
+              onChange={handleWeightChange}
+            />
+            <YourTime>
+              <>
+                The time of active participation in sports or other activities
+                with a high physical. load:
+              </>
+            </YourTime>
+            <FormInput
+              inputType="dailyNorma"
+              value={activityTime}
+              onChange={handleActivityTimeChange}
+            />
+            <Required>
+              <>
+                The required amount of water in liters per day:
+                <L>{calculatedWaterAmount} L</L>
+              </>
+            </Required>
             <Write>
-              <p>Write down how much water you will drink:</p>
+              <>Write down how much water you will drink:</>
             </Write>
             <FormInput
               inputType="dailyNorma"
