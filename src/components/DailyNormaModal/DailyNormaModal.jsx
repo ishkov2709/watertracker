@@ -53,12 +53,10 @@ const DailyNormaModal = ({ setModalOpen }) => {
     setTimeout(() => {
       setIsLoader(false);
       setIsSendFormDane(true);
-      // closeModal();
-    }, 3000);
+    }, 2000);
 
     const backendSuccess = true;
     if (backendSuccess) {
-      // closeModal();
     } else {
       console.error('Failed to save data. Please try again.');
     }
@@ -86,16 +84,13 @@ const DailyNormaModal = ({ setModalOpen }) => {
     calculateWaterAmount();
   }, [calculateWaterAmount]);
 
-  useEffect(
-    () => {
-      if (isSendFormDane) {
-        setTimeout(() => {
-          closeModal();
-        }, 6000);
-      }
+  useEffect(() => {
+    if (isSendFormDane) {
+      setTimeout(() => {
+        closeModal();
+      }, 6000);
     }
-    // [isSendFormDane]
-  );
+  });
 
   return (
     <Modal onClose={closeModal}>
@@ -149,7 +144,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
               />
               <>For man</>
             </FrameParent>
-            {/* <div className="erroe">erroe {errors.email && touched.email && errors.email}</div> */}
             <div className="wrap">
               <YourWeight>
                 <>Your weight in kilograms:</>
@@ -159,7 +153,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
                 value={weight}
                 onChange={handleWeightChange}
               />
-              {/* <div className="erroe">erroe</div> */}
             </div>
             <div className="wrap">
               <YourTime>
@@ -173,8 +166,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
                 value={activityTime}
                 onChange={handleActivityTimeChange}
               />
-              {/* <div className="erroe">erroe</div> */}
-
               <Required>
                 <p>
                   The required amount of water in liters per day:
@@ -190,7 +181,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
               value={drankWaterAmount}
               onChange={handleDrankWaterChange}
             />
-            {/* <div className="erroe">erroe</div> */}
             <SaveWrapper>
               <Button onClick={handleSave}>Save</Button>
             </SaveWrapper>
