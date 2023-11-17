@@ -1,10 +1,15 @@
+import { useSelector } from "react-redux"
 import { DailyNormaButton, DailyNormaContainer, DailyNormaContainerWaterStat, DailyNormaHeader, DailyNormaWaterNorma } from "./DailyNorma.styled"
+import { selectDailyNorma } from "store/waterData/selectors"
 
 const DailyNorma = () => {
+    
+const dailyNorma = useSelector(selectDailyNorma)
+
     return <DailyNormaContainer>
         <DailyNormaHeader>My daily norma</DailyNormaHeader>
             <DailyNormaContainerWaterStat>
-                <DailyNormaWaterNorma>1.5L</DailyNormaWaterNorma>
+            <DailyNormaWaterNorma>{`${dailyNorma}L`}</DailyNormaWaterNorma>
                 <DailyNormaButton>Edit</DailyNormaButton>
             </DailyNormaContainerWaterStat>
         </DailyNormaContainer>
