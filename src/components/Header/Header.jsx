@@ -7,6 +7,8 @@ import { LogoBtn, LogoImg, HeaderItm } from './Header.styled';
 
 const Header = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  
+  console.log(isLoggedIn)
   return (
     <Container>
       <HeaderItm>
