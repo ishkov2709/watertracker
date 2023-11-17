@@ -11,13 +11,16 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
 import { Provider } from 'react-redux';
 import Loader from 'components/common/Loader';
+import ModalProvider from 'components/common/ModalProvider';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
         <BrowserRouter basename="watertracker">
-          <App />
+          <ModalProvider>
+            <App/>
+          </ModalProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>
