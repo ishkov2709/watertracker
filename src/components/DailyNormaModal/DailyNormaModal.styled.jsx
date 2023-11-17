@@ -17,6 +17,29 @@ export const CloseButton = styled.div`
   }
 `;
 
+export const ColorTextNormal = styled.div`
+  margin-left: 4px;
+  position: relative;
+  font-size: 18px;
+  line-height: 24px;
+  color: #407bff;
+  text-align: left;
+  display: inline-block;
+  margin-right: 24px;
+`;
+export const TiltleGender = styled.div`
+  margin-top: 24px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+export const ItemeGender = styled.div`
+  font-size: 16px;
+  line-height: 1.3;
+  color: 2F2F2F;
+`;
+
 export const DailyNormas = styled.div`
   margin-top: 24px;
   margin-left: auto;
@@ -26,21 +49,6 @@ export const DailyNormas = styled.div`
 
 export const TextNormal = styled.span`
   color: #8f8f8f;
-`;
-
-export const ForMan = styled.span`
-  margin-left: 24px;
-`;
-
-export const ColorTextNormal = styled.div`
-  margin-left: 4px;
-  position: relative;
-  font-size: 18px;
-  line-height: 24px;
-  color: #407bff;
-  text-align: left;
-  display: inline-block;
-  width: 168px;
 `;
 
 export const VolumeNorm = styled.div`
