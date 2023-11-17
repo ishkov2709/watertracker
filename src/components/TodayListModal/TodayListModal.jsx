@@ -13,14 +13,18 @@ import { useDispatch } from "react-redux"
 import { saveWaterToday } from "store/waterData/thunk"
 import {MONTH} from "../../constants/month"
 import { todayListModalClose } from "store/waterData/waterDataSlice"
+import { useContext } from "react"
+import { ModalContext } from "components/common/ModalProvider/ModalProvider"
 
 
 
 
 
 const TodayListModal = () => {
+    const toggleModal = useContext(ModalContext);
     const [waterValue, setWaterValue] = useState(250)
     const [timeValue, setTimeValue] = useState("00:00")
+
 
     const dispatch = useDispatch();
 
@@ -57,10 +61,11 @@ const TodayListModal = () => {
         }
        // console.log(data);
         dispatch(saveWaterToday(data))
-        dispatch(todayListModalClose())
+        // dispatch(todayListModalClose())
+        toggleModal();
     }
     
-    return <Modal>
+    return <Modal onClose={toggleModal}>
         <TodayModalListHeader>Edit the entered amount of water</TodayModalListHeader>
         <CommonContainer>
         <WaterInfoContainer>

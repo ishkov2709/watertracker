@@ -9,7 +9,7 @@ export const selectDailyNorma = state => state.waterData.dailyNorma;
 export const selectTotalTodayDailyWater = createSelector(dataTodaySelector, selectDailyNorma,
     (waterData, norma) => {
         const totalTodayWater = waterData.reduce((total, waterData) => { return total + waterData.dosage }, 0)
-        console.log(norma );
+        // console.log(norma );
         return Number(((totalTodayWater/1000)/norma)*100).toFixed(0)
     }  
 )

@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { dataTodaySelector, selectIsLoading } from "store/waterData/selectors";
 import Loader from "components/common/Loader";
 import { todayListModalOpen } from "store/waterData/waterDataSlice";
+import { useContext } from "react";
+import { ModalContext } from "components/common/ModalProvider/ModalProvider";
+import TodayListModal from "components/TodayListModal/TodayListModal";
 
 
 // const waterItems = [ {
@@ -27,7 +30,7 @@ import { todayListModalOpen } from "store/waterData/waterDataSlice";
 
 
 const TodayWaterList = () => {
-    
+    const toggleModal = useContext(ModalContext);
     const waterItems = useSelector(dataTodaySelector)
     const isLoading = useSelector(selectIsLoading)
     const dispatch = useDispatch()
@@ -35,9 +38,11 @@ const TodayWaterList = () => {
       
  const handleClickAdd = () => {
         // console.log(id);
-         dispatch(todayListModalOpen())
+        //  dispatch(todayListModalOpen())
+     toggleModal(<TodayListModal/>)
     }
     //console.log(waterItems);
+
 
     return <TodayWaterListContainer>
         {isLoading && <Loader/>}
