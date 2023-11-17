@@ -9,10 +9,10 @@ import { MONTH } from '../../constants/month';
 //  // localStorage.setItem('token', token);
 // };
 
-export const setToken = () => {
-  const token = localStorage.getItem('token');
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
+// export const setToken = () => {
+//   const token = localStorage.getItem('token');
+//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
 
 export const getWaterToday = createAsyncThunk(
   'waterData/getWaterToday',
@@ -24,7 +24,7 @@ export const getWaterToday = createAsyncThunk(
         month: MONTH[today.getMonth()],
         year: today.getFullYear(),
       };
-      setToken();
+      // setToken();
       const response = await axios.get(
         `https://water-tracker.onrender.com/api/records/today?day=${data.day}&month=${data.month}&year=${data.year}`
       );
@@ -40,7 +40,7 @@ export const deleteWaterTodayById = createAsyncThunk(
   'waterData/deleteWaterTodayById',
   async (id, thunkAPI) => {
     try {
-      setToken();
+      // setToken();
       const response = await axios.delete(
         `https://water-tracker.onrender.com/api/records/${id}`
       );
@@ -56,7 +56,7 @@ export const saveWaterToday = createAsyncThunk(
   'waterData/saveWaterToday',
   async (data, thunkAPI) => {
     try {
-      setToken();
+      // setToken();
       const response = await axios.post(
         `https://water-tracker.onrender.com/api/records`,
         data
