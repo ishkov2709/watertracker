@@ -1,28 +1,20 @@
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as ArrowIcon } from '../icons/solid.svg';
-import { ReactComponent as SettingIconSvg } from '../icons/arrow-right-on-rectangle/setting.svg';
-import { ReactComponent as LogOutIconSvg } from '../icons/cog-6-tooth/outline.svg';
-
-export const SettingIcon = styled(SettingIconSvg)`
+export const LogoutIcon = styled.svg`
   width: 16px;
   height: 16px;
 `;
-export const LogOutIcon = styled(LogOutIconSvg)`
+
+export const SettingIcon = styled.svg`
   width: 16px;
-  heightl: 16px;
+  height: 16px;
 `;
 
-export const DropdownIcon = styled(ArrowIcon)`
+export const DropdownIcon = styled.svg`
   margin-left: 8px;
   transition: transform 0.3s ease;
-  ${({ isMenuVisible }) =>
-    isMenuVisible &&
-    css`
-      transform: rotate(180deg);
-    `}
+  ${({ isMenuVisible }) => isMenuVisible && `transform: rotate(180deg);`}
 `;
-
 export const Menu = styled.div`
   position: absolute;
   background-color: white;

@@ -15,7 +15,9 @@ const LogOut = ({ isOpen, onClose }) => {
   return (
     <Backdrop onClick={onClose}>
       <ModalWrapper onClick={e => e.stopPropagation()}>
-        <CloseIcon onClick={onClose} />
+        <CloseIcon onClick={onClose}>
+          <use href="#logout-outline" />
+        </CloseIcon>
         <Content>
           <h2>Log out</h2>
           <p>Do you really want to leave?</p>

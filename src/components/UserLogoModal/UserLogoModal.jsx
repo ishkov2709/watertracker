@@ -31,15 +31,21 @@ const UserLogoModal = () => {
   return (
     <div>
       <Avatar onClick={toggleMenu} />
-      <DropdownIcon isMenuVisible={isMenuVisible} onClick={toggleMenu} />{' '}
+      <DropdownIcon isMenuVisible={isMenuVisible} onClick={toggleMenu}>
+        <use href="#Chevron" />
+      </DropdownIcon>
       {isMenuVisible && (
         <Menu>
           <MenuItem onClick={toggleSettings}>
-            <SettingIcon />
+            <SettingIcon>
+              <use href="#Setting" />
+            </SettingIcon>
             Setting
           </MenuItem>
           <MenuItem onClick={toggleLogout}>
-            <LogOutIcon />
+            <LogOutIcon>
+              <use href="#Logout" />
+            </LogOutIcon>
             Log out
           </MenuItem>
         </Menu>

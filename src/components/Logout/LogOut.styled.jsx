@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as CloseIconSvg } from '../icons/outline.svg';
 
-export const CloseIcon = styled(CloseIconSvg)`
+export const CloseIcon = styled.svg`
   position: absolute;
   top: 16px;
   right: 16px;
