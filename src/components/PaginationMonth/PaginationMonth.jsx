@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import { Btn, Month, Wrapper } from './PaginationMonth.styled';
+import { Btn, MonthAndYear, Wrapper } from './PaginationMonth.styled';
 import Icon from 'components/common/Icon';
 import { color } from 'styles/colors';
 
@@ -54,7 +54,9 @@ const PaginationMonth = ({ date, setDate }) => {
           height={14}
         />
       </Btn>
-      <Month>{titleMonth}</Month>
+      <MonthAndYear>
+        {titleMonth}, {date.year}
+      </MonthAndYear>
       <Btn onClick={handleIncrementMonth}>
         <Icon
           name="arrow-down"

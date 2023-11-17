@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
   gap: 12px;
 `;
 
-export const Month = styled.p`
-  width: 74px;
+export const MonthAndYear = styled.p`
+  width: 120px;
   text-align: center;
   font-size: 16px;
 
@@ -26,11 +26,18 @@ export const Btn = styled.button`
 
   border: none;
 
+  transition: transform 250ms ease-in-out;
+
   &:first-of-type .icon {
     transform: rotate(90deg);
   }
 
   &:last-of-type .icon {
     transform: rotate(270deg);
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale(1.3);
   }
 `;

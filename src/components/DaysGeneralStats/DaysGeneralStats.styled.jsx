@@ -3,8 +3,8 @@ import { color } from 'styles/colors';
 
 export const Wrapper = styled.div`
   position: absolute;
-  top: -64px;
-  left: 0;
+  top: -160px;
+  left: -7px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -20,11 +20,15 @@ export const Wrapper = styled.div`
 
   box-shadow: 0 4px 4px 0 #407bff4d;
 
+  z-index: 10;
+
   @media screen and (min-width: 768px) {
     padding: 24px 16px;
-    top: ${props => props.top}px;
-    left: ${props => props.left}px;
+    top: -189px;
+    left: ${({ isToLeft }) => (isToLeft ? '17px' : '-275px')};
   }
+
+  animation: 250ms ease-in-out smoothAppearance;
 `;
 
 export const DateMonthTitle = styled.p`

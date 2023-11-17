@@ -20,10 +20,11 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.token = '';
       })
+      .addCase(signInUser.pending, (state, action) => {
+        state.error = '';
+      })
       .addCase(signUpUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
         state.error = '';
       })
       .addCase(signUpUser.rejected, (state, action) => {
@@ -31,6 +32,9 @@ const authSlice = createSlice({
         state.error = 'Entered values are not valid, try again';
         state.isLoggedIn = false;
         state.token = '';
+      })
+      .addCase(signUpUser.pending, (state, action) => {
+        state.error = '';
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
@@ -41,11 +45,12 @@ const authSlice = createSlice({
       .addCase(refreshUser.pending, (state, action) => {
         state.isRefreshing = true;
         state.isLoggedIn = true;
+        state.error = '';
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        const { user } = action.payload;
+        state.user = user;
         state.isLoggedIn = true;
-
         state.isRefreshing = false;
         state.error = '';
       })

@@ -1,8 +1,9 @@
 const initialState = {
   auth: {
     user: {
-      name: '',
+      username: '',
       email: '',
+      avatarURL: '',
     },
     isLoggedIn: false,
     isRefreshing: false,
@@ -10,7 +11,14 @@ const initialState = {
     error: '',
   },
   waterData: {
-    dateCoords: null,
+    dailyNorma: 1.5,
+    dateCoords: [],
+    dataToday: [],
+    isLoading: false,
+    todayListModalOpen: false,
+    targetDay: null,
+    daysOfMonth: [],
+    //isLoading: false,
   },
 };
 

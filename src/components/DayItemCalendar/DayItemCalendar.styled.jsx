@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 import { color } from 'styles/colors';
 
-export const Item = styled.li``;
+export const Item = styled.li`
+  position: static;
+
+  @media screen and (min-width: 768px) {
+    position: relative;
+  }
+`;
 
 export const Btn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 32px;
   height: 32px;
 
@@ -11,7 +20,8 @@ export const Btn = styled.button`
 
   background-color: ${color.primary.white};
 
-  border: none;
+  border: ${props =>
+    props.isDone ? 'none' : `1px solid ${color.secondary.orange}`};
 
   margin-bottom: 4px;
 
@@ -35,6 +45,7 @@ export const Percent = styled.p`
   text-align: center;
 
   font-size: 10px;
+  line-height: 1.25;
 
   @media screen and (min-width: 768px) {
     font-size: 13px;
