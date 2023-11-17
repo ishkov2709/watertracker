@@ -1,12 +1,15 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Btn, CountDay, Item, Percent } from './DayItemCalendar.styled';
 import { setTargetDay, removeTargetDay } from 'store/waterData/waterDataSlice';
 import { memo, useEffect, useState } from 'react';
+import { targetDaySelector } from 'store/waterData/selectors';
+import DaysGeneralStats from 'components/DaysGeneralStats';
 
 const DayItemCalendar = memo(({ day, month, dayData }) => {
   const [percent, setPercent] = useState(0);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
   const dispatch = useDispatch();
+  const targetDay = useSelector(targetDaySelector);
 
   const dailyNorma = 1500;
 
@@ -24,22 +27,18 @@ const DayItemCalendar = memo(({ day, month, dayData }) => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 1440);
     };
-
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  const handleOnTarget = e => {
+  const handleOnTarget = () => {
     const info = {
       ...dayData,
       month,
       day,
       percent,
-      top: e.target.getBoundingClientRect().top,
-      left: e.target.getBoundingClientRect().left,
     };
     dispatch(setTargetDay(info));
   };
@@ -65,6 +64,8 @@ const DayItemCalendar = memo(({ day, month, dayData }) => {
       )}
 
       <Percent>{percent}%</Percent>
+
+      {targetDay?.day === day && <DaysGeneralStats targetDay={targetDay} />}
     </Item>
   );
 });

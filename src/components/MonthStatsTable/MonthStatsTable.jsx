@@ -10,7 +10,6 @@ import {
   daysOfMonthSelector,
   isLoadingSelector,
 } from 'store/waterData/selectors';
-import { tokenSelector } from 'store/auth/selectors';
 
 const dateNow = new Date();
 
@@ -27,13 +26,16 @@ const MonthStatsTable = () => {
   const days = useDaysOfMonth(date);
   const daysOfMonth = useSelector(daysOfMonthSelector);
   const isLoading = useSelector(isLoadingSelector);
-  const token = useSelector(tokenSelector);
 
   useEffect(() => {
     if (date) {
       const { year, month, day } = date;
-      setTitleMonth(format(new Date(year, month, day), 'MMMM'));
-      dispatch(getMonthDays({ token, date }));
+      const monthYear = {
+        month: format(new Date(year, month, day), 'MMMM'),
+        year,
+      };
+      setTitleMonth(monthYear.month);
+      dispatch(getMonthDays(monthYear));
     }
   }, [date, dispatch]);
 

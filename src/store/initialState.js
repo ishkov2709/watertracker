@@ -11,9 +11,14 @@ const initialState = {
     error: '',
   },
   waterData: {
+    dailyNorma: 1.5,
+    dateCoords: [],
+    dataToday: [],
+    isLoading: false,
+    todayListModalOpen: false,
     targetDay: null,
     daysOfMonth: [],
-    isLoading: false,
+    //isLoading: false,
   },
 };
 

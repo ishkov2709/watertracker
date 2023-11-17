@@ -11,6 +11,7 @@ import Loader from './common/Loader';
 const HomePage = lazy(() => import('../pages/HomePage'));
 const SigninPage = lazy(() => import('../pages/SigninPage'));
 const SignUpPage = lazy(() => import('../pages/SignUpPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ export const App = () => {
           path="signup"
           element={<RestrictedRoute component={SignUpPage} />}
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   ) : (

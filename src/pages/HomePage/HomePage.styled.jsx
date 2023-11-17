@@ -7,6 +7,8 @@ import imgHomeBgBubblePhone from '../../img/background/homePage/mob/bgHomePhoneB
 import imgHomeBgButlePhone from '../../img/background/homePage/mob/bgHomePhoneButle.png';
 
 export const Wrapper = styled.section`
+  min-height: 100vh;
+  padding-bottom: 24px;
   background-image: url(${imgHomeBgBubblePhone});
   background-size: cover;
   background-position: bottom center;
@@ -20,9 +22,10 @@ export const Wrapper = styled.section`
   }
 
   @media screen and (min-width: 1440px) {
+    padding-bottom: 20px;
     background-image: url(${imgHomeBgbubbles});
     background-size: contain;
-    background-position: bottom center;
+    background-position: center;
     background-repeat: no-repeat;
   }
 `;
@@ -42,7 +45,7 @@ export const Box = styled.div`
 
   @media screen and (min-width: 1440px) {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     background-image: url(${imgHomeBgButle});
     background-size: 60%;
     background-position: bottom 80% left -15%;
@@ -76,7 +79,6 @@ export const DailyNorma = styled.div`
 `;
 
 export const WaterList = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -88,7 +90,6 @@ export const WaterList = styled.div`
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 30%);
 
   @media screen and (min-width: 768px) {
-    position: static;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
