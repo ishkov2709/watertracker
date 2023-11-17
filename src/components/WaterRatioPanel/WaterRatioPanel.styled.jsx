@@ -2,14 +2,23 @@ import styled from 'styled-components';
 import { color } from '../../styles/colors';
 
 export const WaterRatioPanelContainer = styled.div`
-  width: 592px;
-  // border: black solid 1px;
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+
+    @media screen and (min-width: 768px) {
+    width: 704px;
+    gap: 24px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 592px;
+    gap: 32px;
+  }
 `;
 
 export const WaterRange = styled.input`
@@ -51,23 +60,33 @@ export const WaterRange = styled.input`
 `;
 
 export const WaterRangeHeader = styled.p`
-  font-family: Roboto;
   font-size: 18px;
-  font-weight: 400;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
+  margin-bottom: 16px;
   color: ${color.primary.blue};
 `;
 export const WaterRangeContainer = styled.div`
   position: relative;
-  width: 391px;
+  //width: 391px;
+  height: 102px;   
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  //gap: 10px;
+
+    @media screen and (min-width: 768px) {
+      width:356px;
+      height: 90px; 
+  }
+
+  @media screen and (min-width: 1440px) {
+ 
+  }
 `;
 
 export const MarksContainer = styled.div`
+  height: 32px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -138,11 +157,20 @@ export const AddWaterButton = styled.button`
   gap: 10px;
   justify-content: center;
   align-items: center;
-  width: 178px;
-  height: 44px;
-  padding: 10px 30px 10px 30px;
   border-radius: 10px;
+  padding 6px 76px 6px 76px;
   background-color: ${color.primary.blue};
   color: ${color.primary.white};
   border: none;
+
+     @media screen and (min-width: 768px) {
+    width:336px;
+    padding 10px 104px 10px 104px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  width: 178px;
+  height: 44px;
+  padding: 10px 30px 10px 30px;
+  }
 `;

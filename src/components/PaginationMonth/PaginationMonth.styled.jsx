@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
   gap: 12px;
 `;
 
-export const Month = styled.p`
-  width: 74px;
+export const MonthAndYear = styled.p`
+  width: 120px;
   text-align: center;
   font-size: 16px;
 
