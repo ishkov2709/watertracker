@@ -34,11 +34,11 @@ const HomePage = () => {
       <Container>
         <Box>
           <DailyNorma>
-            {/* <div>1.7</div>
+            <div>1.7</div>
             <form action="">
               <input type="range" />
               <button>add Water</button>
-            </form> */}
+            </form>
           </DailyNorma>
 
           {ListModalOpen && <TodayListModal></TodayListModal>}
