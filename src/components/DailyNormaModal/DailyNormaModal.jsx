@@ -82,7 +82,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
 
   useEffect(() => {
     calculateWaterAmount();
-  }, [calculateWaterAmount]);
+  }, [calculateWaterAmount, weight, activityTime, selectedGender]);
 
   useEffect(() => {
     if (isSendFormDane) {
@@ -168,10 +168,8 @@ const DailyNormaModal = ({ setModalOpen }) => {
               onChange={handleActivityTimeChange}
             />
             <Required>
-              <>
-                The required amount of water in liters per day:
-                <L>{calculatedWaterAmount} L</L>
-              </>
+              <>The required amount of water in liters per day:</>
+              <L>{calculatedWaterAmount} L</L>
             </Required>
             <Write>
               <>Write down how much water you will drink:</>

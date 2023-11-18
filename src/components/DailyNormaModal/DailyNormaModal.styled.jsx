@@ -114,10 +114,27 @@ export const YourTime = styled.div`
 export const Required = styled.div`
   margin-bottom: 8px;
   margin-top: 16px;
+
+  width: 225px;
+  height: auto;
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: auto;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 600px;
+    height: auto;
+  }
 `;
 
 export const L = styled.b`
-  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
   font-size: 18px;
   line-height: 24px;
   display: inline-block;
