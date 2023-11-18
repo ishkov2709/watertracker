@@ -1,9 +1,24 @@
 import styled from 'styled-components';
 
+export const ModalBox = styled.div`
+  width: 256px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    width: 652px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 544px;
+    margin: 0 auto;
+  }
+`;
+
 export const ModalHeader = styled.div`
   display: flex;
   align-items: center;
-  line-height: 32px;
+  line-height: 12px;
   font-size: 26px;
   font-weight: 500;
 `;
@@ -18,7 +33,7 @@ export const CloseButton = styled.div`
 `;
 
 export const ColorTextNormal = styled.div`
-  margin-left: 4px;
+  margin-left: 2px;
   position: relative;
   font-size: 18px;
   line-height: 24px;
@@ -35,6 +50,7 @@ export const TiltleGender = styled.div`
   flex-wrap: wrap;
 `;
 export const ItemeGender = styled.div`
+  margin-top: 16px;
   font-size: 16px;
   line-height: 1.3;
   color: 2F2F2F;
@@ -128,4 +144,3 @@ export const SaveWrapper = styled.div`
     }
   }
 `;
-

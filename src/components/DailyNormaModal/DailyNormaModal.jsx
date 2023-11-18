@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box } from 'components/common/Container/Container.styled';
 import FormInput from 'components/common/FormInput/FormInput';
 import Button from 'components/common/Button';
 import Icon from 'components/common/Icon/Icon';
@@ -7,6 +6,7 @@ import Modal from 'components/common/Modal';
 import Loader from 'components/common/Loader';
 
 import {
+  ModalBox,
   ModalHeader,
   CloseButton,
   ColorTextNormal,
@@ -94,7 +94,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
 
   return (
     <Modal onClose={closeModal}>
-      <Box>
+      <ModalBox>
         {!isSendFormDane && (
           <>
             {' '}
@@ -112,10 +112,14 @@ const DailyNormaModal = ({ setModalOpen }) => {
               </CloseButton>
             </ModalHeader>
             <TiltleGender>
-              <ItemeGender>For girl:</ItemeGender>
-              <ColorTextNormal>V=(M*0.03) + (T*0.4)</ColorTextNormal>
-              <ItemeGender>For man:</ItemeGender>
-              <ColorTextNormal>V=(M*0.04) + (T*0.6)</ColorTextNormal>
+              <ItemeGender>
+                For girl:
+                <ColorTextNormal> V=(M*0.03) + (T*0.4)</ColorTextNormal>
+              </ItemeGender>
+              <ItemeGender>
+                For man:
+                <ColorTextNormal> V=(M*0.04) + (T*0.6)</ColorTextNormal>
+              </ItemeGender>
             </TiltleGender>
             <VolumeNorm>
               <TextNormal>
@@ -185,7 +189,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
 
         {isLoader && <Loader />}
         {isSendFormDane && <div>Form send</div>}
-      </Box>
+      </ModalBox>
     </Modal>
   );
 };
