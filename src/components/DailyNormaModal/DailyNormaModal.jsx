@@ -142,7 +142,15 @@ const DailyNormaModal = ({ setModalOpen }) => {
             <FormInput
               inputType="dailyNorma"
               value={formik.values.weight}
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                const inputText = e.target.value;
+                let numericValue = parseFloat(inputText);
+                if (isNaN(numericValue)) {
+                  numericValue = 0;
+                }
+                formik.setFieldValue('weight', numericValue);
+              }}
               onBlur={formik.handleBlur}
               name="weight"
               error={formik.touched.weight && formik.errors.weight}
@@ -156,7 +164,15 @@ const DailyNormaModal = ({ setModalOpen }) => {
             <FormInput
               inputType="dailyNorma"
               value={formik.values.activityTime}
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                const inputText = e.target.value;
+                let numericValue = parseFloat(inputText);
+                if (isNaN(numericValue)) {
+                  numericValue = 0;
+                }
+                formik.setFieldValue('activityTime', numericValue);
+              }}
               onBlur={formik.handleBlur}
               name="activityTime"
               error={formik.touched.activityTime && formik.errors.activityTime}
@@ -165,7 +181,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
               <>The required amount of water in liters per day:</>
               <L>
                 {isNaN(calculatedWaterAmount)
-                  ? 'Invalid input'
+                  ? 'Invalid'
                   : `${calculatedWaterAmount} L`}
               </L>
             </Required>
@@ -175,7 +191,15 @@ const DailyNormaModal = ({ setModalOpen }) => {
             <FormInput
               inputType="dailyNorma"
               value={formik.values.drankWaterAmount}
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                const inputText = e.target.value;
+                let numericValue = parseFloat(inputText);
+                if (isNaN(numericValue)) {
+                  numericValue = 0;
+                }
+                formik.setFieldValue('drankWaterAmount', numericValue);
+              }}
               onBlur={formik.handleBlur}
               name="drankWaterAmount"
               error={
