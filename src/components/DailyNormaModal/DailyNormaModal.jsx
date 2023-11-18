@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import validationSchema from 'schemas/validationSchema';
 import FormInput from 'components/common/FormInput/FormInput';
 import Button from 'components/common/Button';
 import Icon from 'components/common/Icon/Icon';
@@ -51,11 +51,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
       activityTime: 0,
       drankWaterAmount: 0,
     },
-    validationSchema: Yup.object({
-      weight: Yup.number().required('Required'),
-      activityTime: Yup.number().required('Required'),
-      drankWaterAmount: Yup.number().required('Required'),
-    }),
+    validationSchema: validationSchema,
     onSubmit: values => {
       setIsLoader(true);
 
@@ -145,48 +141,51 @@ const DailyNormaModal = ({ setModalOpen }) => {
             </YourWeight>
             <FormInput
               inputType="dailyNorma"
-              value={+formik.values.weight}
+              label="Your weight"
+              value={formik.values.weight}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               name="weight"
+              error={formik.touched.weight && formik.errors.weight}
             />
-            {formik.touched.weight && formik.errors.weight ? (
-              <div>{formik.errors.weight}</div>
-            ) : null}
             <YourTime>
               <>
                 The time of active participation in sports or other activities
-                with a high physical. load:
+                with a high physical load:
               </>
             </YourTime>
             <FormInput
               inputType="dailyNorma"
-              value={+formik.values.activityTime}
+              label="Activity Time"
+              value={formik.values.activityTime}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               name="activityTime"
+              error={formik.touched.activityTime && formik.errors.activityTime}
             />
-            {formik.touched.activityTime && formik.errors.activityTime ? (
-              <div>{formik.errors.activityTime}</div>
-            ) : null}
             <Required>
               <>The required amount of water in liters per day:</>
-              <L>{calculatedWaterAmount} L</L>
+              <L>
+                {isNaN(calculatedWaterAmount)
+                  ? 'Invalid input'
+                  : `${calculatedWaterAmount} L`}
+              </L>
             </Required>
             <Write>
               <>Write down how much water you will drink:</>
             </Write>
             <FormInput
               inputType="dailyNorma"
-              value={+formik.values.drankWaterAmount}
+              label="Drank Water Amount"
+              value={formik.values.drankWaterAmount}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               name="drankWaterAmount"
+              error={
+                formik.touched.drankWaterAmount &&
+                formik.errors.drankWaterAmount
+              }
             />
-            {formik.touched.drankWaterAmount &&
-            formik.errors.drankWaterAmount ? (
-              <div>{formik.errors.drankWaterAmount}</div>
-            ) : null}
             <SaveWrapper>
               <Button type="submit" onClick={formik.handleSubmit}>
                 Save
