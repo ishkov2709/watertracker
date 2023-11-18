@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { format } from 'date-fns';
 import { MONTH } from '../../constants/month';
 
 // export const setToken = () => {
@@ -44,8 +43,7 @@ export const deleteWaterTodayById = createAsyncThunk(
       const response = await axios.delete(
         `https://water-tracker.onrender.com/api/records/${id}`
       );
-      //console.log(response.data);
-      return response.data;
+      return response.data.id;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
