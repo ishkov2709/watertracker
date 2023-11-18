@@ -1,62 +1,27 @@
-import PaginationMonth from '../PaginationMonth';
-import DayItemCalendar from '../DayItemCalendar';
 import { CalendarBox, HeadBox, List, TitleBox } from './MonthStatsTable.styled';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useDaysOfMonth } from 'hooks/useDaysOfMonth';
-import { format } from 'date-fns';
-import { getMonthDays } from 'store/waterData/thunk';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  daysOfMonthSelector,
-  isLoadingSelector,
-} from 'store/waterData/selectors';
-
-const dateNow = new Date();
+import { useSelector } from 'react-redux';
+import { isLoadingSelector } from 'store/waterData/selectors';
+import { HomeContext } from 'pages/HomePage/HomePage';
+import PaginationMonth from './PaginationMonth';
+import DayItemCalendar from './DayItemCalendar';
 
 const MonthStatsTable = () => {
-  const [date, setDate] = useState({
-    year: dateNow.getFullYear(),
-    month: dateNow.getMonth(),
-    day: dateNow.getDate(),
-  });
-  const [titleMonth, setTitleMonth] = useState(
-    format(new Date(date.year, date.month, date.day), 'MMMM')
-  );
-  const dispatch = useDispatch();
+  const { date } = useContext(HomeContext);
   const days = useDaysOfMonth(date);
-  const daysOfMonth = useSelector(daysOfMonthSelector);
   const isLoading = useSelector(isLoadingSelector);
-
-  useEffect(() => {
-    if (date) {
-      const { year, month, day } = date;
-      const monthYear = {
-        month: format(new Date(year, month, day), 'MMMM'),
-        year,
-      };
-      setTitleMonth(monthYear.month);
-      dispatch(getMonthDays(monthYear));
-    }
-  }, [date, dispatch]);
 
   return (
     <CalendarBox>
       <HeadBox>
         <TitleBox>Month</TitleBox>
-        <PaginationMonth date={date} setDate={setDate} />
+        <PaginationMonth />
       </HeadBox>
       {days.length > 0 && !isLoading && (
         <List>
           {days.map(({ year, month, day }) => {
-            const dayData = daysOfMonth.find(el => el.day === day);
-            return (
-              <DayItemCalendar
-                key={`${year}${month}${day}`}
-                day={day}
-                month={titleMonth}
-                dayData={dayData}
-              />
-            );
+            return <DayItemCalendar key={`${year}${month}${day}`} day={day} />;
           })}
         </List>
       )}

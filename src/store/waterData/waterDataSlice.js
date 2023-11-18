@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import initialState from 'store/initialState';
-import { getWaterToday,deleteWaterTodayById,saveWaterToday } from './thunk';
+import { getWaterToday, deleteWaterTodayById, saveWaterToday } from './thunk';
 import { getMonthDays } from './thunk';
 import { getMonthDaysFulfilled, getMonthDaysPending } from './operations';
 
@@ -21,11 +21,14 @@ const waterDataSlice = createSlice({
     todayListModalClose: state => {
       state.todayListModalOpen = false;
     },
+    swithChangeNote: (state, { payload }) => {
+      state.isChangeNote = payload;
+    },
   },
   extraReducers: builder => {
     builder
       .addCase(getWaterToday.fulfilled, (state, action) => {
-        state.dataToday = action.payload
+        state.dataToday = action.payload;
         state.isLoading = false;
       })
       .addCase(getWaterToday.rejected, (state, action) => {
@@ -36,9 +39,9 @@ const waterDataSlice = createSlice({
       })
       .addCase(deleteWaterTodayById.fulfilled, (state, action) => {
         state.isLoading = false;
-        const index = state.dataToday.findIndex(data => data.id === action.payload
-        )
-        state.dataToday.splice(index, 1);
+        state.dataToday = [
+          ...state.dataToday.filter(data => data._id !== action.payload),
+        ];
       })
       .addCase(deleteWaterTodayById.rejected, (state, action) => {
         state.error = 'Error';
@@ -48,15 +51,15 @@ const waterDataSlice = createSlice({
       })
       .addCase(saveWaterToday.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.dataToday.push(action.payload)
+        state.dataToday.push(action.payload);
       })
       .addCase(saveWaterToday.rejected, (state, action) => {
         state.error = 'Error';
       })
       .addCase(getMonthDays.pending, getMonthDaysPending)
-      .addCase(getMonthDays.fulfilled, getMonthDaysFulfilled) 
-  }
-})
+      .addCase(getMonthDays.fulfilled, getMonthDaysFulfilled);
+  },
+});
 
 //   extraReducers: builder =>
 //     builder
@@ -66,5 +69,10 @@ const waterDataSlice = createSlice({
 
 export const waterDataReducer = waterDataSlice.reducer;
 
-export const { getCoordsDate, removeCoordsDate, todayListModalClose, todayListModalOpen } = waterDataSlice.actions;
-export const { setTargetDay, removeTargetDay } = waterDataSlice.actions;
+export const {
+  setTargetDay,
+  removeTargetDay,
+  todayListModalClose,
+  todayListModalOpen,
+  swithChangeNote,
+} = waterDataSlice.actions;

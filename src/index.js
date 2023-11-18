@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={<Loader />} persistor={persistor}>
         <BrowserRouter basename="watertracker">
           <ModalProvider>
-            <App/>
+            <App />
           </ModalProvider>
         </BrowserRouter>
       </PersistGate>
