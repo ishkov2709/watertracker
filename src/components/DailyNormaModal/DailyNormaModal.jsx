@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import FormInput from 'components/common/FormInput/FormInput';
 import Button from 'components/common/Button';
 import Icon from 'components/common/Icon/Icon';
@@ -26,63 +28,54 @@ import {
 } from './DailyNormaModal.styled';
 
 const DailyNormaModal = ({ setModalOpen }) => {
-  const [weight, setWeight] = useState(0);
-  const [activityTime, setActivityTime] = useState(0);
   const [calculatedWaterAmount, setCalculatedWaterAmount] = useState(0);
-  const [drankWaterAmount, setDrankWaterAmount] = useState(0);
-  const [selectedGender, setSelectedGender] = useState('forGirl');
   const [isLoader, setIsLoader] = useState(false);
   const [isSendFormDane, setIsSendFormDane] = useState(false);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setModalOpen(false);
-  };
+  }, [setModalOpen]);
 
-  const handleSave = () => {
-    const formData = {
-      gender: selectedGender,
-      weight,
-      activityTime,
-      calculatedWaterAmount,
-      drankWaterAmount,
-    };
-
-    console.log('Data to be sent:', formData);
-    setIsLoader(true);
-
-    setTimeout(() => {
-      setIsLoader(false);
-      setIsSendFormDane(true);
-    }, 2000);
-
-    const backendSuccess = true;
-    if (backendSuccess) {
-    } else {
-      console.error('Failed to save data. Please try again.');
-    }
-  };
-
-  const handleWeightChange = event => {
-    setWeight(event.target.value);
-  };
-  const handleActivityTimeChange = event => {
-    setActivityTime(event.target.value);
-  };
-  const handleDrankWaterChange = event => {
-    setDrankWaterAmount(event.target.value);
-  };
-
-  const calculateWaterAmount = useCallback(() => {
-    const weightCoefficient = selectedGender === 'forGirl' ? 0.03 : 0.04;
-    const timeCoefficient = selectedGender === 'forGirl' ? 0.4 : 0.6;
+  const calculateWaterAmount = useCallback(values => {
+    const weightCoefficient = values.gender === 'forGirl' ? 0.03 : 0.04;
+    const timeCoefficient = values.gender === 'forGirl' ? 0.4 : 0.6;
     const calculatedAmount =
-      weight * weightCoefficient + activityTime * timeCoefficient;
+      values.weight * weightCoefficient + values.activityTime * timeCoefficient;
     setCalculatedWaterAmount(calculatedAmount.toFixed(2));
-  }, [weight, activityTime, selectedGender]);
+  }, []);
+
+  const formik = useFormik({
+    initialValues: {
+      gender: 'forGirl',
+      weight: 0,
+      activityTime: 0,
+      drankWaterAmount: 0,
+    },
+    validationSchema: Yup.object({
+      weight: Yup.number().required('Required'),
+      activityTime: Yup.number().required('Required'),
+      drankWaterAmount: Yup.number().required('Required'),
+    }),
+    onSubmit: values => {
+      setIsLoader(true);
+
+      setTimeout(() => {
+        setIsLoader(false);
+        setIsSendFormDane(true);
+      }, 2000);
+
+      const backendSuccess = true;
+      if (backendSuccess) {
+        formik.resetForm();
+      } else {
+        console.error('Failed to save data. Please try again.');
+      }
+    },
+  });
 
   useEffect(() => {
-    calculateWaterAmount();
-  }, [calculateWaterAmount, weight, activityTime, selectedGender]);
+    calculateWaterAmount(formik.values);
+  }, [calculateWaterAmount, formik.values]);
 
   useEffect(() => {
     if (isSendFormDane) {
@@ -90,14 +83,13 @@ const DailyNormaModal = ({ setModalOpen }) => {
         closeModal();
       }, 2000);
     }
-  });
+  }, [isSendFormDane, closeModal]);
 
   return (
     <Modal onClose={closeModal}>
       <ModalBox>
         {!isSendFormDane && (
           <>
-            {' '}
             <ModalHeader>
               My daily norma
               <CloseButton onClick={closeModal}>
@@ -135,16 +127,16 @@ const DailyNormaModal = ({ setModalOpen }) => {
                 type="radio"
                 id="forGirl"
                 name="gender"
-                checked={selectedGender === 'forGirl'}
-                onChange={() => setSelectedGender('forGirl')}
+                checked={formik.values.gender === 'forGirl'}
+                onChange={() => formik.setFieldValue('gender', 'forGirl')}
               />
               <>For girl</>
               <FrameItem
                 type="radio"
                 id="forMan"
                 name="gender"
-                checked={selectedGender === 'forMan'}
-                onChange={() => setSelectedGender('forMan')}
+                checked={formik.values.gender === 'forMan'}
+                onChange={() => formik.setFieldValue('gender', 'forMan')}
               />
               <>For man</>
             </FrameParent>
@@ -153,9 +145,14 @@ const DailyNormaModal = ({ setModalOpen }) => {
             </YourWeight>
             <FormInput
               inputType="dailyNorma"
-              value={weight}
-              onChange={handleWeightChange}
+              value={+formik.values.weight}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              name="weight"
             />
+            {formik.touched.weight && formik.errors.weight ? (
+              <div>{formik.errors.weight}</div>
+            ) : null}
             <YourTime>
               <>
                 The time of active participation in sports or other activities
@@ -164,9 +161,14 @@ const DailyNormaModal = ({ setModalOpen }) => {
             </YourTime>
             <FormInput
               inputType="dailyNorma"
-              value={activityTime}
-              onChange={handleActivityTimeChange}
+              value={+formik.values.activityTime}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              name="activityTime"
             />
+            {formik.touched.activityTime && formik.errors.activityTime ? (
+              <div>{formik.errors.activityTime}</div>
+            ) : null}
             <Required>
               <>The required amount of water in liters per day:</>
               <L>{calculatedWaterAmount} L</L>
@@ -176,17 +178,25 @@ const DailyNormaModal = ({ setModalOpen }) => {
             </Write>
             <FormInput
               inputType="dailyNorma"
-              value={drankWaterAmount}
-              onChange={handleDrankWaterChange}
+              value={+formik.values.drankWaterAmount}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              name="drankWaterAmount"
             />
+            {formik.touched.drankWaterAmount &&
+            formik.errors.drankWaterAmount ? (
+              <div>{formik.errors.drankWaterAmount}</div>
+            ) : null}
             <SaveWrapper>
-              <Button onClick={handleSave}>Save</Button>
+              <Button type="submit" onClick={formik.handleSubmit}>
+                Save
+              </Button>
             </SaveWrapper>
           </>
         )}
 
         {isLoader && <Loader />}
-        {isSendFormDane && <div>Form send</div>}
+        {isSendFormDane && <div>Form sent successfully</div>}
       </ModalBox>
     </Modal>
   );
