@@ -141,7 +141,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
             </YourWeight>
             <FormInput
               inputType="dailyNorma"
-              label="Your weight"
               value={formik.values.weight}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -156,7 +155,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
             </YourTime>
             <FormInput
               inputType="dailyNorma"
-              label="Activity Time"
               value={formik.values.activityTime}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -176,7 +174,6 @@ const DailyNormaModal = ({ setModalOpen }) => {
             </Write>
             <FormInput
               inputType="dailyNorma"
-              label="Drank Water Amount"
               value={formik.values.drankWaterAmount}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
