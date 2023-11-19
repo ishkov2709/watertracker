@@ -4,6 +4,8 @@ const initialState = {
       username: '',
       email: '',
       avatarURL: '',
+      gender: '',
+      dailyNorma: '',
     },
     isLoggedIn: false,
     isRefreshing: false,
