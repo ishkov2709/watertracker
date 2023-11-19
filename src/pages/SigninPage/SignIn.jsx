@@ -1,7 +1,12 @@
 import Container from 'components/common/Container';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { errorSelector } from '../../store/auth/selectors';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  errorSelector,
+  isLoggedInSelector,
+  tokenSelector,
+  userSelector,
+} from '../../store/auth/selectors';
 import sprite from '../../img/sprites.svg';
 import {
   Box,
@@ -19,6 +24,8 @@ import {
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { Formik, Field, ErrorMessage } from 'formik';
 import { singinSchema } from 'schemas/singinSchema';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { setToken, signInUser } from 'store/auth/thunk';
 
 const initialValues = {
   email: '',
@@ -28,9 +35,25 @@ const initialValues = {
 const Signin = ({ signin }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const error = useSelector(errorSelector);
+  const isAuth = useSelector(userSelector);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const token = useSelector(tokenSelector);
+  const dispatch = useDispatch();
+  //const user = userSelector(userSelector);
+  const navigate = useNavigate();
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    signin(values);
+  // const handleSuccessfulAuthentication = () => {
+  //   setTimeout(() => {
+  //     !isLoggedIn && navigate('/signin');
+  //   }, 1000);
+  // };
+  // const signin = body => {
+  //   dispatch(signInUser(body));
+  // };
+  const handleSubmit = async (values, { setSubmitting }) => {
+    const response = await dispatch(signInUser(values));
+    console.log(response);
+    !error ? navigate('/home') : navigate('/signin');
     setSubmitting(false);
   };
 

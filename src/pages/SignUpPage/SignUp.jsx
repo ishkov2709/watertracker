@@ -1,7 +1,7 @@
 import Container from 'components/common/Container';
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
 
 import { errorSelector, userSelector } from '../../store/auth/selectors';
@@ -47,10 +47,8 @@ const Signup = ({ signup }) => {
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    await dispatch(
-      signup({ email: values.email, password: values.password }),
-      isAuth && handleSuccessfulAuthentication()
-    );
+    await signup({ email: values.email, password: values.password });
+    isAuth && handleSuccessfulAuthentication();
     setSubmitting(false);
   };
 
