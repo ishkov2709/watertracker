@@ -1,9 +1,11 @@
 {
   "files": {
     "main.css": "/watertracker/static/css/main.3a672cd4.css",
-    "main.js": "/watertracker/static/js/main.c37492f6.js",
-    "static/js/811.7ec5a8ac.chunk.js": "/watertracker/static/js/811.7ec5a8ac.chunk.js",
+    "main.js": "/watertracker/static/js/main.286ccc2a.js",
+    "static/js/229.ebe0b832.chunk.js": "/watertracker/static/js/229.ebe0b832.chunk.js",
+    "static/js/811.0d9d4d84.chunk.js": "/watertracker/static/js/811.0d9d4d84.chunk.js",
     "static/js/236.fd89b300.chunk.js": "/watertracker/static/js/236.fd89b300.chunk.js",
+    "static/js/289.37a7a6c1.chunk.js": "/watertracker/static/js/289.37a7a6c1.chunk.js",
     "static/css/544.7c3dd9d6.chunk.css": "/watertracker/static/css/544.7c3dd9d6.chunk.css",
     "static/media/bgHomeButleDesc.png": "/watertracker/static/media/bgHomeButleDesc.60d0b8920db86989f0f4.png",
     "static/media/bgHomeTabButle.png": "/watertracker/static/media/bgHomeTabButle.30548c686fee02197f31.png",
@@ -59,13 +61,15 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/watertracker/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/watertracker/index.html",
     "main.3a672cd4.css.map": "/watertracker/static/css/main.3a672cd4.css.map",
-    "main.c37492f6.js.map": "/watertracker/static/js/main.c37492f6.js.map",
-    "811.7ec5a8ac.chunk.js.map": "/watertracker/static/js/811.7ec5a8ac.chunk.js.map",
+    "main.286ccc2a.js.map": "/watertracker/static/js/main.286ccc2a.js.map",
+    "229.ebe0b832.chunk.js.map": "/watertracker/static/js/229.ebe0b832.chunk.js.map",
+    "811.0d9d4d84.chunk.js.map": "/watertracker/static/js/811.0d9d4d84.chunk.js.map",
     "236.fd89b300.chunk.js.map": "/watertracker/static/js/236.fd89b300.chunk.js.map",
+    "289.37a7a6c1.chunk.js.map": "/watertracker/static/js/289.37a7a6c1.chunk.js.map",
     "544.7c3dd9d6.chunk.css.map": "/watertracker/static/css/544.7c3dd9d6.chunk.css.map"
   },
   "entrypoints": [
     "static/css/main.3a672cd4.css",
-    "static/js/main.c37492f6.js"
+    "static/js/main.286ccc2a.js"
   ]
 }
