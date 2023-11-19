@@ -31,28 +31,29 @@ const waterDataSlice = createSlice({
         state.dataToday = action.payload;
         state.isLoading = false;
       })
-      .addCase(getWaterToday.rejected, (state, action) => {
+      .addCase(getWaterToday.rejected, state => {
         state.error = 'Error';
       })
-      .addCase(deleteWaterTodayById.pending, (state, action) => {
+      .addCase(deleteWaterTodayById.pending, state => {
         state.isLoading = true;
       })
       .addCase(deleteWaterTodayById.fulfilled, (state, action) => {
         state.isLoading = false;
-        const index = state.dataToday.findIndex(data =>  data._id === action.payload.id)
-        state.dataToday.splice(index, 1);
+        state.dataToday = [
+          ...state.dataToday.filter(el => el._id !== action.payload),
+        ];
       })
-      .addCase(deleteWaterTodayById.rejected, (state, action) => {
+      .addCase(deleteWaterTodayById.rejected, state => {
         state.error = 'Error';
       })
-      .addCase(saveWaterToday.pending, (state, action) => {
+      .addCase(saveWaterToday.pending, state => {
         state.isLoading = true;
       })
       .addCase(saveWaterToday.fulfilled, (state, action) => {
         state.isLoading = false;
         state.dataToday.push(action.payload);
       })
-      .addCase(saveWaterToday.rejected, (state, action) => {
+      .addCase(saveWaterToday.rejected, state => {
         state.error = 'Error';
       })
       .addCase(getMonthDays.pending, getMonthDaysPending)
