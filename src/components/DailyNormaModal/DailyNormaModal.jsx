@@ -44,6 +44,71 @@ const DailyNormaModal = ({ setModalOpen }) => {
     setCalculatedWaterAmount(calculatedAmount.toFixed(2));
   }, []);
 
+  const sendDataToBackend = async data => {
+    try {
+      const response = await fetch(
+        'https://water-tracker.onrender.com/api/records',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // Якщо потрібно авторизацію, включіть токен
+            // 'Authorization': `Bearer ${yourAccessToken}`
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      return response;
+    } catch (error) {
+      console.error(
+        'An error occurred while sending data to the backend:',
+        error
+      );
+      throw error; // Передаємо помилку наверх для обробки викликаючим кодом
+    }
+  };
+
+  const handleInputChange = (e, fieldName) => {
+    formik.handleChange(e);
+    const inputText = e.target.value;
+    let numericValue = parseFloat(inputText);
+    if (isNaN(numericValue)) {
+      numericValue = 0;
+    }
+    formik.setFieldValue(fieldName, numericValue);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      setIsLoader(true);
+
+      // Отримання даних форми
+      const values = formik.values;
+
+      // Відправка даних на бекенд
+      const response = await sendDataToBackend(values);
+
+      if (response.ok) {
+        // Успішне відправлення на бекенд
+        formik.resetForm();
+        setIsLoader(false);
+        setIsSendFormDane(true);
+        setTimeout(() => {
+          closeModal();
+        }, 2000);
+      } else {
+        // Помилка при відправленні на бекенд
+        const errorData = await response.json(); // отримуємо дані про помилку
+        setIsLoader(false);
+        console.error('Failed to save data. Please try again.', errorData);
+      }
+    } catch (error) {
+      setIsLoader(false);
+      console.error('An error occurred while sending data:', error);
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       gender: 'forGirl',
@@ -52,21 +117,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
       drankWaterAmount: 0,
     },
     validationSchema: validationSchema,
-    onSubmit: values => {
-      setIsLoader(true);
-
-      setTimeout(() => {
-        setIsLoader(false);
-        setIsSendFormDane(true);
-      }, 2000);
-
-      const backendSuccess = true;
-      if (backendSuccess) {
-        formik.resetForm();
-      } else {
-        console.error('Failed to save data. Please try again.');
-      }
-    },
+    onSubmit: handleSubmit,
   });
 
   useEffect(() => {
@@ -137,42 +188,26 @@ const DailyNormaModal = ({ setModalOpen }) => {
               <>For man</>
             </FrameParent>
             <YourWeight>
-              <>Your weight in kilograms:</>
+              <>Enter your weight in kilograms:</>
             </YourWeight>
             <FormInput
               inputType="dailyNorma"
               value={formik.values.weight}
-              onChange={e => {
-                formik.handleChange(e);
-                const inputText = e.target.value;
-                let numericValue = parseFloat(inputText);
-                if (isNaN(numericValue)) {
-                  numericValue = 0;
-                }
-                formik.setFieldValue('weight', numericValue);
-              }}
+              onChange={e => handleInputChange(e, 'weight')}
               onBlur={formik.handleBlur}
               name="weight"
               error={formik.touched.weight && formik.errors.weight}
             />
             <YourTime>
               <>
-                The time of active participation in sports or other activities
-                with a high physical load:
+                Enter the time of active participation in sports or other
+                activities with a high physical load:
               </>
             </YourTime>
             <FormInput
               inputType="dailyNorma"
               value={formik.values.activityTime}
-              onChange={e => {
-                formik.handleChange(e);
-                const inputText = e.target.value;
-                let numericValue = parseFloat(inputText);
-                if (isNaN(numericValue)) {
-                  numericValue = 0;
-                }
-                formik.setFieldValue('activityTime', numericValue);
-              }}
+              onChange={e => handleInputChange(e, 'activityTime')}
               onBlur={formik.handleBlur}
               name="activityTime"
               error={formik.touched.activityTime && formik.errors.activityTime}
@@ -191,15 +226,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
             <FormInput
               inputType="dailyNorma"
               value={formik.values.drankWaterAmount}
-              onChange={e => {
-                formik.handleChange(e);
-                const inputText = e.target.value;
-                let numericValue = parseFloat(inputText);
-                if (isNaN(numericValue)) {
-                  numericValue = 0;
-                }
-                formik.setFieldValue('drankWaterAmount', numericValue);
-              }}
+              onChange={e => handleInputChange(e, 'drankWaterAmount')}
               onBlur={formik.handleBlur}
               name="drankWaterAmount"
               error={
@@ -208,7 +235,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
               }
             />
             <SaveWrapper>
-              <Button type="submit" onClick={formik.handleSubmit}>
+              <Button type="submit" onClick={handleSubmit}>
                 Save
               </Button>
             </SaveWrapper>

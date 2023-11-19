@@ -1,15 +1,14 @@
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
+  gender: Yup.string().required('Required'),
   weight: Yup.number()
-    .typeError('Weight must be a number')
-    .required('Required'),
+    .required('Required')
+    .min(0, 'Weight must be a positive number'),
   activityTime: Yup.number()
-    .typeError('Activity time must be a number')
-    .required('Required'),
-  drankWaterAmount: Yup.number()
-    .typeError('Drank water amount must be a number')
-    .required('Required'),
+    .required('Required')
+    .min(0, 'Activity time must be a positive number'),
+  drankWaterAmount: Yup.number().required('Required'),
 });
 
 export default validationSchema;
