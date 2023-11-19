@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Circle, AvatarBtn, UserName } from './Avatar.styled';
+import { Circle, AvatarBtn, UserName, AvatarImg } from './Avatar.styled';
 import Icon from 'components/common/Icon';
 import { color } from 'styles/colors.js';
 
@@ -16,8 +16,7 @@ const Avatar = () => {
       {(name.includes('@')) ? (<UserName>{emailName}</UserName>) : (<UserName>{name}</UserName>)}
       <>
         <Circle>
-          <p>{firstLetter.toUpperCase()}</p>
-          {avatar && <img src={avatar} alt="logo" />}
+          {avatar ? (<AvatarImg src={avatar} alt="logo" />) : <p>{firstLetter.toUpperCase()}</p>}
         </Circle>
         <Icon
           name="arrow-down"

@@ -1,12 +1,15 @@
 import { ButtonControl, ButtonControlContainer, TodayWaterListItemContainer, WaterInfo, WaterInfoContainer, WaterTime } from "./TodayWaterListItem.styled"
 import Icon from "components/common/Icon"
 import { useDispatch } from "react-redux"
-import { deleteWaterTodayById } from "store/waterData/thunk"
 import { todayListModalOpen } from "store/waterData/waterDataSlice"
 import { color } from "styles/colors"
+import { ModalContext } from "components/common/ModalProvider/ModalProvider"
+import { useContext } from "react"
+import RemoveListItemModal from "components/RemoveListItemModal/RemoveListItemModal"
 
+const TodayWaterListItem = ({ waterInfo, handleRemove }) => {
+    const toggleModal = useContext(ModalContext);
 
-const TodayWaterListItem = ({ waterInfo }) => {
 
     function formatAMPM(date) {
         const time = date.split(":");
@@ -20,15 +23,20 @@ const TodayWaterListItem = ({ waterInfo }) => {
     const dispatch = useDispatch()
     
     const handleClickEdit = (id) => {
-        console.log(id);
-        // dispatch(todayListModalOpen())
+        dispatch(todayListModalOpen())
+    }
+
+    const handleClickDelete = (id) => {
+        toggleModal(<RemoveListItemModal id={id} />)
     }
 
 
-    const handleClickDelete = (id)=> {  console.log(id); dispatch(deleteWaterTodayById(id))}
+
+
     // const  waterItem  = props
     // console.log("WaterInfo");
-    // console.log(waterInfo);
+    // console.log(waterInfo.id);
+    
     return (<>
                 <WaterInfoContainer>
                     <Icon name="glass" stroke={color.primary.blue}/>
@@ -47,4 +55,4 @@ const TodayWaterListItem = ({ waterInfo }) => {
     )
 }
 
-export default TodayWaterListItem
+export default TodayWaterListItem;

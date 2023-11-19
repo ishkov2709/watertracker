@@ -1,46 +1,56 @@
-import { useEffect, useState } from 'react';
-import { format } from 'date-fns';
+import { useContext, useEffect } from 'react';
 import { Btn, MonthAndYear, Wrapper } from './PaginationMonth.styled';
 import Icon from 'components/common/Icon';
 import { color } from 'styles/colors';
+import { HomeContext } from 'pages/HomePage/HomePage';
+import { useDispatch } from 'react-redux';
+import { swithChangeNote } from 'store/waterData/waterDataSlice';
+import { defineMonth } from 'utils/defineMonth';
 
-const PaginationMonth = ({ date, setDate }) => {
-  const [titleMonth, setTitleMonth] = useState(
-    format(new Date(date.year, date.month, date.day), 'MMMM')
-  );
+const PaginationMonth = () => {
+  const { date, setDate, titleMonth, setTitleMonth } = useContext(HomeContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (date) {
-      setTitleMonth(format(new Date(date.year, date.month, date.day), 'MMMM'));
+      setTitleMonth(defineMonth(date.year, date.month, date.day));
     }
-  }, [date]);
+  }, [date, setTitleMonth]);
 
   const handleIncrementMonth = () => {
     if (date.month + 1 > 11) {
-      return setDate(prevState => ({
+      setDate(prevState => ({
         ...prevState,
         year: prevState.year + 1,
         month: 0,
       }));
+      dispatch(swithChangeNote(true));
+      return;
     }
-    return setDate(prevState => ({
+    setDate(prevState => ({
       ...prevState,
       month: prevState.month + 1,
     }));
+    dispatch(swithChangeNote(true));
+    return;
   };
 
   const handleDecrementMonth = () => {
     if (date.month - 1 < 0) {
-      return setDate(prevState => ({
+      setDate(prevState => ({
         ...prevState,
         year: prevState.year - 1,
         month: 11,
       }));
+      dispatch(swithChangeNote(true));
+      return;
     }
-    return setDate(prevState => ({
+    setDate(prevState => ({
       ...prevState,
       month: prevState.month - 1,
     }));
+    dispatch(swithChangeNote(true));
+    return;
   };
 
   return (
