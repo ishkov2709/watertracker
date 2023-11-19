@@ -14,15 +14,15 @@ import Loader from 'components/common/Loader';
 import ModalProvider from 'components/common/ModalProvider';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={<Loader />} persistor={persistor}>
-        <BrowserRouter basename="watertracker">
-          <ModalProvider>
-            <App />
-          </ModalProvider>
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <PersistGate loading={<Loader />} persistor={persistor}>
+      <BrowserRouter basename="watertracker">
+        <ModalProvider>
+          <App />
+        </ModalProvider>
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
+  // </React.StrictMode>
 );

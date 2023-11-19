@@ -24,7 +24,6 @@ import { saveWaterToday } from 'store/waterData/thunk';
 import { MONTH } from '../../constants/month';
 import { useContext } from 'react';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
-import { swithChangeNote } from 'store/waterData/waterDataSlice';
 
 const TodayListModal = () => {
   const toggleModal = useContext(ModalContext);
@@ -72,7 +71,6 @@ const TodayListModal = () => {
     dispatch(saveWaterToday(data));
     // dispatch(todayListModalClose())
     toggleModal();
-    dispatch(swithChangeNote(true));
   };
 
   return (
