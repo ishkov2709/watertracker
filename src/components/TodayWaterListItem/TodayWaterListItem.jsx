@@ -55,4 +55,4 @@ const TodayWaterListItem = ({ waterInfo, handleRemove }) => {
     )
 }
 
-export default TodayWaterListItem
+export default TodayWaterListItem;

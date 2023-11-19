@@ -1,7 +1,7 @@
 import Container from 'components/common/Container';
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
 
 import { errorSelector, userSelector } from '../../store/auth/selectors';
@@ -21,7 +21,8 @@ import {
 } from '../SigninPage/Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { signupSchema } from 'schemas/signupSchema';
-import Button from 'components/common/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValues = {
   email: '',
@@ -36,11 +37,19 @@ const Signup = ({ signup }) => {
   const navigate = useNavigate();
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
+  const handleSuccessfulAuthentication = () => {
+    toast.info(
+      'Успішна реєстрація! Вам на пошту був відправлений лист для підтвердження.'
+    );
+    setTimeout(() => {
+      navigate('/signin');
+    }, 6000);
+  };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    dispatch(
+  const handleSubmit = async (values, { setSubmitting }) => {
+    await dispatch(
       signup({ email: values.email, password: values.password }),
-      isAuth && navigate('/signin')
+      isAuth && handleSuccessfulAuthentication()
     );
     setSubmitting(false);
   };
@@ -147,6 +156,8 @@ const Signup = ({ signup }) => {
               )}
             </Formik>
             <LinkToPage to="/signin">Sign in</LinkToPage>
+
+            <ToastContainer />
           </div>
         </Box>
       </Container>

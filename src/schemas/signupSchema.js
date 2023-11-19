@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 export const signupSchema = Yup.object().shape({
   email: Yup.string()
-    .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Invalid email')
+    .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Invalid email')
     .required('Email is required'),
   password: Yup.string()
     .matches(
