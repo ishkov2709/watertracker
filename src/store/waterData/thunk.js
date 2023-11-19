@@ -44,7 +44,6 @@ export const deleteWaterTodayById = createAsyncThunk(
       const response = await axios.delete(
         `https://water-tracker.onrender.com/api/records/${id}`
       );
-      //console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

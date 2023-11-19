@@ -36,8 +36,7 @@ const waterDataSlice = createSlice({
       })
       .addCase(deleteWaterTodayById.fulfilled, (state, action) => {
         state.isLoading = false;
-        const index = state.dataToday.findIndex(data => data.id === action.payload
-        )
+        const index = state.dataToday.findIndex(data =>  data._id === action.payload.id)
         state.dataToday.splice(index, 1);
       })
       .addCase(deleteWaterTodayById.rejected, (state, action) => {
