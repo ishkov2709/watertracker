@@ -1,5 +1,5 @@
 import Container from 'components/common/Container';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
@@ -36,7 +36,7 @@ const Signup = ({ signup }) => {
   const navigate = useNavigate();
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
-  const handleSuccessfulAuthentication = () => {
+  const handleSuccessfulAuthentication = useCallback(() => {
     toast.info(
       'Успішна реєстрація! Вам на пошту був відправлений лист для підтвердження.'
     );
@@ -44,12 +44,12 @@ const Signup = ({ signup }) => {
       navigate('/signin');
     }, 6000);
     dispatch(resetSuccessful());
-  };
+  }, [dispatch, navigate]);
 
   useEffect(() => {
     console.log(successful);
     successful && !error && handleSuccessfulAuthentication();
-  }, [successful, error]);
+  }, [successful, error, handleSuccessfulAuthentication]);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     await signup({ email: values.email, password: values.password });
