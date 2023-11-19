@@ -7,6 +7,7 @@ import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
 import DaysGeneralStats from 'components/MonthStatsTable/DayItemCalendar/DaysGeneralStats';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  dataTodaySelector,
   isChangeNoteSelector,
   selectTodayListModalOpen,
   targetDaySelector,
@@ -33,6 +34,9 @@ const HomePage = () => {
   );
   const dispatch = useDispatch();
   const isChangeNote = useSelector(isChangeNoteSelector);
+  const dataToday = useSelector(dataTodaySelector);
+
+  console.log(dataToday);
 
   useEffect(() => {
     dispatch(getWaterToday());
