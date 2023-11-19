@@ -25,3 +25,9 @@ export const AvatarBtn = styled.button`
 export const UserName = styled.span`
    font-size: 18px;
 `;
+
+export const AvatarImg = styled.img`
+  width: 28px;
+  height: 28px;
+ 
+`
