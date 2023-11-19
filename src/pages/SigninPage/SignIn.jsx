@@ -1,6 +1,6 @@
 import Container from 'components/common/Container';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { errorSelector } from '../../store/auth/selectors';
 import sprite from '../../img/sprites.svg';
 import {
@@ -28,8 +28,9 @@ const initialValues = {
 const Signin = ({ signin }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const error = useSelector(errorSelector);
+  const dispatch = useDispatch();
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     signin(values);
     setSubmitting(false);
   };

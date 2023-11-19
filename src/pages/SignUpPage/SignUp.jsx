@@ -1,12 +1,10 @@
 import Container from 'components/common/Container';
-import React, {useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
-
-import { errorSelector, userSelector } from '../../store/auth/selectors';
+import { errorSelector, successfulSelector } from '../../store/auth/selectors';
 import sprite from '../../img/sprites.svg';
-
 import {
   Label,
   Title,
@@ -23,6 +21,7 @@ import { Wrapper } from '../HomePage/HomePage.styled';
 import { signupSchema } from 'schemas/signupSchema';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { resetSuccessful } from 'store/auth/authSlice';
 
 const initialValues = {
   email: '',
@@ -33,7 +32,7 @@ const initialValues = {
 const Signup = ({ signup }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
-  const isAuth = useSelector(userSelector);
+  const successful = useSelector(successfulSelector);
   const navigate = useNavigate();
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
@@ -44,13 +43,17 @@ const Signup = ({ signup }) => {
     setTimeout(() => {
       navigate('/signin');
     }, 6000);
+    dispatch(resetSuccessful());
   };
 
+  useEffect(() => {
+    console.log(successful);
+    successful && !error && handleSuccessfulAuthentication();
+  }, [successful, error]);
+
   const handleSubmit = async (values, { setSubmitting }) => {
-    await dispatch(
-      signup({ email: values.email, password: values.password }),
-      isAuth && handleSuccessfulAuthentication()
-    );
+    await signup({ email: values.email, password: values.password });
+
     setSubmitting(false);
   };
 
