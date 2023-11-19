@@ -24,15 +24,24 @@ export const App = () => {
   return !isRefreshing ? (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<RestrictedRoute component={WelcomePage} />} />
-        <Route path="Home" element={<PrivateRoute component={HomePage} />} />
+        <Route
+          index
+          element={
+            <RestrictedRoute component={<WelcomePage />} redirectTo="/home" />
+          }
+        />
+        <Route path="home" element={<PrivateRoute component={HomePage} />} />
         <Route
           path="signin"
-          element={<RestrictedRoute component={SigninPage} />}
+          element={
+            <RestrictedRoute component={<SigninPage />} redirectTo="/home" />
+          }
         />
         <Route
           path="signup"
-          element={<RestrictedRoute component={SignUpPage} />}
+          element={
+            <RestrictedRoute component={<SignUpPage />} redirectTo="/home" />
+          }
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

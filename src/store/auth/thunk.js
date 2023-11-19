@@ -18,7 +18,7 @@ export const signInUser = createAsyncThunk(
       setToken(response.data.token);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
