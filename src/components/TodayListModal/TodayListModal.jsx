@@ -22,8 +22,21 @@ const TodayListModal = ({ type = "save", id }) => {
 
     const dataToday = useSelector(dataTodaySelector)
     
-    const [waterValue, setWaterValue] = useState(Number(0))
-    const [timeValue, setTimeValue] = useState("00:00")
+    const [waterValue, setWaterValue] = useState(() => {
+        if (dataToday.length === 0) { return Number(0) }
+        const lastAddWaterDosageIndex = dataToday.length-1
+        return dataToday[lastAddWaterDosageIndex].dosage
+    })
+    const [timeValue, setTimeValue] = useState(() => {
+        const dateNow = new Date()
+        console.log(dateNow);
+        let hours = dateNow.getHours()
+        let minutes = dateNow.getMinutes()
+        if (hours.length === 1) { hours =  '0' + hours }
+        if (minutes.length === 1) { minutes =  '0' + minutes}
+        return `${hours}:${minutes}`
+    })
+    console.log(timeValue);
 
     useEffect(() => {
     if (type === "edit") {
@@ -32,8 +45,6 @@ const TodayListModal = ({ type = "save", id }) => {
         setWaterValue(waterRecord.dosage);
     }
     }, [dataToday,id,type])
-    
-    // const [timeValidate, setTimeValidate] = useState(false)
 
     const toggleModal = useContext(ModalContext);
 
@@ -43,21 +54,17 @@ const TodayListModal = ({ type = "save", id }) => {
     const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
     
     const handleBlurTimeInput = event => {
-        const timeElement = document.querySelector("#waterTime")
-        timeElement.innerHTML = timeValue
+        const timeElement = document.querySelectorAll('[water_attr="timeValue"]')
+        timeElement.forEach(element => element.innerHTML = timeValue)
     }
 
      const handleBlurWaterInput = event => {
         setWaterValue(Number(event.currentTarget.value))
-         //const waterElement = document.querySelector("#waterInfo")
-         console.log(event);
-         const waterElement = document.querySelectorAll('[water_attr="waterValue"]')
+        const waterElement = document.querySelectorAll('[water_attr="waterValue"]')
         waterElement.forEach(element => element.innerHTML = waterValue)
     }
 
     const handleChangeWaterInput = event => {
-        // console.log(event.currentTarget.value);
-        // event.currentTarget.value=''
          setWaterValue(event.currentTarget.value)
     }
 
@@ -85,13 +92,15 @@ const TodayListModal = ({ type = "save", id }) => {
     
     return <Modal onClose={toggleModal}>
         <CommonContainer>
-            <TodayModalListHeader>Edit the entered amount of water</TodayModalListHeader>
-            <WaterInfoContainer>
+            {(type === "edit") ? <TodayModalListHeader>Edit the entered amount of water</TodayModalListHeader>:
+            <TodayModalListHeader>Add of water</TodayModalListHeader>}
+            {(type === "edit") && <WaterInfoContainer>
                 <Icon name="glass" stroke={color.primary.blue}/>
                 <WaterInfo water_attr ="waterValue" id="waterInfo">{`${waterValue}ml`}</WaterInfo>
-                <WaterTime id="waterTime">{`${timeValue}`}</WaterTime>
-            </WaterInfoContainer>
-            <TodayModalListTitle>Correct entered data:</TodayModalListTitle>
+                <WaterTime water_attr="timeValue" id="waterTime">{`${timeValue}`}</WaterTime>
+            </WaterInfoContainer>}
+            {(type === "edit") ? <TodayModalListTitle>Correct entered data:</TodayModalListTitle> :
+            <TodayModalListTitle>Chose a value:</TodayModalListTitle>}
             <AmountWaterContainer>
                 <TodayModalListSubTitle>Amount of water:</TodayModalListSubTitle>
                 <AmountWaterButtonContainer>
@@ -106,15 +115,12 @@ const TodayListModal = ({ type = "save", id }) => {
                     </ButtonContainer>
                 </AmountWaterButtonContainer>
             </AmountWaterContainer>
-                <form onSubmit = {hadleClickSave}>
                 <FormInput type="time"  onBlur={handleBlurTimeInput} onChange = {handleChangeTimeInput} inputType="addEdit" label="Recording time:" value={timeValue}></FormInput>
                 <FormInput type="number" min="1" max="3000" onBlur={handleBlurWaterInput} onChange={handleChangeWaterInput} inputType="addEdit" label="Enter the value of the water used:" value={waterValue} ></FormInput>
                 <SaveContainer >
                     <WaterValue water_attr='waterValue'>{`${waterValue}ml`}</WaterValue> 
-                    {/* <Button width="160" type="submit">Save</Button> */}
-                    <Button type='submit' width='160' >Save</Button>
+                    <Button onClick = {hadleClickSave} width='160' >Save</Button>
                 </SaveContainer>
-                </form>
         </CommonContainer>
     </Modal>
 }

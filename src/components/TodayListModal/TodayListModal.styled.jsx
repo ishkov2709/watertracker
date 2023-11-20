@@ -29,7 +29,6 @@ color: ${color.primary.black}
 
 export const CommonContainer = styled.div`
 width: 256px;
-//height: 392px;
 display: flex;
 flex-direction: column;
 gap: 24px;
@@ -40,7 +39,6 @@ gap: 24px;
 
   @media screen and (min-width: 1440px) {
     width: 544px;
-    //height: 392px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -74,7 +72,6 @@ color: ${color.primary.black}
 
 export const AmountWaterContainer = styled.div`
 width: 194px;
-//height:44
 display flex;
 flex-direction: column;
 gap: 12px;
@@ -82,19 +79,17 @@ gap: 12px;
 
 export const AmountWaterButtonContainer = styled.div`
 width: 194px;
-//height:44
 display flex;
 justify-content:center;
 align-items: center;
 padding: 8px 24px 8px 24px;
 border-radius: 10px;
 gap: 12px;
-//background-color: ${color.secondary.gray}
 `
 
 export const WaterValueContainer = styled.div`
- width: 92px;
- height: 36px;
+width: 92px;
+height: 36px;
 padding: 6px 10px 6px 10px;
 border-radius: 40px;
 display: flex;
@@ -121,15 +116,10 @@ border: 1px solid ${color.primary.blue};
 display: flex;
 justify-content:center;
 align-items: center;
-//cursor: hand;
 background-color: transparent;
 `
 
 export const SaveContainer = styled.div`
-//  width: 92px;
-//  height: 36px;
-// padding: 6px 10px 6px 10px;
-// border-radius: 40px;
 display: flex;
 flex-direction: column;
 justify-content:end;

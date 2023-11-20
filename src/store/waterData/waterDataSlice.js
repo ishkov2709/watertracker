@@ -27,6 +27,7 @@ const waterDataSlice = createSlice({
       .addCase(getWaterToday.fulfilled, (state, action) => {
         state.dataToday = action.payload
         state.isLoading = false;
+        state.dataToday.sort(function(a, b){return a.time.localeCompare(b.time)});
       })
       .addCase(getWaterToday.rejected, (state, action) => {
         state.error = 'Error';
@@ -59,6 +60,7 @@ const waterDataSlice = createSlice({
         const index = state.dataToday.findIndex(data => data._id === action.payload._id
         )
         state.dataToday.splice(index, 1, action.payload);
+        state.dataToday.sort(function(a, b){return a.time.localeCompare(b.time)});
       })
       .addCase(editWaterTodayById.rejected, (state, action) => {
         state.error = 'Error';
