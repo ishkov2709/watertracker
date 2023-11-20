@@ -32,7 +32,7 @@ const UserLogoModal = () => {
     <div>
       <Avatar onClick={toggleMenu} />
       <DropdownIcon isMenuVisible={isMenuVisible} onClick={toggleMenu}>
-        <use href="#Chevron" />
+        <use href="#arrow-down" />
       </DropdownIcon>
       {isMenuVisible && (
         <Menu>
