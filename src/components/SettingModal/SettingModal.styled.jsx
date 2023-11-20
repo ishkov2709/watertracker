@@ -56,6 +56,12 @@ export const ModalHeader = styled.div`
 
 export const ModalTitle = styled.h2`
   margin: 0;
+  color: var(--primery-color-black, #2f2f2f);
+  font-family: Roboto;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
 `;
 
 export const ModalBody = styled.div`
@@ -169,7 +175,10 @@ export const RadioGroup = styled.div`
 export const RadioOptionsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 52px;
+  gap: 24px;
+  @media (min-width: 1024px) {
+    margin-botton: 52px;
+  }
 `;
 export const SubmitButton = styled.button`
   padding: 12px 24px;
@@ -197,7 +206,10 @@ export const UserPhotoUpload = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-
+  margin: 0;
+  @media (min-width: 1024px) {
+    margin-bottom: 24px;
+  }
   & > label {
     color: var(--primery-color-blue, #407bff);
     font-family: Roboto;
