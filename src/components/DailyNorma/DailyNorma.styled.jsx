@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { color } from "styles/colors";
 
 export const DailyNormaContainer = styled.div`
-// width: 164px;
+width: 164px;
 // height: 76px;
-position: absolute;
+/* position: absolute; */
 padding: 8px 20px 8px 20px;
 border-radius: 10px;
 // border: 1px solid ${color.secondary.azure};
