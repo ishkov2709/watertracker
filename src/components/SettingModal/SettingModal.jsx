@@ -61,7 +61,7 @@ const SettingsModal = ({ onClose }) => {
               <UploadPhoto>
                 <use href="#Upload-photo" />
               </UploadPhoto>
-              <Label htmlFor="photo">Upload photo</Label>
+              <label htmlFor="photo">Upload a photo</label>
               <input
                 type="file"
                 id="photo"
@@ -70,50 +70,51 @@ const SettingsModal = ({ onClose }) => {
               />
             </UserPhotoUpload>
           </FormRow>
-          <FormRow>
-            <RadioGroup>
-              <Label>Your gender identity</Label>
-              <RadioOptionsContainer>
-                <Label htmlFor="gender_girl">
-                  <Input
-                    type="radio"
-                    id="gender_girl"
-                    name="gender"
-                    value="girl"
-                  />{' '}
-                  Girl
-                </Label>
-                <Label htmlFor="gender_man">
-                  <Input
-                    type="radio"
-                    id="gender_man"
-                    name="gender"
-                    value="man"
-                  />{' '}
-                  Man
-                </Label>
-              </RadioOptionsContainer>
-            </RadioGroup>
-          </FormRow>
 
           <FormRow>
             <InputGroup>
+              <RadioGroup>
+                <Label>Your gender identity</Label>
+
+                <RadioOptionsContainer>
+                  <Label htmlFor="gender_girl">
+                    <Input
+                      type="radio"
+                      id="gender_girl"
+                      name="gender"
+                      value="girl"
+                    />{' '}
+                    Girl
+                  </Label>
+                  <Label htmlFor="gender_man">
+                    <Input
+                      type="radio"
+                      id="gender_man"
+                      name="gender"
+                      value="man"
+                    />{' '}
+                    Man
+                  </Label>
+                </RadioOptionsContainer>
+              </RadioGroup>
               <Label htmlFor="name">Your name</Label>
-              <PasswordInput type="text" id="name" defaultValue="David" />
+              <PasswordInput type="text" id="name" placeholder="David" />
               <Label htmlFor="email">E-mail</Label>
               <PasswordInput
                 type="email"
                 id="email"
-                defaultValue="david01@gmail.com"
+                placeholder="david01@gmail.com"
               />
             </InputGroup>
+
             <InputGroup>
+              <Label>Password</Label>
               <Label htmlFor="oldPassword">Outdated password</Label>
               <PasswordInputContainer>
                 <PasswordInput
                   type={showPassword ? 'text' : 'password'}
                   id="oldPassword"
-                  defaultValue="Password"
+                  placeholder="Password"
                 />
                 <Eye onClick={togglePasswordVisibility}>
                   <use href="#eye" />
@@ -124,7 +125,7 @@ const SettingsModal = ({ onClose }) => {
                 <PasswordInput
                   type={showPassword ? 'text' : 'password'}
                   id="oldPassword"
-                  defaultValue="Password"
+                  placeholder="Password"
                 />
                 <Eye onClick={togglePasswordVisibility}>
                   <use href="#eye" />
@@ -135,7 +136,7 @@ const SettingsModal = ({ onClose }) => {
                 <PasswordInput
                   type={showPassword ? 'text' : 'password'}
                   id="oldPassword"
-                  defaultValue="Password"
+                  placeholder="Password"
                 />
                 <Eye onClick={togglePasswordVisibility}>
                   <use href="#eye" />

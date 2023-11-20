@@ -44,7 +44,6 @@ export const ModalContainer = styled.div`
 
   @media (min-width: 1024px) {
     width: 1008px;
-    height: 592px;
   }
 `;
 
@@ -116,12 +115,20 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  color: var(--primery-color-blue, #407bff);
+  &::placeholder {
+    color: var(--primery-color-blue, #407bff);
+  }
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 8px;
 `;
 export const PasswordInput = styled(Input)`
+  color: var(--secondary-color-4, #9ebbff);
+  &::placeholder {
+    color: var(--secondary-color-4, #9ebbff);
+  }
   border-radius: 6px;
   border: 1px solid #d7e3ff;
   position: relative;
@@ -131,13 +138,15 @@ export const PasswordInput = styled(Input)`
   }
   @media (min-width: 1024px) {
     width: 372px;
-    margin-bottom: 24px;
   }
 `;
 export const PasswordInputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  @media (min-width: 1024px) {
+    margin-bottom: 12px;
+  }
 
   & svg {
     position: absolute;
@@ -160,7 +169,7 @@ export const RadioGroup = styled.div`
 export const RadioOptionsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 52px;
 `;
 export const SubmitButton = styled.button`
   padding: 12px 24px;
