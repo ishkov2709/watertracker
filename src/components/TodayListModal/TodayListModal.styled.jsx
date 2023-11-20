@@ -10,6 +10,7 @@ text-align: left;
 color: ${color.primary.black}
 `
 export const TodayModalListTitle = styled.p`
+width: 256px;
 font-size: 18px;
 font-weight: 500;
 line-height: 20px;
@@ -27,11 +28,23 @@ color: ${color.primary.black}
 `
 
 export const CommonContainer = styled.div`
-width: 544px;
+width: 256px;
 //height: 392px;
 display: flex;
 flex-direction: column;
 gap: 24px;
+
+@media screen and (min-width: 768px) {
+    width: 656px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 544px;
+    //height: 392px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 `
 
 export const WaterInfoContainer = styled.div`
@@ -118,8 +131,18 @@ export const SaveContainer = styled.div`
 // padding: 6px 10px 6px 10px;
 // border-radius: 40px;
 display: flex;
+flex-direction: column;
 justify-content:end;
 align-items: center;
 gap: 24px;
+
 //background-color: ${color.secondary.gray}
+
+@media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  @media screen and (min-width: 1440px) {
+  
+  }
 `

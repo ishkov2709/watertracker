@@ -8,45 +8,60 @@ import {
 } from "./TodayListModal.styled"
 import FormInput from "components/common/FormInput"
 import Button from "components/common/Button"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { saveWaterToday } from "store/waterData/thunk"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { editWaterTodayById, saveWaterToday } from "store/waterData/thunk"
 import {MONTH} from "../../constants/month"
-import { todayListModalClose } from "store/waterData/waterDataSlice"
+//import { todayListModalClose } from "store/waterData/waterDataSlice"
 import { useContext } from "react"
 import { ModalContext } from "components/common/ModalProvider/ModalProvider"
+import { dataTodaySelector } from "store/waterData/selectors"
 
 
+const TodayListModal = ({ type = "save", id }) => {
 
-
-
-const TodayListModal = () => {
-    const toggleModal = useContext(ModalContext);
-    const [waterValue, setWaterValue] = useState(250)
+    const dataToday = useSelector(dataTodaySelector)
+    
+    const [waterValue, setWaterValue] = useState(Number(0))
     const [timeValue, setTimeValue] = useState("00:00")
 
+    useEffect(() => {
+    if (type === "edit") {
+        const waterRecord = dataToday.find((data) => data._id === id)
+        setTimeValue(waterRecord.time);
+        setWaterValue(waterRecord.dosage);
+    }
+    }, [dataToday,id,type])
+    
+    // const [timeValidate, setTimeValidate] = useState(false)
+
+    const toggleModal = useContext(ModalContext);
 
     const dispatch = useDispatch();
 
-    const handleDecremetWater = () => {setWaterValue(waterValue - 50)}
-    const handleIncremetWater = () => {setWaterValue(waterValue + 50)}
+    const handleDecremetWater = () => {setWaterValue(Number(waterValue)- 50)}
+    const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
     
     const handleBlurTimeInput = event => {
         const timeElement = document.querySelector("#waterTime")
-        timeElement.innerHTML = event.currentTarget.value
+        timeElement.innerHTML = timeValue
     }
+
      const handleBlurWaterInput = event => {
-         // console.log(event.currentTarget.value);
-         setWaterValue(Number(event.currentTarget.value))
-        const timeElement = document.querySelector("#waterInfo")
-        timeElement.innerHTML = event.currentTarget.value
+        setWaterValue(Number(event.currentTarget.value))
+         //const waterElement = document.querySelector("#waterInfo")
+         console.log(event);
+         const waterElement = document.querySelectorAll('[water_attr="waterValue"]')
+        waterElement.forEach(element => element.innerHTML = waterValue)
     }
 
     const handleChangeWaterInput = event => {
-        setWaterValue(Number(event.currentTarget.value))
+        // console.log(event.currentTarget.value);
+        // event.currentTarget.value=''
+         setWaterValue(event.currentTarget.value)
     }
 
-      const handleChangeTimeInput = event => {
+    const handleChangeTimeInput = event => {
         setTimeValue(event.currentTarget.value)
     }
 
@@ -59,37 +74,47 @@ const TodayListModal = () => {
             "month": MONTH[today.getMonth()],
             "year": today.getFullYear()
         }
-       // console.log(data);
-        dispatch(saveWaterToday(data))
-        // dispatch(todayListModalClose())
+        if (type === "edit") {
+            dispatch(editWaterTodayById({id,data}))
+        }
+        else { 
+            dispatch(saveWaterToday(data))
+        }
         toggleModal();
     }
     
     return <Modal onClose={toggleModal}>
-        <TodayModalListHeader>Edit the entered amount of water</TodayModalListHeader>
         <CommonContainer>
-        <WaterInfoContainer>
-            <Icon name="glass" stroke={color.primary.blue}/>
-            <WaterInfo id="waterInfo">{`${waterValue}ml`}</WaterInfo>
-            <WaterTime id="waterTime">{`00:00`}</WaterTime>
-        </WaterInfoContainer>
-        <TodayModalListTitle>Correct entered data:</TodayModalListTitle>
-     
+            <TodayModalListHeader>Edit the entered amount of water</TodayModalListHeader>
+            <WaterInfoContainer>
+                <Icon name="glass" stroke={color.primary.blue}/>
+                <WaterInfo water_attr ="waterValue" id="waterInfo">{`${waterValue}ml`}</WaterInfo>
+                <WaterTime id="waterTime">{`${timeValue}`}</WaterTime>
+            </WaterInfoContainer>
+            <TodayModalListTitle>Correct entered data:</TodayModalListTitle>
             <AmountWaterContainer>
-                   <TodayModalListSubTitle>Amount of water:</TodayModalListSubTitle>
-        <AmountWaterButtonContainer>
-            <ButtonContainer onClick={handleDecremetWater}> <Icon name="minus" stroke={color.primary.blue} /> </ButtonContainer>
-            <WaterValueContainer><WaterValue>{`${waterValue}ml`}</WaterValue></WaterValueContainer>
-            <ButtonContainer onClick={handleIncremetWater}> <Icon name="plus" stroke={color.primary.blue}/> </ButtonContainer>
-        </AmountWaterButtonContainer>
-        </AmountWaterContainer>
-        {/* <p>Recording time:</p> */}
-            <FormInput onBlur={handleBlurTimeInput} onChange = {handleChangeTimeInput} inputType="addEdit" label="Recording time:" value={timeValue}></FormInput>
-            <FormInput onBlur={handleBlurWaterInput} onChange = {handleChangeWaterInput} inputType="addEdit" label="Enter the value of the water used:" value={waterValue}></FormInput>
-        <SaveContainer >
-            <WaterValue>{`${waterValue}ml`}</WaterValue> 
-            <Button width='160' onClick = {hadleClickSave}>Save</Button>
-            </SaveContainer>
+                <TodayModalListSubTitle>Amount of water:</TodayModalListSubTitle>
+                <AmountWaterButtonContainer>
+                    <ButtonContainer onClick={handleDecremetWater}> 
+                        <Icon name="minus" stroke={color.primary.blue} /> 
+                    </ButtonContainer>
+                    <WaterValueContainer>
+                        <WaterValue water_attr ="waterValue">{`${waterValue}ml`}</WaterValue>
+                    </WaterValueContainer>
+                    <ButtonContainer onClick={handleIncremetWater}> 
+                        <Icon name="plus" stroke={color.primary.blue}/>
+                    </ButtonContainer>
+                </AmountWaterButtonContainer>
+            </AmountWaterContainer>
+                <form onSubmit = {hadleClickSave}>
+                <FormInput type="time"  onBlur={handleBlurTimeInput} onChange = {handleChangeTimeInput} inputType="addEdit" label="Recording time:" value={timeValue}></FormInput>
+                <FormInput type="number" min="1" max="3000" onBlur={handleBlurWaterInput} onChange={handleChangeWaterInput} inputType="addEdit" label="Enter the value of the water used:" value={waterValue} ></FormInput>
+                <SaveContainer >
+                    <WaterValue water_attr='waterValue'>{`${waterValue}ml`}</WaterValue> 
+                    {/* <Button width="160" type="submit">Save</Button> */}
+                    <Button type='submit' width='160' >Save</Button>
+                </SaveContainer>
+                </form>
         </CommonContainer>
     </Modal>
 }

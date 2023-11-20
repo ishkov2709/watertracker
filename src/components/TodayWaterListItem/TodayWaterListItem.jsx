@@ -1,12 +1,21 @@
-import { ButtonControl, ButtonControlContainer, TodayWaterListItemContainer, WaterInfo, WaterInfoContainer, WaterTime } from "./TodayWaterListItem.styled"
+import { useContext } from "react"
+import {
+    ButtonControl, ButtonControlContainer,
+    // TodayWaterListItemContainer,
+    WaterInfo, WaterInfoContainer, WaterTime
+} from "./TodayWaterListItem.styled"
 import Icon from "components/common/Icon"
 import { useDispatch } from "react-redux"
 import { deleteWaterTodayById } from "store/waterData/thunk"
-import { todayListModalOpen } from "store/waterData/waterDataSlice"
+// import { todayListModalOpen } from "store/waterData/waterDataSlice"
 import { color } from "styles/colors"
+import { ModalContext } from "components/common/ModalProvider/ModalProvider"
+import TodayListModal from "components/TodayListModal/TodayListModal"
 
 
 const TodayWaterListItem = ({ waterInfo }) => {
+
+    const toggleModal = useContext(ModalContext);
 
     function formatAMPM(date) {
         const time = date.split(":");
@@ -21,11 +30,12 @@ const TodayWaterListItem = ({ waterInfo }) => {
     
     const handleClickEdit = (id) => {
         console.log(id);
+        toggleModal(<TodayListModal type="edit" id={id} />)
         // dispatch(todayListModalOpen())
     }
 
 
-    const handleClickDelete = (id)=> {  console.log(id); dispatch(deleteWaterTodayById(id))}
+    const handleClickDelete = (id)=> { console.log(id); dispatch(deleteWaterTodayById(id))}
     // const  waterItem  = props
     // console.log("WaterInfo");
     // console.log(waterInfo);

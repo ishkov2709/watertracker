@@ -49,8 +49,8 @@ const TodayWaterList = () => {
         <TodayWaterListHeader>Today</TodayWaterListHeader>
         <TodayWaterListing>
             {waterItems.map(waterItem => <TodayWaterListItemContainer key={waterItem._id}><TodayWaterListItem waterInfo={waterItem} /></TodayWaterListItemContainer>)}
-            <AddWaterButton onClick={handleClickAdd}> <Icon name="plus" stroke={color.primary.blue } /> Add Water</AddWaterButton>
-        </TodayWaterListing>    
+        </TodayWaterListing>
+        <AddWaterButton onClick={handleClickAdd}> <Icon name="plus" stroke={color.primary.blue } /> Add Water</AddWaterButton>
     </TodayWaterListContainer>
 }
 

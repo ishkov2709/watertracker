@@ -14,16 +14,22 @@ import {
 } from './WaterRatioPanel.styled';
 import { useDispatch, useSelector } from "react-redux";
 import { selectTotalTodayDailyWater } from "store/waterData/selectors";
-import { todayListModalOpen } from "store/waterData/waterDataSlice";
+//import { todayListModalOpen } from "store/waterData/waterDataSlice";
+import TodayListModal from "components/TodayListModal/TodayListModal";
+import { ModalContext } from "components/common/ModalProvider/ModalProvider";
+import { useContext } from "react";
 
 const WaterRatioPanel = () => {
   //const [rangeWaterPercentage, setRangeWaterPercentage] = useState([30]);
+  const toggleModal = useContext(ModalContext);
+
   const rangeWaterPercentage = useSelector(selectTotalTodayDailyWater);
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   
- const handleClickAdd = () => {
+  const handleClickAdd = () => {
         // console.log(id);
-         dispatch(todayListModalOpen())
+        //  dispatch(todayListModalOpen())
+     toggleModal(<TodayListModal/>)
     }
 
   useEffect(() => {

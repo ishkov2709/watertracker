@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import initialState from 'store/initialState';
-import { getWaterToday,deleteWaterTodayById,saveWaterToday } from './thunk';
+import { getWaterToday, deleteWaterTodayById, saveWaterToday, editWaterTodayById } from './thunk';
 import { getMonthDays } from './thunk';
 import { getMonthDaysFulfilled, getMonthDaysPending } from './operations';
 
@@ -36,9 +36,7 @@ const waterDataSlice = createSlice({
       })
       .addCase(deleteWaterTodayById.fulfilled, (state, action) => {
         state.isLoading = false;
-        const index = state.dataToday.findIndex(data => data.id === action.payload
-        )
-        state.dataToday.splice(index, 1);
+        state.dataToday= [...state.dataToday.filter(data => data._id !== action.payload)]
       })
       .addCase(deleteWaterTodayById.rejected, (state, action) => {
         state.error = 'Error';
@@ -51,6 +49,18 @@ const waterDataSlice = createSlice({
         state.dataToday.push(action.payload)
       })
       .addCase(saveWaterToday.rejected, (state, action) => {
+        state.error = 'Error';
+      })
+      .addCase(editWaterTodayById.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(editWaterTodayById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const index = state.dataToday.findIndex(data => data._id === action.payload._id
+        )
+        state.dataToday.splice(index, 1, action.payload);
+      })
+      .addCase(editWaterTodayById.rejected, (state, action) => {
         state.error = 'Error';
       })
       .addCase(getMonthDays.pending, getMonthDaysPending)

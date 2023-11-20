@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { format } from 'date-fns';
+//import { format } from 'date-fns';
 import { MONTH } from '../../constants/month';
 
 // export const setToken = () => {
@@ -45,7 +45,7 @@ export const deleteWaterTodayById = createAsyncThunk(
         `https://water-tracker.onrender.com/api/records/${id}`
       );
       //console.log(response.data);
-      return response.data;
+      return id;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -62,6 +62,28 @@ export const saveWaterToday = createAsyncThunk(
         data
       );
       //console.log(response.data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const editWaterTodayById = createAsyncThunk(
+  'waterData/editWaterTodayById',
+  async ({id, data}, thunkAPI) => {
+    console.log(data);
+    const editData = {
+      dosage: data.dosage,
+      time: data.time
+    }
+    console.log(editData);
+    try {
+      // setToken();
+      const response = await axios.put(
+        `https://water-tracker.onrender.com/api/records/${id}`,editData
+      );
+      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
