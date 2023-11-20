@@ -42,14 +42,14 @@ export const ColorTextNormal = styled.div`
   display: inline-block;
   margin-right: 24px;
 `;
-export const TiltleGender = styled.div`
+export const TitleGender = styled.div`
   margin-top: 24px;
   margin-left: auto;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 `;
-export const ItemeGender = styled.div`
+export const ItemsGender = styled.div`
   margin-top: 16px;
   font-size: 16px;
   line-height: 1.3;
