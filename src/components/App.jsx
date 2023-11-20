@@ -7,6 +7,7 @@ import WelcomePage from '../pages/WelcomePage';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import Loader from './common/Loader';
+import ForgotPassPage from 'pages/ForgotPassPage/ForgotPassPage';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const SigninPage = lazy(() => import('../pages/SigninPage'));
@@ -41,6 +42,15 @@ export const App = () => {
           path="signup"
           element={
             <RestrictedRoute component={<SignUpPage />} redirectTo="/home" />
+          }
+        />
+        <Route
+          path="forgot-password"
+          element={
+            <RestrictedRoute
+              component={<ForgotPassPage />}
+              redirectTo="/signin"
+            />
           }
         />
         <Route path="*" element={<NotFoundPage />} />
