@@ -67,6 +67,28 @@ export const saveWaterToday = createAsyncThunk(
   }
 );
 
+export const editWaterTodayById = createAsyncThunk(
+  'waterData/editWaterTodayById',
+  async ({id, data}, thunkAPI) => {
+    console.log(data);
+    const editData = {
+      dosage: data.dosage,
+      time: data.time
+    }
+    console.log(editData);
+    try {
+      // setToken();
+      const response = await axios.put(
+        `https://water-tracker.onrender.com/api/records/${id}`,editData
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const getMonthDays = createAsyncThunk('get/daysMonth', async params => {
   const { data } = await axios.get('/records', { params });
   return data;

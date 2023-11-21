@@ -23,33 +23,33 @@ const WelcomeTracker = () => {
         <BenefitsItem>
           <IconBox>
             <Icon
-            name={'calendar'}
-            width={"100%"}
-            height={"100%"}
-            stroke={color.primary.blue}
-          ></Icon> 
+              name={'calendar'}
+              width={'100%'}
+              height={'100%'}
+              stroke={color.primary.blue}
+            ></Icon>
           </IconBox>
           <BenefitsInfo>Habit drive</BenefitsInfo>
         </BenefitsItem>
         <BenefitsItem>
           <IconBox>
             <Icon
-            name={'graphic'}
-            width={"100%"}
-            height={"100%"}
-            stroke={color.primary.blue}
-          ></Icon>
+              name={'graphic'}
+              width={'100%'}
+              height={'100%'}
+              stroke={color.primary.blue}
+            ></Icon>
           </IconBox>
           <BenefitsInfo>View statistics</BenefitsInfo>
         </BenefitsItem>
         <BenefitsItem>
           <IconBox>
             <Icon
-            name={'tools'}
-            width={"100%"}
-            height={"100%"}
-            stroke={color.primary.blue}
-          ></Icon>
+              name={'tools'}
+              width={'100%'}
+              height={'100%'}
+              stroke={color.primary.blue}
+            ></Icon>
           </IconBox>
           <BenefitsInfo>Personal rate setting</BenefitsInfo>
         </BenefitsItem>
