@@ -10,6 +10,10 @@ const authSlice = createSlice({
     resetSuccessful: state => {
       state.successful = false;
     },
+
+    resetError: state => {
+      state.error = null;
+    },
   },
 
   extraReducers: builder => {
@@ -70,4 +74,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { resetSuccessful } = authSlice.actions;
+export const { resetSuccessful, resetError } = authSlice.actions;

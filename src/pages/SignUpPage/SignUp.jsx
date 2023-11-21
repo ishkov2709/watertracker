@@ -15,13 +15,12 @@ import {
   SigninButton,
   ErrorM,
   StyledPasswordInput,
-  CaughtError,
 } from '../SigninPage/Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { signupSchema } from 'schemas/signupSchema';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { resetSuccessful } from 'store/auth/authSlice';
+import { resetError, resetSuccessful } from 'store/auth/authSlice';
 
 const initialValues = {
   email: '',
@@ -49,6 +48,10 @@ const Signup = ({ signup }) => {
   useEffect(() => {
     console.log(successful);
     successful && !error && handleSuccessfulAuthentication();
+    if (error) {
+      toast.error(error);
+      dispatch(resetError());
+    }
   }, [successful, error, handleSuccessfulAuthentication]);
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -69,7 +72,6 @@ const Signup = ({ signup }) => {
       <Container>
         <Box>
           <div>
-            {error && <CaughtError>{error}</CaughtError>}
             <Formik
               initialValues={initialValues}
               validationSchema={signupSchema}

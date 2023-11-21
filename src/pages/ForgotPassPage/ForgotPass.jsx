@@ -13,8 +13,11 @@ import {
   StyledInput,
   Title,
 } from 'pages/SigninPage/Auth.styled';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { forgotpassSchema } from 'schemas/forgotpassSchema';
+import { resetError } from 'store/auth/authSlice';
 import { errorSelector } from 'store/auth/selectors';
 
 const initialValues = {
@@ -23,19 +26,25 @@ const initialValues = {
 
 const ForgotPass = () => {
   const error = useSelector(errorSelector);
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // const handleSubmit = async (values, { setSubmitting }) => {
   //   signin(values);
   //   setSubmitting(false);
   // };
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(resetError());
+    }
+  }, [error]);
+
   return (
     <Wrapper>
       <Container>
         <Box>
           <AllForm>
-            {error && <CaughtError>{error}</CaughtError>}
             <Formik
               initialValues={initialValues}
               validationSchema={forgotpassSchema}
