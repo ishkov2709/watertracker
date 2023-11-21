@@ -4,6 +4,8 @@ import {
   signUpUser,
   logOut,
   refreshUser,
+  updateAvatar,
+  changeUserData,
   restoreUser,
 } from './thunk';
 import initialState from '../initialState';
@@ -16,7 +18,6 @@ const authSlice = createSlice({
     resetSuccessful: state => {
       state.successful = false;
     },
-
     resetError: state => {
       state.error = null;
     },
@@ -75,6 +76,22 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.isLoggedIn = false;
         state.token = '';
+      })
+      .addCase(updateAvatar.fulfilled, (state, { payload }) => {
+        state.user.avatarURL = payload.avatarURL;
+      })
+      .addCase(changeUserData.pending, state => {
+        state.error = '';
+      })
+      .addCase(changeUserData.rejected, (state, { error, payload }) => {
+        state.error = payload.message;
+      })
+      .addCase(changeUserData.fulfilled, (state, { payload }) => {
+        state.user.username = payload.username;
+        state.user.email = payload.email;
+        state.user.gender = payload.gender;
+        state.avatarURL = payload.avatarURL;
+        state.successful = true;
       })
       .addCase(restoreUser.pending, state => {
         state.isLoggedIn = false;
