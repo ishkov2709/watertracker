@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { color } from 'styles/colors';
 
 export const UploadPhoto = styled.svg`
   width: 16px;
@@ -6,19 +7,20 @@ export const UploadPhoto = styled.svg`
   margin-left: 8px;
   margin-right: 8px;
 `;
-export const Eye = styled.svg`
+export const Eye = styled.span`
   position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 45%;
+  transform: translateY(-45%);
   cursor: pointer;
 `;
 
-export const CloseIcon = styled.svg`
+export const CloseIcon = styled.button`
   background: transparent;
   border: none;
   font-size: 24px;
   cursor: pointer;
+  transform: rotate(45deg);
 `;
 
 export const ModalContainer = styled.div`
@@ -37,8 +39,9 @@ export const ModalContainer = styled.div`
     height: 100%;
   }
 
-  @media (min-width: 1024px) {
-    width: 1008px;
+  @media (min-width: 1440px) {
+    width: 960px;
+    height: 528px;
   }
 `;
 
@@ -47,12 +50,13 @@ export const ModalHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 32px;
 `;
 
 export const ModalTitle = styled.h2`
   margin: 0;
   color: var(--primery-color-black, #2f2f2f);
-  font-family: Roboto;
+  font-family: 'Roboto';
   font-size: 26px;
   font-style: normal;
   font-weight: 500;
@@ -74,13 +78,12 @@ export const FormRow = styled.div`
     width: 392px;
     justify-content: space-between;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 0px;
-    gap: 24px;
   }
 
   &:last-child {
@@ -95,7 +98,7 @@ export const InputGroup = styled.div`
   @media (min-width: 768px) {
     flex: 1;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     &.password-fields {
       margin-bottom: 12px;
     }
@@ -115,6 +118,7 @@ export const Label = styled.label`
 
   line-height: 20px;
 `;
+
 export const PhotoLabel = styled(Label)`
   display: block;
   font-weight: bold;
@@ -132,9 +136,13 @@ export const Input = styled.input`
   margin-bottom: 8px;
 `;
 export const PasswordInput = styled(Input)`
-  color: var(--secondary-color-4, #9ebbff);
+  color: ${color.primary.blue};
   &::placeholder {
-    color: var(--secondary-color-4, #9ebbff);
+    color: ${color.secondary.azure};
+  }
+
+  &:focus {
+    outline: 1px solid ${color.primary.blue};
   }
   border-radius: 6px;
   border: 1px solid #d7e3ff;
@@ -143,15 +151,15 @@ export const PasswordInput = styled(Input)`
   @media (min-width: 768px) {
     width: 392px;
   }
-  @media (min-width: 1024px) {
-    width: 372px;
+  @media (min-width: 1440px) {
+    width: 392px;
   }
 `;
 export const PasswordInputContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     margin-bottom: 12px;
   }
 
@@ -168,25 +176,21 @@ export const RadioGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 24px;
-  @media (min-width: 1024px) {
-    margin-bottom: 52px;
-  }
   & > * {
     margin-right: 12px;
   }
 `;
 
-export const RadioOptionsContainer = styled.div`
+export const RadioOptionsContainer = styled.form`
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     margin-botton: 52px;
   }
 `;
 export const SubmitButton = styled.button`
-  padding: 12px 24px;
+  padding: 10px 24px;
   background-color: #407bff;
   color: white;
   border: none;
@@ -199,11 +203,10 @@ export const SubmitButton = styled.button`
     height: 44px;
     margin-left: 552px;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     width: auto;
-    padding: 16px 64px;
-    margin-left: 824px;
-    margin-top: 24px;
+    padding: 12px 64px;
+    margin-left: 800px;
   }
 `;
 
@@ -212,7 +215,7 @@ export const UserPhotoUpload = styled.div`
   align-items: center;
   cursor: pointer;
   margin: 0;
-  @media (min-width: 1024px) {
+  @media (min-width: 1440px) {
     margin-bottom: 24px;
   }
   & > label {

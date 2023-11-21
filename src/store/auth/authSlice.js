@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signInUser, signUpUser, logOut, refreshUser } from './thunk';
+import {
+  signInUser,
+  signUpUser,
+  logOut,
+  refreshUser,
+  updateAvatar,
+  changeUserData,
+} from './thunk';
 import initialState from '../initialState';
 
 const authSlice = createSlice({
@@ -9,6 +16,9 @@ const authSlice = createSlice({
   reducers: {
     resetSuccessful: state => {
       state.successful = false;
+    },
+    resetError: state => {
+      state.error = '';
     },
   },
 
@@ -65,9 +75,26 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.isLoggedIn = false;
         state.token = '';
+      })
+      .addCase(updateAvatar.fulfilled, (state, { payload }) => {
+        console.log(payload.avatarURL);
+        state.user.avatarURL = payload.avatarURL;
+      })
+      .addCase(changeUserData.pending, state => {
+        state.error = '';
+      })
+      .addCase(changeUserData.rejected, (state, { error, payload }) => {
+        state.error = payload.message;
+      })
+      .addCase(changeUserData.fulfilled, (state, { payload }) => {
+        state.user.username = payload.username;
+        state.user.email = payload.email;
+        state.user.gender = payload.gender;
+        state.avatarURL = payload.avatarURL;
+        state.successful = true;
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
-export const { resetSuccessful } = authSlice.actions;
+export const { resetSuccessful, resetError } = authSlice.actions;
