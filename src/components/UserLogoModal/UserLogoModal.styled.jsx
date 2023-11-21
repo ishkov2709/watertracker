@@ -45,4 +45,6 @@ export const MenuItem = styled.div`
   &:hover {
     background-color: #f2f2f24d;
   }
+
+  cursor: pointer;
 `;

@@ -6,6 +6,7 @@ import {
   refreshUser,
   updateAvatar,
   changeUserData,
+  logout,
   restoreUser,
 } from './thunk';
 import initialState from '../initialState';
@@ -83,7 +84,7 @@ const authSlice = createSlice({
       .addCase(changeUserData.pending, state => {
         state.error = '';
       })
-      .addCase(changeUserData.rejected, (state, { error, payload }) => {
+      .addCase(changeUserData.rejected, (state, { payload }) => {
         state.error = payload.message;
       })
       .addCase(changeUserData.fulfilled, (state, { payload }) => {
@@ -93,6 +94,24 @@ const authSlice = createSlice({
         state.avatarURL = payload.avatarURL;
         state.successful = true;
       })
+      .addCase(logout.pending, state => {
+        state.error = '';
+        state.isLoggedIn = true;
+      })
+      .addCase(logout.rejected, (state, { payload }) => {
+        state.error = payload.message;
+      })
+      .addCase(logout.fulfilled, state => {
+        state.user.username = '';
+        state.user.email = '';
+        state.user.avatarURL = '';
+        state.user.gender = '';
+        state.user.dailyNorma = '';
+        state.isLoggedIn = false;
+        state.isRefreshing = false;
+        state.token = '';
+        state.error = '';
+    })
       .addCase(restoreUser.pending, state => {
         state.isLoggedIn = false;
         state.error = null;

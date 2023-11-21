@@ -79,3 +79,12 @@ export const changeUserData = createAsyncThunk(
     }
   }
 );
+
+export const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
+  try {
+    const res = await axios.post('/users/logout');
+    return res.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});

@@ -1,1 +1,1 @@
-export { default } from './LogOut.jsx';
+export { default } from './LogOut';
