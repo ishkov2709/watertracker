@@ -20,11 +20,6 @@ export const CloseIcon = styled.svg`
   font-size: 24px;
   cursor: pointer;
 `;
-export const PhotoLabel = styled(Label)`
-  display: block;
-  font-weight: bold;
-  text-align: center;
-`;
 
 export const ModalContainer = styled.div`
   background-color: #fff;
@@ -85,6 +80,7 @@ export const FormRow = styled.div`
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 0px;
+    gap: 24px;
   }
 
   &:last-child {
@@ -118,6 +114,11 @@ export const Label = styled.label`
   font-style: normal;
 
   line-height: 20px;
+`;
+export const PhotoLabel = styled(Label)`
+  display: block;
+  font-weight: bold;
+  text-align: center;
 `;
 
 export const Input = styled.input`
@@ -167,6 +168,10 @@ export const RadioGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 24px;
+  @media (min-width: 1024px) {
+    margin-bottom: 52px;
+  }
   & > * {
     margin-right: 12px;
   }

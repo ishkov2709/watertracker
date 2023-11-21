@@ -1,39 +1,21 @@
-import React, { useState } from 'react';
 import {
   Menu,
   MenuItem,
-  DropdownIcon,
   SettingIcon,
-  LogOutIcon,
+  LogoutIcon,
 } from './UserLogoModal.styled';
 import SettingsModal from 'components/SettingModal/SettingModal';
 import LogOut from 'components/Logout/LogOut';
-import Avatar from 'components/Avatar';
 
-const UserLogoModal = () => {
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-  const [isLogoutVisible, setIsLogoutVisible] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuVisible(!isMenuVisible);
-  };
-  const toggleSettings = () => {
-    setIsSettingsVisible(!isSettingsVisible);
-    setIsMenuVisible(false);
-  };
-
-  const toggleLogout = () => {
-    setIsLogoutVisible(!isLogoutVisible);
-    setIsMenuVisible(false);
-  };
-
+const UserLogoModal = ({
+  isMenuVisible,
+  toggleSettings,
+  toggleLogout,
+  isSettingsVisible,
+  isLogoutVisible,
+}) => {
   return (
     <div>
-      <Avatar onClick={toggleMenu} />
-      <DropdownIcon isMenuVisible={isMenuVisible} onClick={toggleMenu}>
-        <use href="#arrow-down" />
-      </DropdownIcon>
       {isMenuVisible && (
         <Menu>
           <MenuItem onClick={toggleSettings}>
@@ -43,9 +25,9 @@ const UserLogoModal = () => {
             Setting
           </MenuItem>
           <MenuItem onClick={toggleLogout}>
-            <LogOutIcon>
+            <LogoutIcon>
               <use href="#Logout" />
-            </LogOutIcon>
+            </LogoutIcon>
             Log out
           </MenuItem>
         </Menu>

@@ -12,8 +12,12 @@ import {
   CloseIcon,
   Eye,
   UploadPhoto,
+  UserPhotoUpload,
+  RadioOptionsContainer,
+  PasswordInput,
+  PasswordInputContainer,
 } from './SettingModal.styled';
-
+import React, { useState } from 'react';
 import Modal from 'components/common/Modal/Modal.jsx';
 const SettingsModal = ({ onClose }) => {
   const [userPhoto, setUserPhoto] = useState('');
@@ -61,7 +65,7 @@ const SettingsModal = ({ onClose }) => {
               <UploadPhoto>
                 <use href="#Upload-photo" />
               </UploadPhoto>
-              <label htmlFor="photo">Upload a photo</label>
+              <Label htmlFor="photo">Upload a photo</Label>
               <input
                 type="file"
                 id="photo"
