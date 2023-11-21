@@ -17,7 +17,7 @@ export const Circle = styled.div`
   color: white;
 `;
 
-export const AvatarBtn = styled.div`
+export const AvatarBtn = styled.button`
   display: flex;
   background-color: transparent;
   border: none;
