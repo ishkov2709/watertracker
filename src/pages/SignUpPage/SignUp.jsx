@@ -36,9 +36,7 @@ const Signup = ({ signup }) => {
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
   const handleSuccessfulAuthentication = useCallback(() => {
-    toast.info(
-      'Успішна реєстрація! Вам на пошту був відправлений лист для підтвердження.'
-    );
+    toast.info('Success! Please, check your mail for confirmation.');
     setTimeout(() => {
       navigate('/signin');
     }, 6000);
@@ -52,7 +50,7 @@ const Signup = ({ signup }) => {
       toast.error(error);
       dispatch(resetError());
     }
-  }, [successful, error, handleSuccessfulAuthentication]);
+  }, [dispatch, successful, error, handleSuccessfulAuthentication]);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     await signup({ email: values.email, password: values.password });
