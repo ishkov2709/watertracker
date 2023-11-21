@@ -1,14 +1,14 @@
-import styled from "styled-components"
-import { color } from "styles/colors"
+import styled from 'styled-components';
+import { color } from 'styles/colors';
 
 export const TodayModalListHeader = styled.p`
-font-size: 26px;
-font-weight: 500;
-line-height: 32px;
-letter-spacing: 0em;
-text-align: left;
-color: ${color.primary.black}
-`
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${color.primary.black};
+`;
 export const TodayModalListTitle = styled.p`
 width: 256px;
 font-size: 18px;
@@ -20,12 +20,12 @@ color: ${color.primary.black}
 `
 
 export const TodayModalListSubTitle = styled.p`
-font-size: 16px;
-line-height: 20px;
-letter-spacing: 0em;
-text-align: left;
-color: ${color.primary.black}
-`
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${color.primary.black};
+`;
 
 export const CommonContainer = styled.div`
 width: 256px;
@@ -53,29 +53,29 @@ padding: 8px 24px 8px 24px;
 border-radius: 10px;
 gap: 12px;
 background-color: ${color.secondary.gray}
-`
+`;
 
 export const WaterInfo = styled.p`
-font-size: 18px;
-line-height: 24px;
-letter-spacing: 0em;
-text-align: left;
-color: ${color.primary.blue}
-`
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${color.primary.blue};
+`;
 export const WaterTime = styled.p`
-font-size: 12px;
-line-height: 24px;
-letter-spacing: 0em;
-text-align: left;
-color: ${color.primary.black}
-`
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${color.primary.black};
+`;
 
 export const AmountWaterContainer = styled.div`
 width: 194px;
 display flex;
 flex-direction: column;
 gap: 12px;
-`
+`;
 
 export const AmountWaterButtonContainer = styled.div`
 width: 194px;
@@ -99,13 +99,13 @@ background-color: ${color.secondary.gray}
 `
 
 export const WaterValue = styled.p`
-font-size: 18px;
-font-weight: 700;
-line-height: 24px;
-letter-spacing: 0em;
-text-align: center;
-color: ${color.primary.blue}
-`
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: ${color.primary.blue};
+`;
 
 export const ButtonContainer = styled.button`
 width: 44px;

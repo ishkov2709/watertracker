@@ -1,6 +1,6 @@
-import Modal from "components/common/Modal"
-import Icon from "components/common/Icon"
-import { color } from "styles/colors"
+import Modal from 'components/common/Modal';
+import Icon from 'components/common/Icon';
+import { color } from 'styles/colors';
 import {
     TodayModalListHeader, WaterInfoContainer, WaterInfo, WaterTime, TodayModalListTitle,
     AmountWaterButtonContainer, ButtonContainer, WaterValueContainer, WaterValue, SaveContainer,
@@ -19,6 +19,8 @@ import { dataTodaySelector } from "store/waterData/selectors"
 
 
 const TodayListModal = ({ type = "save", id }) => {
+
+    const dispatch = useDispatch()
 
     const dataToday = useSelector(dataTodaySelector)
     
@@ -48,10 +50,15 @@ const TodayListModal = ({ type = "save", id }) => {
 
     const toggleModal = useContext(ModalContext);
 
-    const dispatch = useDispatch();
+  const handleDecremetWater = () => {
+    setWaterValue(waterValue - 50);
+  };
+  const handleIncremetWater = () => {
+    setWaterValue(waterValue + 50);
+  };
 
-    const handleDecremetWater = () => {setWaterValue(Number(waterValue)- 50)}
-    const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
+    // const handleDecremetWater = () => {setWaterValue(Number(waterValue)- 50)}
+    // const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
     
     const handleBlurTimeInput = event => {
         const timeElement = document.querySelectorAll('[water_attr="timeValue"]')
@@ -123,6 +130,7 @@ const TodayListModal = ({ type = "save", id }) => {
                 </SaveContainer>
         </CommonContainer>
     </Modal>
-}
 
-export default TodayListModal
+};
+
+export default TodayListModal;

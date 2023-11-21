@@ -1,0 +1,163 @@
+import styled from 'styled-components';
+
+export const ModalBox = styled.div`
+  width: 256px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    width: 652px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 544px;
+    margin: 0 auto;
+  }
+`;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  align-items: center;
+  line-height: 12px;
+  font-size: 26px;
+  font-weight: 500;
+`;
+
+export const CloseButton = styled.div`
+  position: relative;
+  margin-left: auto;
+  transform: rotate(45deg);
+  svg {
+    stroke: #407bff;
+  }
+`;
+
+export const ColorTextNormal = styled.div`
+  margin-left: 2px;
+  position: relative;
+  font-size: 18px;
+  line-height: 24px;
+  color: #407bff;
+  text-align: left;
+  display: inline-block;
+  margin-right: 24px;
+`;
+export const TiltleGender = styled.div`
+  margin-top: 24px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+export const ItemeGender = styled.div`
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.3;
+  color: 2F2F2F;
+`;
+
+export const DailyNormas = styled.div`
+  margin-top: 24px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+`;
+
+export const TextNormal = styled.span`
+  color: #8f8f8f;
+`;
+
+export const VolumeNorm = styled.div`
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #d7e3ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 12px;
+  color: #407bff;
+  line-height: 16px;
+  display: inline-block;
+  width: 100%;
+  word-wrap: break-word;
+`;
+
+export const CalculateYourRate = styled.div`
+  margin-top: 24px;
+  margin-bottom: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  width: 156px;
+`;
+
+export const FrameParent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const FrameItem = styled.input``;
+
+export const YourWeight = styled.div`
+  margin-top: 16px;
+  margin-bottom: 8px;
+`;
+
+export const YourTime = styled.div`
+  margin-top: 16px;
+  margin-bottom: 8px;
+`;
+
+export const Required = styled.div`
+  margin-bottom: 8px;
+  margin-top: 16px;
+
+  width: 225px;
+  height: auto;
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: auto;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 600px;
+    height: auto;
+  }
+`;
+
+export const L = styled.b`
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+  font-size: 18px;
+  line-height: 24px;
+  display: inline-block;
+  color: #407bff;
+  flex-shrink: 0;
+`;
+
+export const Write = styled.div`
+  margin-top: 24px;
+  margin-bottom: 8px;
+  line-height: 20px;
+  font-weight: 500;
+`;
+
+export const SaveWrapper = styled.div`
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+
+  @media (min-width: 768px) {
+    button {
+      width: 160px;
+      height: 44px;
+    }
+  }
+`;

@@ -1,6 +1,6 @@
-import { useEffect } from "react"
-import Icon from "components/common/Icon"
-import { color } from "styles/colors"
+import { useEffect } from 'react';
+import Icon from 'components/common/Icon';
+import { color } from 'styles/colors';
 import {
   WaterRatioPanelContainer,
   WaterRangeHeader,
@@ -32,7 +32,7 @@ const WaterRatioPanel = () => {
     const ele = document.querySelector('#mark');
     if (ele) {
       let newVal = Number(((rangeWaterPercentage - 0) * 100) / (100 - 0));
-      newVal = (newVal >= 100) ? 100 : newVal;
+      newVal = newVal >= 100 ? 100 : newVal;
       ele.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
     }
   }, [rangeWaterPercentage]);
@@ -57,13 +57,15 @@ const WaterRatioPanel = () => {
         />
         <MarksContainer>
           <LeftMark>0%</LeftMark>
-          <Mark id="mark">{`${rangeWaterPercentage}%`}</Mark>
+          <Mark id="mark">{`${
+            rangeWaterPercentage > 100 ? 100 : rangeWaterPercentage
+          }%`}</Mark>
           <RightMark>100%</RightMark>
         </MarksContainer>
       </WaterRangeContainer>
       <AddWaterButton onClick={handleClickAdd}>
         <Icon name="add" stroke={color.primary.white} /> Add Water
-      </AddWaterButton >
+      </AddWaterButton>
     </WaterRatioPanelContainer>
   );
 };

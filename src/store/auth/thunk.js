@@ -10,11 +10,18 @@ export const setToken = token => {
 export const deleteToken = () =>
   (axios.defaults.headers.common.Authorization = '');
 
-export const signInUser = createAsyncThunk('auth/signin', async user => {
-  const response = await axios.post('/users/login', user);
-  setToken(response.data.token);
-  return response.data;
-});
+export const signInUser = createAsyncThunk(
+  'auth/signin',
+  async (user, thunkAPI) => {
+    try {
+      const response = await axios.post('/users/login', user);
+      setToken(response.data.token);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const signUpUser = createAsyncThunk('auth/signup', async newUser => {
   const response = await axios.post('/users/signup', newUser);

@@ -4,6 +4,8 @@ const initialState = {
       username: '',
       email: '',
       avatarURL: '',
+      gender: '',
+      dailyNorma: '',
     },
     isLoggedIn: false,
     isRefreshing: false,
@@ -12,13 +14,12 @@ const initialState = {
   },
   waterData: {
     dailyNorma: 1.5,
-    dateCoords: [],
     dataToday: [],
-    isLoading: false,
     todayListModalOpen: false,
     targetDay: null,
     daysOfMonth: [],
-    //isLoading: false,
+    isLoading: false,
+    isChangeNote: true,
   },
 };
 

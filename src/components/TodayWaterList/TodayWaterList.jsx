@@ -1,16 +1,21 @@
-import TodayWaterListItem from "../TodayWaterListItem/TodayWaterListItem"
-import Icon from "components/common/Icon";
-import { color } from "styles/colors";   
-import { TodayWaterListContainer, TodayWaterListHeader, TodayWaterListing, AddWaterButton,TodayWaterListItemContainer } from "./TodayWaterList.styled"
-import WaterRatioPanel from "components/WaterRatioPanel";
-import { useDispatch, useSelector } from "react-redux";
-import { dataTodaySelector, selectIsLoading } from "store/waterData/selectors";
-import Loader from "components/common/Loader";
-import { todayListModalOpen } from "store/waterData/waterDataSlice";
-import { useContext } from "react";
-import { ModalContext } from "components/common/ModalProvider/ModalProvider";
-import TodayListModal from "components/TodayListModal/TodayListModal";
-
+import TodayWaterListItem from '../TodayWaterListItem/TodayWaterListItem';
+import Icon from 'components/common/Icon';
+import { color } from 'styles/colors';
+import {
+  TodayWaterListContainer,
+  TodayWaterListHeader,
+  TodayWaterListing,
+  AddWaterButton,
+  TodayWaterListItemContainer,
+} from './TodayWaterList.styled';
+import WaterRatioPanel from 'components/WaterRatioPanel';
+import { useDispatch, useSelector } from 'react-redux';
+import { dataTodaySelector, selectIsLoading } from 'store/waterData/selectors';
+import Loader from 'components/common/Loader';
+import { todayListModalOpen } from 'store/waterData/waterDataSlice';
+import { useContext } from 'react';
+import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
+import TodayListModal from 'components/TodayListModal/TodayListModal';
 
 // const waterItems = [ {
 //         "_id": "654e2ea72de1793f78f30405",
@@ -28,20 +33,18 @@ import TodayListModal from "components/TodayListModal/TodayListModal";
 //     },
 //]
 
-
 const TodayWaterList = () => {
-    const toggleModal = useContext(ModalContext);
-    const waterItems = useSelector(dataTodaySelector)
-    const isLoading = useSelector(selectIsLoading)
-    const dispatch = useDispatch()
+  const toggleModal = useContext(ModalContext);
+  const waterItems = useSelector(dataTodaySelector);
+  const isLoading = useSelector(selectIsLoading);
+  const dispatch = useDispatch();
 
-      
- const handleClickAdd = () => {
-        // console.log(id);
-        //  dispatch(todayListModalOpen())
-     toggleModal(<TodayListModal/>)
-    }
-    //console.log(waterItems);
+  const handleClickAdd = () => {
+    // console.log(id);
+    //  dispatch(todayListModalOpen())
+    toggleModal(<TodayListModal />);
+  };
+  //console.log(waterItems);
 
 
     return <TodayWaterListContainer>
@@ -52,6 +55,6 @@ const TodayWaterList = () => {
         </TodayWaterListing>
         <AddWaterButton onClick={handleClickAdd}> <Icon name="plus" stroke={color.primary.blue } /> Add Water</AddWaterButton>
     </TodayWaterListContainer>
-}
+};
 
-export default TodayWaterList
+export default TodayWaterList;

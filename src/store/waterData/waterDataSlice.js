@@ -21,35 +21,38 @@ const waterDataSlice = createSlice({
     todayListModalClose: state => {
       state.todayListModalOpen = false;
     },
+    swithChangeNote: (state, { payload }) => {
+      state.isChangeNote = payload;
+    },
   },
   extraReducers: builder => {
     builder
       .addCase(getWaterToday.fulfilled, (state, action) => {
-        state.dataToday = action.payload
+        state.dataToday = action.payload;
         state.isLoading = false;
         state.dataToday.sort(function(a, b){return a.time.localeCompare(b.time)});
       })
-      .addCase(getWaterToday.rejected, (state, action) => {
+      .addCase(getWaterToday.rejected, state => {
         state.error = 'Error';
       })
-      .addCase(deleteWaterTodayById.pending, (state, action) => {
+      .addCase(deleteWaterTodayById.pending, state => {
         state.isLoading = true;
       })
       .addCase(deleteWaterTodayById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.dataToday= [...state.dataToday.filter(data => data._id !== action.payload)]
       })
-      .addCase(deleteWaterTodayById.rejected, (state, action) => {
+      .addCase(deleteWaterTodayById.rejected, state => {
         state.error = 'Error';
       })
-      .addCase(saveWaterToday.pending, (state, action) => {
+      .addCase(saveWaterToday.pending, state => {
         state.isLoading = true;
       })
       .addCase(saveWaterToday.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.dataToday.push(action.payload)
+        state.dataToday.push(action.payload);
       })
-      .addCase(saveWaterToday.rejected, (state, action) => {
+      .addCase(saveWaterToday.rejected, state => {
         state.error = 'Error';
       })
       .addCase(editWaterTodayById.pending, (state, action) => {
@@ -66,9 +69,9 @@ const waterDataSlice = createSlice({
         state.error = 'Error';
       })
       .addCase(getMonthDays.pending, getMonthDaysPending)
-      .addCase(getMonthDays.fulfilled, getMonthDaysFulfilled) 
-  }
-})
+      .addCase(getMonthDays.fulfilled, getMonthDaysFulfilled);
+  },
+});
 
 //   extraReducers: builder =>
 //     builder
@@ -78,5 +81,10 @@ const waterDataSlice = createSlice({
 
 export const waterDataReducer = waterDataSlice.reducer;
 
-export const { getCoordsDate, removeCoordsDate, todayListModalClose, todayListModalOpen } = waterDataSlice.actions;
-export const { setTargetDay, removeTargetDay } = waterDataSlice.actions;
+export const {
+  setTargetDay,
+  removeTargetDay,
+  todayListModalClose,
+  todayListModalOpen,
+  swithChangeNote,
+} = waterDataSlice.actions;
