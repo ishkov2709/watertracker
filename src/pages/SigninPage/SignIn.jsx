@@ -1,5 +1,5 @@
 import Container from 'components/common/Container';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { errorSelector } from '../../store/auth/selectors';
 import sprite from '../../img/sprites.svg';
@@ -14,11 +14,12 @@ import {
   ErrorM,
   StyledPasswordInput,
   AllForm,
-  CaughtError,
 } from './Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { Formik, Field, ErrorMessage } from 'formik';
 import { singinSchema } from 'schemas/singinSchema';
+import { ToastContainer, toast } from 'react-toastify';
+import { resetError } from 'store/auth/authSlice';
 
 const initialValues = {
   email: '',
@@ -29,6 +30,13 @@ const Signin = ({ signin }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(resetError());
+    }
+  }, [error]);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     signin(values);
@@ -44,7 +52,6 @@ const Signin = ({ signin }) => {
       <Container>
         <Box>
           <AllForm>
-            {error && <CaughtError>{error}</CaughtError>}
             <Formik
               initialValues={initialValues}
               validationSchema={singinSchema}
@@ -104,6 +111,7 @@ const Signin = ({ signin }) => {
             <LinkToPage to="/forgot-password">Forgot password?</LinkToPage>
 
             <LinkToPage to="/signup">Sign up</LinkToPage>
+            <ToastContainer />
           </AllForm>
         </Box>
       </Container>

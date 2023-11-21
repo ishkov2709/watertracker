@@ -32,4 +32,5 @@ export const UserName = styled.span`
 export const AvatarImg = styled.img`
   width: 28px;
   height: 28px;
+  border-radius: 50%;
 `;

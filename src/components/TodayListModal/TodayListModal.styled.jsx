@@ -10,13 +10,14 @@ export const TodayModalListHeader = styled.p`
   color: ${color.primary.black};
 `;
 export const TodayModalListTitle = styled.p`
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: ${color.primary.black};
-`;
+width: 256px;
+font-size: 18px;
+font-weight: 500;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
+color: ${color.primary.black}
+`
 
 export const TodayModalListSubTitle = styled.p`
   font-size: 16px;
@@ -27,12 +28,22 @@ export const TodayModalListSubTitle = styled.p`
 `;
 
 export const CommonContainer = styled.div`
-  width: 544px;
-  //height: 392px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-`;
+width: 256px;
+display: flex;
+flex-direction: column;
+gap: 24px;
+
+@media screen and (min-width: 768px) {
+    width: 656px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 544px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+`
 
 export const WaterInfoContainer = styled.div`
 width: 254px;
@@ -61,7 +72,6 @@ export const WaterTime = styled.p`
 
 export const AmountWaterContainer = styled.div`
 width: 194px;
-//height:44
 display flex;
 flex-direction: column;
 gap: 12px;
@@ -69,26 +79,24 @@ gap: 12px;
 
 export const AmountWaterButtonContainer = styled.div`
 width: 194px;
-//height:44
 display flex;
 justify-content:center;
 align-items: center;
 padding: 8px 24px 8px 24px;
 border-radius: 10px;
 gap: 12px;
-//background-color: ${color.secondary.gray}
-`;
+`
 
 export const WaterValueContainer = styled.div`
-  width: 92px;
-  height: 36px;
-  padding: 6px 10px 6px 10px;
-  border-radius: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${color.secondary.gray};
-`;
+width: 92px;
+height: 36px;
+padding: 6px 10px 6px 10px;
+border-radius: 40px;
+display: flex;
+justify-content:center;
+align-items: center;
+background-color: ${color.secondary.gray}
+`
 
 export const WaterValue = styled.p`
   font-size: 18px;
@@ -100,26 +108,31 @@ export const WaterValue = styled.p`
 `;
 
 export const ButtonContainer = styled.button`
-  width: 44px;
-  height: 44px;
-  padding: 10px;
-  border-radius: 30px;
-  border: 1px solid ${color.primary.blue};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  //cursor: hand;
-  background-color: transparent;
-`;
+width: 44px;
+height: 44px;
+padding: 10px;
+border-radius: 30px;
+border: 1px solid ${color.primary.blue};
+display: flex;
+justify-content:center;
+align-items: center;
+background-color: transparent;
+`
 
 export const SaveContainer = styled.div`
-  //  width: 92px;
-  //  height: 36px;
-  // padding: 6px 10px 6px 10px;
-  // border-radius: 40px;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  gap: 24px;
-  //background-color: ${color.secondary.gray}
-`;
+display: flex;
+flex-direction: column;
+justify-content:end;
+align-items: center;
+gap: 24px;
+
+//background-color: ${color.secondary.gray}
+
+@media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  @media screen and (min-width: 1440px) {
+  
+  }
+`
