@@ -28,6 +28,7 @@ export const TodayModalListSubTitle = styled.p`
 `;
 
 export const CommonContainer = styled.div`
+position: relative;
 width: 256px;
 display: flex;
 flex-direction: column;
@@ -136,3 +137,23 @@ gap: 24px;
   
   }
 `
+export const CloseButton = styled.button`
+  position: absolute;
+  width: 24px;
+  heigth: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 12px;
+  right: 0px;
+  background: none;
+
+
+  @media screen and (min-width: 768px) {
+   
+  }
+
+  @media screen and (min-width: 1440px) {
+  
+  }
+`;

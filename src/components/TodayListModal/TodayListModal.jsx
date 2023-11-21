@@ -4,7 +4,7 @@ import { color } from 'styles/colors';
 import {
     TodayModalListHeader, WaterInfoContainer, WaterInfo, WaterTime, TodayModalListTitle,
     AmountWaterButtonContainer, ButtonContainer, WaterValueContainer, WaterValue, SaveContainer,
-    CommonContainer, TodayModalListSubTitle, AmountWaterContainer
+    CommonContainer, TodayModalListSubTitle, AmountWaterContainer, CloseButton
 } from "./TodayListModal.styled"
 import FormInput from "components/common/FormInput"
 import Button from "components/common/Button"
@@ -31,14 +31,13 @@ const TodayListModal = ({ type = "save", id }) => {
     })
     const [timeValue, setTimeValue] = useState(() => {
         const dateNow = new Date()
-        console.log(dateNow);
-        let hours = dateNow.getHours()
-        let minutes = dateNow.getMinutes()
+        let hours = dateNow.getHours().toString()
+        let minutes = dateNow.getMinutes().toString()
         if (hours.length === 1) { hours =  '0' + hours }
-        if (minutes.length === 1) { minutes =  '0' + minutes}
+      if (minutes.length === 1) { minutes = '0' + minutes }
         return `${hours}:${minutes}`
     })
-    console.log(timeValue);
+   // console.log(timeValue);
 
     useEffect(() => {
     if (type === "edit") {
@@ -95,10 +94,18 @@ const TodayListModal = ({ type = "save", id }) => {
             dispatch(saveWaterToday(data))
         }
         toggleModal();
-    }
+  }
+  
+    const onClickCloseBtn = () => {
+    toggleModal();
+  };
     
-    return <Modal onClose={toggleModal}>
-        <CommonContainer>
+  return <Modal onClose={toggleModal}>
+      
+      <CommonContainer>
+          <CloseButton onClick={onClickCloseBtn}>
+            <Icon width="12px" height="12px" name="close" />
+          </CloseButton>
             {(type === "edit") ? <TodayModalListHeader>Edit the entered amount of water</TodayModalListHeader>:
             <TodayModalListHeader>Add of water</TodayModalListHeader>}
             {(type === "edit") && <WaterInfoContainer>
