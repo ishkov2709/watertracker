@@ -36,7 +36,7 @@ const Signin = ({ signin }) => {
       toast.error(error);
       dispatch(resetError());
     }
-  }, [error]);
+  }, [error, dispatch]);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     signin(values);
