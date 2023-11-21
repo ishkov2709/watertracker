@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Circle, AvatarBtn, UserName, AvatarImg } from './Avatar.styled';
 import Icon from 'components/common/Icon';
 import { color } from 'styles/colors.js';
 import UserLogoModal from 'components/UserLogoModal';
+import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
+import SettingModal from 'components/SettingModal';
+import LogOut from 'components/Logout/LogOut';
 
 const Avatar = () => {
+  const toggleModal = useContext(ModalContext);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-  const [isLogoutVisible, setIsLogoutVisible] = useState(false);
   const name = useSelector(state => state.auth.user.username);
   const avatar = useSelector(state => state.auth.user.avatarURL);
   const firstLetter = name.slice(0, 1);
@@ -20,12 +22,12 @@ const Avatar = () => {
   };
 
   const toggleSettings = () => {
-    setIsSettingsVisible(!isSettingsVisible);
+    toggleModal(<SettingModal onClose={() => toggleModal()} />);
     setIsMenuVisible(false);
   };
 
   const toggleLogout = () => {
-    setIsLogoutVisible(!isLogoutVisible);
+    toggleModal(<LogOut onClose={() => toggleModal()} />);
     setIsMenuVisible(false);
   };
 
@@ -35,8 +37,6 @@ const Avatar = () => {
         isMenuVisible={isMenuVisible}
         toggleSettings={toggleSettings}
         toggleLogout={toggleLogout}
-        isSettingsVisible={isSettingsVisible}
-        isLogoutVisible={isLogoutVisible}
       />
       {name.includes('@') ? (
         <UserName>{emailName}</UserName>

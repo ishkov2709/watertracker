@@ -58,16 +58,16 @@ const HomePage = () => {
           <Box>
             <DailyNormaBox>
               <DailyNorma>
-              {/* <div>1.7</div>
+                {/* <div>1.7</div>
               <form action="">
                 <input type="range" />
                 <button>add Water</button>
               </form>
                 */}
-            </DailyNorma>
+              </DailyNorma>
               <WaterRatioPanel />
             </DailyNormaBox>
-          
+
             {ListModalOpen && <TodayListModal></TodayListModal>}
 
             <WaterList>
@@ -80,7 +80,7 @@ const HomePage = () => {
               <li>awd123</li>
             </ul> */}
               <MonthStatsTable />
-             
+
               {targetDay && <DaysGeneralStats targetDay={targetDay} />}
             </WaterList>
           </Box>
