@@ -197,6 +197,14 @@ export const ErrorM = styled.div`
   color: ${color.secondary.tomato};
   margin-bottom: 8px;
   margin-top: -8px;
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 364px;
+  }
 `;
 
 export const CaughtError = styled.h4`

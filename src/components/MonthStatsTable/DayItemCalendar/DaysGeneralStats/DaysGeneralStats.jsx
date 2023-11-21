@@ -13,7 +13,7 @@ import { removeTargetDay } from 'store/waterData/waterDataSlice';
 const firstOfFourDaysArr = [1, 2, 3, 4, 11, 12, 13, 14, 21, 22, 23, 24, 31];
 
 const DaysGeneralStats = ({
-  targetDay: { day, month, top, left, servings = 0, percent },
+  targetDay: { day, month, servings = 0, percent },
 }) => {
   const dispatch = useDispatch();
 
@@ -24,10 +24,7 @@ const DaysGeneralStats = ({
   const dailyNorma = 1500;
 
   return (
-    <Wrapper
-      top={top - 188}
-      left={firstOfFourDaysArr.find(el => el === day) ? left : left - 252}
-    >
+    <Wrapper isToLeft={firstOfFourDaysArr.includes(day)}>
       <Btn onClick={handleClose}>
         <Icon name="plus" stroke={color.primary.blue} />
       </Btn>

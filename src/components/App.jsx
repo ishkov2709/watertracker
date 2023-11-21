@@ -1,29 +1,62 @@
 import { Route, Routes } from 'react-router-dom';
+import { lazy, useEffect } from 'react';
+import { refreshUser } from 'store/auth/thunk';
+import { useDispatch, useSelector } from 'react-redux';
 import SharedLayout from './SharedLayout';
 import WelcomePage from '../pages/WelcomePage';
-import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
-import { lazy } from 'react';
+import PrivateRoute from './PrivateRoute';
+import Loader from './common/Loader';
+import ForgotPassPage from 'pages/ForgotPassPage/ForgotPassPage';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const SigninPage = lazy(() => import('../pages/SigninPage'));
 const SignUpPage = lazy(() => import('../pages/SignUpPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return !isRefreshing ? (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<RestrictedRoute component={WelcomePage} />} />
-        <Route path="Home" element={<PrivateRoute component={HomePage} />} />
+        <Route
+          index
+          element={
+            <RestrictedRoute component={<WelcomePage />} redirectTo="/home" />
+          }
+        />
+        <Route path="home" element={<PrivateRoute component={HomePage} />} />
         <Route
           path="signin"
-          element={<RestrictedRoute component={SigninPage} />}
+          element={
+            <RestrictedRoute component={<SigninPage />} redirectTo="/home" />
+          }
         />
         <Route
           path="signup"
-          element={<RestrictedRoute component={SignUpPage} />}
+          element={
+            <RestrictedRoute component={<SignUpPage />} redirectTo="/home" />
+          }
         />
+        <Route
+          path="forgot-password"
+          element={
+            <RestrictedRoute
+              component={<ForgotPassPage />}
+              redirectTo="/signin"
+            />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
+  ) : (
+    <Loader />
   );
 };

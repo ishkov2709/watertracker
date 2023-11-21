@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import initialState from 'store/initialState';
+import { getWaterToday, deleteWaterTodayById, saveWaterToday } from './thunk';
 import { getMonthDays } from './thunk';
 import { getMonthDaysFulfilled, getMonthDaysPending } from './operations';
 
@@ -14,14 +15,64 @@ const waterDataSlice = createSlice({
     removeTargetDay: state => {
       state.targetDay = null;
     },
+    todayListModalOpen: state => {
+      state.todayListModalOpen = true;
+    },
+    todayListModalClose: state => {
+      state.todayListModalOpen = false;
+    },
+    swithChangeNote: (state, { payload }) => {
+      state.isChangeNote = payload;
+    },
   },
-
-  extraReducers: builder =>
+  extraReducers: builder => {
     builder
+      .addCase(getWaterToday.fulfilled, (state, action) => {
+        state.dataToday = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getWaterToday.rejected, state => {
+        state.error = 'Error';
+      })
+      .addCase(deleteWaterTodayById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteWaterTodayById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.dataToday = [
+          ...state.dataToday.filter(el => el._id !== action.payload),
+        ];
+      })
+      .addCase(deleteWaterTodayById.rejected, state => {
+        state.error = 'Error';
+      })
+      .addCase(saveWaterToday.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(saveWaterToday.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.dataToday.push(action.payload);
+      })
+      .addCase(saveWaterToday.rejected, state => {
+        state.error = 'Error';
+      })
       .addCase(getMonthDays.pending, getMonthDaysPending)
-      .addCase(getMonthDays.fulfilled, getMonthDaysFulfilled),
+      .addCase(getMonthDays.fulfilled, getMonthDaysFulfilled);
+  },
 });
+
+//   extraReducers: builder =>
+//     builder
+//       .addCase(getMonthDays.pending, getMonthDaysPending)
+//       .addCase(getMonthDays.fulfilled, getMonthDaysFulfilled),
+// });
 
 export const waterDataReducer = waterDataSlice.reducer;
 
-export const { setTargetDay, removeTargetDay } = waterDataSlice.actions;
+export const {
+  setTargetDay,
+  removeTargetDay,
+  todayListModalClose,
+  todayListModalOpen,
+  swithChangeNote,
+} = waterDataSlice.actions;

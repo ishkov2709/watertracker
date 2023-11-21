@@ -1,12 +1,10 @@
 import Container from 'components/common/Container';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
-
-import { errorSelector, userSelector } from '../../store/auth/selectors';
+import { errorSelector, successfulSelector } from '../../store/auth/selectors';
 import sprite from '../../img/sprites.svg';
-
 import {
   Label,
   Title,
@@ -21,7 +19,9 @@ import {
 } from '../SigninPage/Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { signupSchema } from 'schemas/signupSchema';
-import Button from 'components/common/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { resetSuccessful } from 'store/auth/authSlice';
 
 const initialValues = {
   email: '',
@@ -32,16 +32,28 @@ const initialValues = {
 const Signup = ({ signup }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
-  const isAuth = useSelector(userSelector);
+  const successful = useSelector(successfulSelector);
   const navigate = useNavigate();
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
-
-  const handleSubmit = (values, { setSubmitting }) => {
-    dispatch(
-      signup({ email: values.email, password: values.password }),
-      isAuth && navigate('/signin')
+  const handleSuccessfulAuthentication = useCallback(() => {
+    toast.info(
+      'Успішна реєстрація! Вам на пошту був відправлений лист для підтвердження.'
     );
+    setTimeout(() => {
+      navigate('/signin');
+    }, 6000);
+    dispatch(resetSuccessful());
+  }, [dispatch, navigate]);
+
+  useEffect(() => {
+    console.log(successful);
+    successful && !error && handleSuccessfulAuthentication();
+  }, [successful, error, handleSuccessfulAuthentication]);
+
+  const handleSubmit = async (values, { setSubmitting }) => {
+    await signup({ email: values.email, password: values.password });
+
     setSubmitting(false);
   };
 
@@ -147,6 +159,8 @@ const Signup = ({ signup }) => {
               )}
             </Formik>
             <LinkToPage to="/signin">Sign in</LinkToPage>
+
+            <ToastContainer />
           </div>
         </Box>
       </Container>
