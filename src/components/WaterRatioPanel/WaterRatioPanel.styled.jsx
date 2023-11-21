@@ -27,6 +27,10 @@ export const WaterRange = styled.input`
     -webkit-appearance: none;
     margin: 5px 0;
     width: 100%;
+    border-radius: 10px;
+    background-color: ${color.secondary.azure};
+    background-image: linear-gradient(${color.primary.blue},${color.primary.blue});
+    background-repeat: no-repeat;
   }
 
   &[type='range']:focus {
@@ -36,10 +40,12 @@ export const WaterRange = styled.input`
   &[type='range']::-webkit-slider-runnable-track {
     width: 100%;
     height: 8px;
-    cursor: pointer;
     animate: 0.2s;
-    background: ${color.secondary.azure};
     border-radius: 10px;
+     -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
   }
 
   &[type='range']::-webkit-slider-thumb {
@@ -49,14 +55,13 @@ export const WaterRange = styled.input`
     background: ${color.primary.white};
     border: solid 1px ${color.primary.blue};
     // box-shadow: -80px 0 4px 0px rgba(0,0,0, 1);
-    cursor: pointer;
     -webkit-appearance: none;
     margin-top: -4px;
   }
 
-  // &[type=range]:focus::-webkit-slider-runnable-track {
-  //   background: #000;
-  // }
+  &[type=range]:focus::-webkit-slider-runnable-track {
+    //background: #000;
+   }
 `;
 
 export const WaterRangeHeader = styled.p`
