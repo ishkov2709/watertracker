@@ -28,6 +28,11 @@ export const signUpUser = createAsyncThunk('auth/signup', async newUser => {
   return response.data;
 });
 
+export const restoreUser = createAsyncThunk('auth/restore', async user => {
+  const response = await axios.post('/users/restore', user);
+  return response.data;
+});
+
 export const logOut = createAsyncThunk(`auth/logout`, async token => {
   return await axios.post(`/users/logout`, token);
 });
