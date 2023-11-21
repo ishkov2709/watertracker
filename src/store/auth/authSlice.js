@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signInUser, signUpUser, logOut, refreshUser } from './thunk';
+import {
+  signInUser,
+  signUpUser,
+  logOut,
+  refreshUser,
+  restoreUser,
+} from './thunk';
 import initialState from '../initialState';
 
 const authSlice = createSlice({
@@ -9,6 +15,10 @@ const authSlice = createSlice({
   reducers: {
     resetSuccessful: state => {
       state.successful = false;
+    },
+
+    resetError: state => {
+      state.error = null;
     },
   },
 
@@ -20,27 +30,27 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.error = null;
       })
-      .addCase(signInUser.rejected, (state, action) => {
+      .addCase(signInUser.rejected, state => {
         state.isRefreshing = false;
-        state.error = 'Wrong email or password';
+        state.error = 'Wrong email or password.';
         state.isLoggedIn = false;
         state.token = '';
       })
-      .addCase(signInUser.pending, (state, action) => {
+      .addCase(signInUser.pending, state => {
         state.error = null;
       })
-      .addCase(signUpUser.fulfilled, (state, action) => {
+      .addCase(signUpUser.fulfilled, state => {
         // state.user = action.payload.user;
         state.successful = true;
         state.error = null;
       })
-      .addCase(signUpUser.rejected, (state, action) => {
+      .addCase(signUpUser.rejected, state => {
         state.isRefreshing = false;
-        state.error = 'Entered values are not valid, try again';
+        state.error = 'Entered values are not valid, try again.';
         state.isLoggedIn = false;
         state.token = '';
       })
-      .addCase(signUpUser.pending, (state, action) => {
+      .addCase(signUpUser.pending, state => {
         state.error = null;
       })
       .addCase(logOut.fulfilled, state => {
@@ -49,7 +59,7 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.error = '';
       })
-      .addCase(refreshUser.pending, (state, action) => {
+      .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
         state.isLoggedIn = true;
         state.error = '';
@@ -61,8 +71,21 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = '';
       })
-      .addCase(refreshUser.rejected, (state, { error, payload }) => {
+      .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.isLoggedIn = false;
+        state.token = '';
+      })
+      .addCase(restoreUser.pending, state => {
+        state.isLoggedIn = false;
+        state.error = null;
+      })
+      .addCase(restoreUser.fulfilled, state => {
+        state.successful = true;
+        state.error = null;
+      })
+      .addCase(restoreUser.rejected, state => {
+        state.error = 'Entered email was never used, try again.';
         state.isLoggedIn = false;
         state.token = '';
       });
@@ -70,4 +93,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { resetSuccessful } = authSlice.actions;
+export const { resetSuccessful, resetError } = authSlice.actions;

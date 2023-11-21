@@ -15,13 +15,12 @@ import {
   SigninButton,
   ErrorM,
   StyledPasswordInput,
-  CaughtError,
 } from '../SigninPage/Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { signupSchema } from 'schemas/signupSchema';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { resetSuccessful } from 'store/auth/authSlice';
+import { resetError, resetSuccessful } from 'store/auth/authSlice';
 
 const initialValues = {
   email: '',
@@ -37,9 +36,7 @@ const Signup = ({ signup }) => {
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
   const handleSuccessfulAuthentication = useCallback(() => {
-    toast.info(
-      'Успішна реєстрація! Вам на пошту був відправлений лист для підтвердження.'
-    );
+    toast.info('Success! Please, check your mail for confirmation.');
     setTimeout(() => {
       navigate('/signin');
     }, 6000);
@@ -49,7 +46,11 @@ const Signup = ({ signup }) => {
   useEffect(() => {
     console.log(successful);
     successful && !error && handleSuccessfulAuthentication();
-  }, [successful, error, handleSuccessfulAuthentication]);
+    if (error) {
+      toast.error(error);
+      dispatch(resetError());
+    }
+  }, [dispatch, successful, error, handleSuccessfulAuthentication]);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     await signup({ email: values.email, password: values.password });
@@ -69,7 +70,6 @@ const Signup = ({ signup }) => {
       <Container>
         <Box>
           <div>
-            {error && <CaughtError>{error}</CaughtError>}
             <Formik
               initialValues={initialValues}
               validationSchema={signupSchema}
