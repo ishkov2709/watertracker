@@ -9,10 +9,16 @@ export const UploadPhoto = styled.svg`
 `;
 export const Eye = styled.span`
   position: absolute;
-  right: 10px;
+  right: 8px;
   top: 45%;
   transform: translateY(-45%);
   cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    right: 10px;
+    top: 45%;
+    transform: translateY(-45%);
+  }
 `;
 
 export const CloseIcon = styled.button`
@@ -28,7 +34,7 @@ export const ModalContainer = styled.div`
 
   border-radius: 10px;
 
-  width: 280px;
+  width: 256px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -130,7 +136,7 @@ export const Input = styled.input`
   &::placeholder {
     color: var(--primery-color-blue, #407bff);
   }
-  padding: 12px;
+  padding: 12px 36px 12px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 8px;

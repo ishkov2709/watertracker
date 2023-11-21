@@ -77,7 +77,6 @@ const authSlice = createSlice({
         state.token = '';
       })
       .addCase(updateAvatar.fulfilled, (state, { payload }) => {
-        console.log(payload.avatarURL);
         state.user.avatarURL = payload.avatarURL;
       })
       .addCase(changeUserData.pending, state => {

@@ -6,6 +6,8 @@ import {
 } from './UserLogoModal.styled';
 import SettingsModal from 'components/SettingModal/SettingModal';
 import LogOut from 'components/Logout/LogOut';
+import Icon from 'components/common/Icon';
+import { color } from 'styles/colors';
 
 const UserLogoModal = ({
   isMenuVisible,
@@ -20,13 +22,23 @@ const UserLogoModal = ({
         <Menu>
           <MenuItem onClick={toggleSettings}>
             <SettingIcon>
-              <use href="#Setting" />
+              <Icon
+                name="settings"
+                width={16}
+                height={16}
+                stroke={color.primary.blue}
+              />
             </SettingIcon>
             Setting
           </MenuItem>
           <MenuItem onClick={toggleLogout}>
             <LogoutIcon>
-              <use href="#Logout" />
+              <Icon
+                name="logout"
+                width={16}
+                height={19}
+                stroke={color.primary.blue}
+              />
             </LogoutIcon>
             Log out
           </MenuItem>

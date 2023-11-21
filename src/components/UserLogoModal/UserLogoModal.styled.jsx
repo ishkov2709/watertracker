@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 
-export const LogoutIcon = styled.svg`
-  width: 16px;
-  height: 16px;
+export const LogoutIcon = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
 `;
 
-export const SettingIcon = styled.svg`
-  width: 16px;
-  height: 16px;
+export const SettingIcon = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
 `;
 
 export const Menu = styled.div`
   position: absolute;
+  display: flex;
+  gap: 16px;
   background-color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 14px 0 #407bff4d;
   width: 118px;
   height: 88px;
   z-index: 1000;
@@ -29,6 +35,7 @@ export const Menu = styled.div`
   gap: 16px;
   top: 100%;
   right: 0px;
+  border-radius: 10px;
 `;
 
 export const MenuItem = styled.div`
@@ -36,6 +43,6 @@ export const MenuItem = styled.div`
   align-items: center;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: #f2f2f24d;
   }
 `;

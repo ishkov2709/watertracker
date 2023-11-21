@@ -81,6 +81,52 @@ const SettingsModal = ({ onClose }) => {
     });
   };
 
+  const handleSubmit = () => {
+    if (passFields.newPassword !== passFields.repeatPassword)
+      return notifyError('Password mismatch');
+    if (!user.username || !user.email)
+      return notifyError('User or email is not filled in');
+    const updatedData = {
+      username: user.username,
+      email: user.email,
+      gender: user.gender,
+      oldPassword: passFields.oldPassword,
+      newPassword: passFields.newPassword,
+      type: Object.values(passFields).some(el => el.length > 0)
+        ? 'withPassword'
+        : 'withoutPassword',
+    };
+    if (Object.values(passFields).every(el => el.length === 0)) {
+      delete updatedData.oldPassword;
+      delete updatedData.newPassword;
+    }
+    return dispatch(changeUserData(updatedData));
+  };
+
+  const handleKeydown = e => {
+    if (e.code === 'Enter') handleSubmit();
+  };
+
+  const handleCloseClick = () => {
+    onClose();
+  };
+
+  const handlePhotoChange = async e => {
+    const formData = new FormData();
+    if (e.target.files.length > 0) {
+      formData.append('avatar', e.target.files[0]);
+      dispatch(updateAvatar(formData));
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  });
+
   useEffect(() => {
     if (error) {
       notifyError('Required fields to change password are not filled in');
@@ -102,19 +148,6 @@ const SettingsModal = ({ onClose }) => {
       }, 2000);
     }
   }, [successful, dispatch, onClose]);
-
-  const handleCloseClick = e => {
-    e.preventDefault();
-    onClose();
-  };
-
-  const handlePhotoChange = async e => {
-    const formData = new FormData();
-    if (e.target.files.length > 0) {
-      formData.append('avatar', e.target.files[0]);
-      dispatch(updateAvatar(formData));
-    }
-  };
 
   return (
     <>
@@ -343,30 +376,7 @@ const SettingsModal = ({ onClose }) => {
               </InputGroup>
             </FormRow>
 
-            <SubmitButton
-              type="submit"
-              onClick={() => {
-                if (passFields.newPassword !== passFields.repeatPassword)
-                  return notifyError('Password mismatch');
-                if (!user.username || !user.email)
-                  return notifyError('User or email is not filled in');
-                const updatedData = {
-                  username: user.username,
-                  email: user.email,
-                  gender: user.gender,
-                  oldPassword: passFields.oldPassword,
-                  newPassword: passFields.newPassword,
-                  type: Object.values(passFields).some(el => el.length > 0)
-                    ? 'withPassword'
-                    : 'withoutPassword',
-                };
-                if (Object.values(passFields).every(el => el.length === 0)) {
-                  delete updatedData.oldPassword;
-                  delete updatedData.newPassword;
-                }
-                return dispatch(changeUserData(updatedData));
-              }}
-            >
+            <SubmitButton type="submit" onClick={handleSubmit}>
               Save
             </SubmitButton>
             <ToastContainer />
