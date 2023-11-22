@@ -100,6 +100,7 @@ background-color: ${color.secondary.gray}
 `
 
 export const WaterValue = styled.p`
+  width: 92px;
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;

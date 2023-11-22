@@ -49,12 +49,18 @@ const TodayListModal = ({ type = "save", id }) => {
 
     const toggleModal = useContext(ModalContext);
 
-  const handleDecremetWater = () => {
-    setWaterValue(waterValue - 50);
-  };
-  const handleIncremetWater = () => {
-    setWaterValue(waterValue + 50);
-  };
+    const handleDecremetWater = () => {
+        if ((waterValue - 50) <= 0) {
+            setWaterValue(0)
+        }
+        else {
+            setWaterValue(waterValue - 50);
+        }
+    };
+    
+    const handleIncremetWater = () => {
+        setWaterValue(waterValue + 50);   
+    };
 
     // const handleDecremetWater = () => {setWaterValue(Number(waterValue)- 50)}
     // const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
@@ -71,7 +77,9 @@ const TodayListModal = ({ type = "save", id }) => {
     }
 
     const handleChangeWaterInput = event => {
-         setWaterValue(event.currentTarget.value)
+        if (event.currentTarget.value <= 0) { return setWaterValue(1) }
+        if (event.currentTarget.value >= 3000) { return setWaterValue(3000) }
+        setWaterValue(event.currentTarget.value)
     }
 
     const handleChangeTimeInput = event => {
@@ -130,7 +138,7 @@ const TodayListModal = ({ type = "save", id }) => {
                 </AmountWaterButtonContainer>
             </AmountWaterContainer>
                 <FormInput type="time"  onBlur={handleBlurTimeInput} onChange = {handleChangeTimeInput} inputType="addEdit" label="Recording time:" value={timeValue}></FormInput>
-                <FormInput type="number" min="1" max="3000" onBlur={handleBlurWaterInput} onChange={handleChangeWaterInput} inputType="addEdit" label="Enter the value of the water used:" value={waterValue} ></FormInput>
+                <FormInput type="number" min="1" max="3000" onBlur={handleBlurWaterInput} onChange={handleChangeWaterInput} onClick={()=>{if (waterValue === 0) return setWaterValue('')}} inputType="addEdit" label="Enter the value of the water used:" value={waterValue} ></FormInput>
                 <SaveContainer >
                     <WaterValue water_attr='waterValue'>{`${waterValue}ml`}</WaterValue> 
                     <Button onClick = {hadleClickSave} width='160' >Save</Button>
