@@ -17,6 +17,9 @@ import {
   RadioOptionsContainer,
   PasswordInput,
   PasswordInputContainer,
+  Img,
+  FakeImg,
+  FirstLetter,
 } from './SettingModal.styled';
 import {
   errorSelector,
@@ -144,32 +147,18 @@ const SettingsModal = ({ onClose }) => {
             <FormRow>
               <UserPhotoUpload>
                 {userData?.avatarURL ? (
-                  <img
+                  <Img
                     src={userData.avatarURL}
-                    style={{
-                      background: isLoaded
-                        ? 'transparent'
-                        : color.secondary.azure,
-                    }}
                     alt="User profile"
+                    isLoaded={isLoaded}
                     onLoad={() => setIsLoaded(true)}
                   />
                 ) : (
-                  <div
-                    style={{
-                      width: '80px',
-                      height: '80px',
-                      backgroundColor: randomColor,
-                      borderRadius: '50%',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p style={{ fontSize: 28 }}>
-                      {user.username.slice(0, 1).toUpperCase()}
-                    </p>
-                  </div>
+                  <FakeImg randomColor={randomColor}>
+                    <FirstLetter>
+                      {user.username.slice(0, 1).toUFirstLetterperCase()}
+                    </FirstLetter>
+                  </FakeImg>
                 )}
 
                 <UploadPhoto>
