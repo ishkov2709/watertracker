@@ -13,7 +13,7 @@ const initialState = {
     error: '',
   },
   waterData: {
-    dailyNorma: 1.5,
+    //dailyNorma: 1.5,
     dataToday: [],
     todayListModalOpen: false,
     targetDay: null,

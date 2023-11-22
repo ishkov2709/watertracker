@@ -51,6 +51,7 @@ const waterDataSlice = createSlice({
       .addCase(saveWaterToday.fulfilled, (state, action) => {
         state.isLoading = false;
         state.dataToday.push(action.payload);
+        state.dataToday.sort(function(a, b){return a.time.localeCompare(b.time)});
       })
       .addCase(saveWaterToday.rejected, state => {
         state.error = 'Error';
