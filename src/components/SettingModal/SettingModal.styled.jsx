@@ -7,6 +7,7 @@ export const UploadPhoto = styled.svg`
   margin-left: 8px;
   margin-right: 8px;
 `;
+
 export const Eye = styled.span`
   position: absolute;
   right: 8px;
@@ -240,4 +241,25 @@ export const UserPhotoUpload = styled.div`
     border-radius: 80px;
     background: url(<path-to-image>), lightgray 50% / cover no-repeat;
   }
+`;
+
+export const Img = styled.img`
+  background: ${({ isLoaded }) =>
+    isLoaded ? 'transparent' : color.secondary.azure};
+`;
+
+export const FakeImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background-color: ${({ randomColor }) => randomColor};
+  border-radius: 50%;
+`;
+
+export const FirstLetter = styled.p`
+  font-size: 28px;
+
+  color: ${color.primary.black};
 `;
