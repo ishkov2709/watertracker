@@ -43,18 +43,14 @@ const passInitialState = {
   repeatPassword: '',
 };
 
-const passConditionInitialState = {
-  oldPass: false,
-  newPass: false,
-  repeatPass: false,
-};
-
 const SettingsModal = ({ onClose }) => {
   const error = useSelector(errorSelector);
   const successful = useSelector(successfulSelector);
   const userData = useSelector(userSelector);
   const [showPassword, setShowPassword] = useState({
-    ...passConditionInitialState,
+    oldPass: false,
+    newPass: false,
+    repeatPass: false,
   });
   const [passFields, setPassFields] = useState({ ...passInitialState });
   const [user, setUser] = useState({ ...userData });
