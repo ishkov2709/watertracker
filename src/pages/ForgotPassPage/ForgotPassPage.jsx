@@ -1,17 +1,17 @@
 import { useDispatch } from 'react-redux';
-//import { signInUser } from '../../store/auth/thunk';
 import ForgotPass from './ForgotPass';
+import { restoreUser } from 'store/auth/thunk';
 
 const ForgotPassPage = () => {
   const dispatch = useDispatch();
 
-  //   const signin = body => {
-  //     dispatch(signInUser(body));
-  //   };
+  const restore = body => {
+    dispatch(restoreUser(body));
+  };
 
   return (
     <>
-      <ForgotPass />
+      <ForgotPass restore={restore} />
     </>
   );
 };
