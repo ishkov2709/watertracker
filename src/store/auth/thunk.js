@@ -59,10 +59,10 @@ export const updateDailyNorma = createAsyncThunk(
   `auth/updateDailyNorma`,
   async (newDaliyNorma, thunkAPI) => {
     try {
-      const response = axios.patch(`/users/daily-norma`, {
+      const response = await axios.patch(`/users/daily-norma`, {
         dailyNorma: newDaliyNorma,
       });
-      return response.data;
+      return response.data.dailyNorma;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

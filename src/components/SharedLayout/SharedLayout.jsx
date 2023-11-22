@@ -9,7 +9,6 @@ const SharedLayout = () => {
   return (
     <Layout>
       <Header />
-      <DailyNormaModal />
       <main>
         <Suspense fallback={<Loader />}>
           <Outlet />

@@ -26,7 +26,7 @@ export const ModalHeader = styled.div`
 export const CloseButton = styled.div`
   position: relative;
   margin-left: auto;
-  transform: rotate(45deg);
+  // transform: rotate(45deg);
   svg {
     stroke: #407bff;
   }

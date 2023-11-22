@@ -8,6 +8,7 @@ import {
   changeUserData,
   logout,
   restoreUser,
+  updateDailyNorma,
 } from './thunk';
 import initialState from '../initialState';
 
@@ -111,7 +112,7 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.token = '';
         state.error = '';
-    })
+      })
       .addCase(restoreUser.pending, state => {
         state.isLoggedIn = false;
         state.error = null;
@@ -124,6 +125,15 @@ const authSlice = createSlice({
         state.error = 'Entered email was never used, try again.';
         state.isLoggedIn = false;
         state.token = '';
+      })
+      .addCase(updateDailyNorma.pending, (state, action) => {
+        state.error = null;
+      })
+      .addCase(updateDailyNorma.fulfilled, (state, action) => {
+        state.user.dailyNorma = action.payload;
+      })
+      .addCase(updateDailyNorma.rejected, (state, action) => {
+        state.error = action.payload.message;
       });
   },
 });
