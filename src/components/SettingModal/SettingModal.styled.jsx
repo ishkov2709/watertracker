@@ -7,6 +7,7 @@ export const UploadPhoto = styled.svg`
   margin-left: 8px;
   margin-right: 8px;
 `;
+
 export const Eye = styled.span`
   position: absolute;
   right: 8px;

@@ -29,57 +29,38 @@ import { changeUserData, updateAvatar } from 'store/auth/thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'components/common/Icon';
 import Modal from 'components/common/Modal/Modal.jsx';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { resetError, resetSuccessful } from 'store/auth/authSlice';
+import { notifyError, notifySuccess } from 'utils/notify';
+
+const passInitialState = {
+  oldPassword: '',
+  newPassword: '',
+  repeatPassword: '',
+};
+
+const passConditionInitialState = {
+  oldPass: false,
+  newPass: false,
+  repeatPass: false,
+};
 
 const SettingsModal = ({ onClose }) => {
   const error = useSelector(errorSelector);
   const successful = useSelector(successfulSelector);
-  const dispatch = useDispatch();
   const userData = useSelector(userSelector);
   const [showPassword, setShowPassword] = useState({
-    oldPass: false,
-    newPass: false,
-    repeatPass: false,
+    ...passConditionInitialState,
   });
-  const [passFields, setPassFields] = useState({
-    oldPassword: '',
-    newPassword: '',
-    repeatPassword: '',
-  });
+  const [passFields, setPassFields] = useState({ ...passInitialState });
   const [user, setUser] = useState({ ...userData });
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [randomColor] = useState(
     '#' + Math.floor(Math.random() * 16777215).toString(16)
   );
-
-  const notifyError = error => {
-    return toast.error(error, {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-  };
-
-  const notifySuccess = success => {
-    return toast.success(success, {
-      position: 'top-right',
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-  };
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {
     if (passFields.newPassword !== passFields.repeatPassword)
@@ -138,11 +119,7 @@ const SettingsModal = ({ onClose }) => {
     if (successful) {
       notifySuccess('Changes made successfully!');
       dispatch(resetSuccessful());
-      setPassFields({
-        oldPassword: '',
-        newPassword: '',
-        repeatPassword: '',
-      });
+      setPassFields({ ...passInitialState });
       setTimeout(() => {
         onClose();
       }, 2000);
