@@ -13,6 +13,14 @@ const Modal = ({ type = 'default', onClose, children }) => {
     };
   });
 
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+
+    return () => {
+      document.body.style.overflowY = 'auto';
+    };
+  });
+
   const closeModal = e => {
     if (e.code === 'Escape' || e.currentTarget === e.target) {
       onClose();

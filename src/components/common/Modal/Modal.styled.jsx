@@ -14,6 +14,22 @@ export const Backdrop = styled.div`
   align-items: center;
 
   background: rgba(0, 0, 0, 0.8);
+
+  @media screen and (max-height: 826px) {
+    padding-top: 210px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      width: 0.5em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
 `;
 
 const Container = styled.div(({ type }) => ({
