@@ -18,21 +18,21 @@ import {
   PasswordInput,
   PasswordInputContainer,
 } from './SettingModal.styled';
-
-import { color } from 'styles/colors';
 import {
   errorSelector,
   successfulSelector,
   userSelector,
 } from 'store/auth/selectors';
-import { changeUserData, updateAvatar } from 'store/auth/thunk';
+import { color } from 'styles/colors';
+import { randomHexColor } from 'utils/randomHexColor';
+import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import { notifyError, notifySuccess } from 'utils/notify';
+import { resetError, resetSuccessful } from 'store/auth/authSlice';
+import { changeUserData, updateAvatar } from 'store/auth/thunk';
 import Icon from 'components/common/Icon';
 import Modal from 'components/common/Modal/Modal.jsx';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { resetError, resetSuccessful } from 'store/auth/authSlice';
-import { notifyError, notifySuccess } from 'utils/notify';
 
 const passInitialState = {
   oldPassword: '',
@@ -57,9 +57,7 @@ const SettingsModal = ({ onClose }) => {
   const [user, setUser] = useState({ ...userData });
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [randomColor] = useState(
-    '#' + Math.floor(Math.random() * 16777215).toString(16)
-  );
+  const [randomColor] = useState(randomHexColor());
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
