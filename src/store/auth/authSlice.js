@@ -8,6 +8,7 @@ import {
   changeUserData,
   logout,
   restoreUser,
+  resendEmail,
 } from './thunk';
 import initialState from '../initialState';
 
@@ -124,6 +125,9 @@ const authSlice = createSlice({
         state.error = 'Entered email was never used, try again.';
         state.isLoggedIn = false;
         state.token = '';
+      })
+      .addCase(resendEmail.fulfilled, state => {
+        state.error = null;
       });
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { signUpUser } from '../../store/auth/thunk';
+import { resendEmail, signUpUser } from '../../store/auth/thunk';
 
 import SignUp from './SignUp';
 
@@ -11,9 +11,13 @@ const SignupPage = () => {
     dispatch(signUpUser(body));
   };
 
+  const resend = body => {
+    dispatch(resendEmail(body));
+  };
+
   return (
     <>
-      <SignUp signup={signup} />
+      <SignUp signup={signup} resend={resend} />
     </>
   );
 };
