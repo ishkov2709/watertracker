@@ -12,19 +12,21 @@ import {
   Mark,
   AddWaterButton,
 } from './WaterRatioPanel.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectTotalTodayDailyWater } from 'store/waterData/selectors';
-import { todayListModalOpen } from 'store/waterData/waterDataSlice';
+import { useSelector } from "react-redux";
+import { selectTotalTodayDailyWater } from "store/waterData/selectors";
+import TodayListModal from "components/TodayListModal/TodayListModal";
+import { ModalContext } from "components/common/ModalProvider/ModalProvider";
+import { useContext } from "react";
 
 const WaterRatioPanel = () => {
   //const [rangeWaterPercentage, setRangeWaterPercentage] = useState([30]);
-  const rangeWaterPercentage = useSelector(selectTotalTodayDailyWater);
-  const dispatch = useDispatch();
+  const toggleModal = useContext(ModalContext);
 
+  const rangeWaterPercentage = useSelector(selectTotalTodayDailyWater);
+  
   const handleClickAdd = () => {
-    // console.log(id);
-    dispatch(todayListModalOpen());
-  };
+     toggleModal(<TodayListModal/>)
+    }
 
   useEffect(() => {
     const ele = document.querySelector('#mark');
@@ -35,20 +37,23 @@ const WaterRatioPanel = () => {
     }
   }, [rangeWaterPercentage]);
 
+  const getBackgroundSize = () => {
+    return {
+      backgroundSize: `${rangeWaterPercentage}%`
+    };
+  };
+
   return (
     <WaterRatioPanelContainer>
       <WaterRangeContainer>
         <WaterRangeHeader>Today</WaterRangeHeader>
         <WaterRange
-          type="range"
-          maxValue={100}
-          minValue={0}
-          value={rangeWaterPercentage}
-          readOnly={true}
-          // onChange={(event) => {
-          //     // console.log(event.target);
-          //     setRangeWaterPercentage(event.currentTarget.value)
-          // }}
+            type="range"
+            maxValue={100}
+            minValue={0}
+            value={rangeWaterPercentage}
+            readOnly={true}
+            style={getBackgroundSize()}
         />
         <MarksContainer>
           <LeftMark>0%</LeftMark>

@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 export const dataTodaySelector = state => state.waterData.dataToday;
 
-export const selectDailyNorma = state => state.waterData.dailyNorma;
+export const selectDailyNorma = state => state.auth.user.dailyNorma;
 
 export const selectTotalTodayDailyWater = createSelector(
   dataTodaySelector,

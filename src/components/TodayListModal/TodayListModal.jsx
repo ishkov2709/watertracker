@@ -15,22 +15,54 @@ import {
   CommonContainer,
   TodayModalListSubTitle,
   AmountWaterContainer,
+  CloseButton,
 } from './TodayListModal.styled';
 import FormInput from 'components/common/FormInput';
 import Button from 'components/common/Button';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { saveWaterToday } from 'store/waterData/thunk';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editWaterTodayById, saveWaterToday } from 'store/waterData/thunk';
 import { MONTH } from '../../constants/month';
+//import { todayListModalClose } from "store/waterData/waterDataSlice"
 import { useContext } from 'react';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
+import { dataTodaySelector } from 'store/waterData/selectors';
 
-const TodayListModal = () => {
-  const toggleModal = useContext(ModalContext);
-  const [waterValue, setWaterValue] = useState(250);
-  const [timeValue, setTimeValue] = useState('00:00');
-
+const TodayListModal = ({ type = 'save', id }) => {
   const dispatch = useDispatch();
+
+  const dataToday = useSelector(dataTodaySelector);
+
+  const [waterValue, setWaterValue] = useState(() => {
+    if (dataToday.length === 0) {
+      return Number(0);
+    }
+    const lastAddWaterDosageIndex = dataToday.length - 1;
+    return dataToday[lastAddWaterDosageIndex].dosage;
+  });
+  const [timeValue, setTimeValue] = useState(() => {
+    const dateNow = new Date();
+    let hours = dateNow.getHours().toString();
+    let minutes = dateNow.getMinutes().toString();
+    if (hours.length === 1) {
+      hours = '0' + hours;
+    }
+    if (minutes.length === 1) {
+      minutes = '0' + minutes;
+    }
+    return `${hours}:${minutes}`;
+  });
+  // console.log(timeValue);
+
+  useEffect(() => {
+    if (type === 'edit') {
+      const waterRecord = dataToday.find(data => data._id === id);
+      setTimeValue(waterRecord.time);
+      setWaterValue(waterRecord.dosage);
+    }
+  }, [dataToday, id, type]);
+
+  const toggleModal = useContext(ModalContext);
 
   const handleDecremetWater = () => {
     setWaterValue(waterValue - 50);
@@ -39,19 +71,22 @@ const TodayListModal = () => {
     setWaterValue(waterValue + 50);
   };
 
+  // const handleDecremetWater = () => {setWaterValue(Number(waterValue)- 50)}
+  // const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
+
   const handleBlurTimeInput = event => {
-    const timeElement = document.querySelector('#waterTime');
-    timeElement.innerHTML = event.currentTarget.value;
+    const timeElement = document.querySelectorAll('[water_attr="timeValue"]');
+    timeElement.forEach(element => (element.innerHTML = timeValue));
   };
+
   const handleBlurWaterInput = event => {
-    // console.log(event.currentTarget.value);
     setWaterValue(Number(event.currentTarget.value));
-    const timeElement = document.querySelector('#waterInfo');
-    timeElement.innerHTML = event.currentTarget.value;
+    const waterElement = document.querySelectorAll('[water_attr="waterValue"]');
+    waterElement.forEach(element => (element.innerHTML = waterValue));
   };
 
   const handleChangeWaterInput = event => {
-    setWaterValue(Number(event.currentTarget.value));
+    setWaterValue(event.currentTarget.value);
   };
 
   const handleChangeTimeInput = event => {
@@ -67,43 +102,73 @@ const TodayListModal = () => {
       month: MONTH[today.getMonth()],
       year: today.getFullYear(),
     };
-    // console.log(data);
-    dispatch(saveWaterToday(data));
-    // dispatch(todayListModalClose())
+    if (type === 'edit') {
+      dispatch(editWaterTodayById({ id, data }));
+    } else {
+      dispatch(saveWaterToday(data));
+    }
+    toggleModal();
+  };
+
+  const onClickCloseBtn = () => {
     toggleModal();
   };
 
   return (
     <Modal onClose={toggleModal}>
-      <TodayModalListHeader>
-        Edit the entered amount of water
-      </TodayModalListHeader>
       <CommonContainer>
-        <WaterInfoContainer>
-          <Icon name="glass" stroke={color.primary.blue} />
-          <WaterInfo id="waterInfo">{`${waterValue}ml`}</WaterInfo>
-          <WaterTime id="waterTime">{`00:00`}</WaterTime>
-        </WaterInfoContainer>
-        <TodayModalListTitle>Correct entered data:</TodayModalListTitle>
-
+        {/* <CloseButton onClick={onClickCloseBtn}>
+          <Icon width="12" height="12" name="close" />
+        </CloseButton> */}
+        {type === 'edit' ? (
+          <TodayModalListHeader>
+            Edit the entered amount of water
+            <CloseButton onClick={onClickCloseBtn}>
+              <Icon width="12" height="12" name="close" />
+            </CloseButton>
+          </TodayModalListHeader>
+        ) : (
+          <TodayModalListHeader>
+            Add of water
+            <CloseButton onClick={onClickCloseBtn}>
+              <Icon width="12" height="12" name="close" />
+            </CloseButton>
+          </TodayModalListHeader>
+        )}
+        {type === 'edit' && (
+          <WaterInfoContainer>
+            <Icon name="glass" stroke={color.primary.blue} />
+            <WaterInfo
+              water_attr="waterValue"
+              id="waterInfo"
+            >{`${waterValue}ml`}</WaterInfo>
+            <WaterTime
+              water_attr="timeValue"
+              id="waterTime"
+            >{`${timeValue}`}</WaterTime>
+          </WaterInfoContainer>
+        )}
+        {type === 'edit' ? (
+          <TodayModalListTitle>Correct entered data:</TodayModalListTitle>
+        ) : (
+          <TodayModalListTitle>Chose a value:</TodayModalListTitle>
+        )}
         <AmountWaterContainer>
           <TodayModalListSubTitle>Amount of water:</TodayModalListSubTitle>
           <AmountWaterButtonContainer>
             <ButtonContainer onClick={handleDecremetWater}>
-              {' '}
-              <Icon name="minus" stroke={color.primary.blue} />{' '}
+              <Icon name="minus" stroke={color.primary.blue} />
             </ButtonContainer>
             <WaterValueContainer>
-              <WaterValue>{`${waterValue}ml`}</WaterValue>
+              <WaterValue water_attr="waterValue">{`${waterValue}ml`}</WaterValue>
             </WaterValueContainer>
             <ButtonContainer onClick={handleIncremetWater}>
-              {' '}
-              <Icon name="plus" stroke={color.primary.blue} />{' '}
+              <Icon name="plus" stroke={color.primary.blue} />
             </ButtonContainer>
           </AmountWaterButtonContainer>
         </AmountWaterContainer>
-        {/* <p>Recording time:</p> */}
         <FormInput
+          type="time"
           onBlur={handleBlurTimeInput}
           onChange={handleChangeTimeInput}
           inputType="addEdit"
@@ -111,6 +176,9 @@ const TodayListModal = () => {
           value={timeValue}
         ></FormInput>
         <FormInput
+          type="number"
+          min="1"
+          max="3000"
           onBlur={handleBlurWaterInput}
           onChange={handleChangeWaterInput}
           inputType="addEdit"
@@ -118,8 +186,8 @@ const TodayListModal = () => {
           value={waterValue}
         ></FormInput>
         <SaveContainer>
-          <WaterValue>{`${waterValue}ml`}</WaterValue>
-          <Button width="160" onClick={hadleClickSave}>
+          <WaterValue water_attr="waterValue">{`${waterValue}ml`}</WaterValue>
+          <Button onClick={hadleClickSave} width="160">
             Save
           </Button>
         </SaveContainer>

@@ -8,8 +8,13 @@ export const TodayModalListHeader = styled.p`
   letter-spacing: 0em;
   text-align: left;
   color: ${color.primary.black};
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 export const TodayModalListTitle = styled.p`
+  width: 256px;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
@@ -27,11 +32,22 @@ export const TodayModalListSubTitle = styled.p`
 `;
 
 export const CommonContainer = styled.div`
-  width: 544px;
-  //height: 392px;
+  position: relative;
+  width: 256px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media screen and (min-width: 768px) {
+    width: 656px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 544px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 `;
 
 export const WaterInfoContainer = styled.div`
@@ -61,7 +77,6 @@ export const WaterTime = styled.p`
 
 export const AmountWaterContainer = styled.div`
 width: 194px;
-//height:44
 display flex;
 flex-direction: column;
 gap: 12px;
@@ -69,14 +84,12 @@ gap: 12px;
 
 export const AmountWaterButtonContainer = styled.div`
 width: 194px;
-//height:44
 display flex;
 justify-content:center;
 align-items: center;
 padding: 8px 24px 8px 24px;
 border-radius: 10px;
 gap: 12px;
-//background-color: ${color.secondary.gray}
 `;
 
 export const WaterValueContainer = styled.div`
@@ -108,18 +121,40 @@ export const ButtonContainer = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  //cursor: hand;
   background-color: transparent;
 `;
 
 export const SaveContainer = styled.div`
-  //  width: 92px;
-  //  height: 36px;
-  // padding: 6px 10px 6px 10px;
-  // border-radius: 40px;
   display: flex;
+  flex-direction: column;
   justify-content: end;
   align-items: center;
   gap: 24px;
+
   //background-color: ${color.secondary.gray}
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+export const CloseButton = styled.button`
+  // position: absolute;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // top: 0;
+  // right: 0;
+  border: none;
+  background: none;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
