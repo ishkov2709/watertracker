@@ -156,7 +156,7 @@ const SettingsModal = ({ onClose }) => {
                 ) : (
                   <FakeImg randomColor={randomColor}>
                     <FirstLetter>
-                      {user.username.slice(0, 1).toUFirstLetterperCase()}
+                      {user.username.slice(0, 1).toUpperCase()}
                     </FirstLetter>
                   </FakeImg>
                 )}
