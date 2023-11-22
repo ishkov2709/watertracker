@@ -15,7 +15,7 @@ export const Backdrop = styled.div`
 
   background: rgba(0, 0, 0, 0.8);
 
-  @media screen and (max-height: 826px) and (orientation: portrait) {
+  @media screen and (max-height: 826px) {
     padding-top: 210px;
     overflow-y: scroll;
     scrollbar-width: thin;
