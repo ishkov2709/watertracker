@@ -10,14 +10,12 @@ import {
   ModalBox,
   ModalHeader,
   CloseButton,
-  ColorTextNormal,
-  ItemsGender,
-  TitleGender,
+  GenderFormulas,
+  ItemsGenders,
+  Formulas,
   VolumeNorm,
-  TextNormal,
-  CalculateYourRate,
-  FrameParent,
-  FrameItem,
+  FormTitle,
+  Genders,
   YourWeight,
   YourTime,
   Required,
@@ -29,10 +27,13 @@ import { useContext } from 'react';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import { useDispatch } from 'react-redux';
 import { updateDailyNorma } from 'store/auth/thunk';
+import { useAuth } from 'hooks/useAuth';
 
-const DailyNormaModal = ({ setModalOpen }) => {
+const DailyNormaModal = () => {
   const toggleModal = useContext(ModalContext);
   const dispatch = useDispatch();
+
+  const { user } = useAuth();
 
   const [calculatedWaterAmount, setCalculatedWaterAmount] = useState(0);
 
@@ -62,7 +63,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
 
   const formik = useFormik({
     initialValues: {
-      gender: 'female',
+      gender: user.gender,
       weight: 0,
       activityTime: 0,
       drankWaterAmount: 0,
@@ -91,51 +92,58 @@ const DailyNormaModal = ({ setModalOpen }) => {
                 width={12}
                 height={12}
                 fill="#ffffff00"
-                stroke="#000000"
+                stroke="#407bff"
                 className="icon"
               />
             </CloseButton>
           </ModalHeader>
-          <TitleGender>
-            <ItemsGender>
+
+          <GenderFormulas>
+            <ItemsGenders>
               For girl:
-              <ColorTextNormal> V=(M*0.03) + (T*0.4)</ColorTextNormal>
-            </ItemsGender>
-            <ItemsGender>
+              <Formulas> V=(M*0.03) + (T*0.4)</Formulas>
+            </ItemsGenders>
+            <ItemsGenders>
               For man:
-              <ColorTextNormal> V=(M*0.04) + (T*0.6)</ColorTextNormal>
-            </ItemsGender>
-          </TitleGender>
+              <Formulas> V=(M*0.04) + (T*0.6)</Formulas>
+            </ItemsGenders>
+          </GenderFormulas>
+
           <VolumeNorm>
-            <TextNormal>
-              *V is the volume of the water norm in liters per day, M is your
-              body weight, T is the time of active sports, or another type of
-              activity commensurate in terms of loads (in the absence of these,
-              you must set 0)
-            </TextNormal>
+            *V is the volume of the water norm in liters per day, M is your body
+            weight, T is the time of active sports, or another type of activity
+            commensurate in terms of loads (in the absence of these, you must
+            set 0)
           </VolumeNorm>
-          <CalculateYourRate>Calculate your rate:</CalculateYourRate>
-          <FrameParent>
-            <FrameItem
-              type="radio"
-              id="forGirl"
-              name="gender"
-              checked={formik.values.gender === 'female'}
-              onChange={() => formik.setFieldValue('gender', 'female')}
-            />
-            <label htmlFor="forGirl">For girl</label>
-            <FrameItem
-              type="radio"
-              id="forMan"
-              name="gender"
-              checked={formik.values.gender === 'male'}
-              onChange={() => formik.setFieldValue('gender', 'male')}
-            />
-            <label htmlFor="forMan">For man</label>
-          </FrameParent>
+
+          <FormTitle>Calculate your rate:</FormTitle>
+
+          <Genders>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                checked={formik.values.gender === 'female'}
+                onChange={() => formik.setFieldValue('gender', 'female')}
+              />
+              For girl
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                checked={formik.values.gender === 'male'}
+                onChange={() => formik.setFieldValue('gender', 'male')}
+              />
+              For man
+            </label>
+          </Genders>
+
           <YourWeight>
             <>Enter your weight in kilograms:</>
           </YourWeight>
+
           <FormInput
             inputType="dailyNorma"
             value={formik.values.weight}
@@ -150,6 +158,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
               activities with a high physical load:
             </>
           </YourTime>
+
           <FormInput
             inputType="dailyNorma"
             value={formik.values.activityTime}
@@ -158,6 +167,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
             name="activityTime"
             error={formik.touched.activityTime && formik.errors.activityTime}
           />
+
           <Required>
             <>The required amount of water in liters per day:</>
             <L>
@@ -166,9 +176,11 @@ const DailyNormaModal = ({ setModalOpen }) => {
                 : `${calculatedWaterAmount} L`}
             </L>
           </Required>
+
           <Write>
             <>Write down how much water you will drink:</>
           </Write>
+
           <FormInput
             inputType="dailyNorma"
             value={formik.values.drankWaterAmount}
@@ -179,6 +191,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
               formik.touched.drankWaterAmount && formik.errors.drankWaterAmount
             }
           />
+
           <SaveWrapper>
             <Button type="submit" onClick={handleSubmit}>
               Save
