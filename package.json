@@ -2,7 +2,7 @@
   "name": "watertracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://watertracker-black.vercel.app/",
+  "homepage": "/",
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",
     "@reduxjs/toolkit": "^1.9.7",
