@@ -1,16 +1,15 @@
 import { CalendarBox, HeadBox, List, TitleBox } from './MonthStatsTable.styled';
 import { useContext } from 'react';
 import { useDaysOfMonth } from 'hooks/useDaysOfMonth';
-import { useSelector } from 'react-redux';
-import { isLoadingSelector } from 'store/waterData/selectors';
 import { HomeContext } from 'pages/HomePage/HomePage';
 import PaginationMonth from './PaginationMonth';
 import DayItemCalendar from './DayItemCalendar';
+import { useWaterData } from 'hooks/useWaterData';
 
 const MonthStatsTable = () => {
   const { date } = useContext(HomeContext);
   const days = useDaysOfMonth(date);
-  const isLoading = useSelector(isLoadingSelector);
+  const { isLoading } = useWaterData();
 
   return (
     <CalendarBox>

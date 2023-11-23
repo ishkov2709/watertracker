@@ -1,16 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Btn, CountDay, Item, Percent } from './DayItemCalendar.styled';
 import { setTargetDay, removeTargetDay } from 'store/waterData/waterDataSlice';
 import { memo, useContext, useEffect, useState } from 'react';
-import {
-  dataTodaySelector,
-  daysOfMonthSelector,
-  selectDailyNorma,
-  targetDaySelector,
-} from 'store/waterData/selectors';
 import { PropTypes } from 'prop-types';
 import { HomeContext } from 'pages/HomePage/HomePage';
 import DaysGeneralStats from 'components/MonthStatsTable/DayItemCalendar/DaysGeneralStats';
+import { useWaterData } from 'hooks/useWaterData';
+import { useAuth } from 'hooks/useAuth';
 
 const dateNow = new Date();
 
@@ -19,11 +15,9 @@ const DayItemCalendar = memo(({ day }) => {
   const [percent, setPercent] = useState(0);
   const [dayData, setDayData] = useState(null);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
+  const { targetDay, daysOfMonth, dataToday } = useWaterData();
+  const { dailyNorma } = useAuth();
   const dispatch = useDispatch();
-  const targetDay = useSelector(targetDaySelector);
-  const daysOfMonth = useSelector(daysOfMonthSelector);
-  const dataToday = useSelector(dataTodaySelector);
-  const dailyNorma = useSelector(selectDailyNorma);
 
   useEffect(() => {
     if (day) {
@@ -36,7 +30,7 @@ const DayItemCalendar = memo(({ day }) => {
               overall: dataToday.reduce((acc, el) => el.dosage + acc, 0),
               servings: dataToday.length,
             }
-          : daysOfMonth.find(el => el.day === day)
+          : daysOfMonth?.find(el => el.day === day)
       );
     }
   }, [setDayData, dataToday, date, day, daysOfMonth]);

@@ -8,6 +8,7 @@ import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import Loader from './common/Loader';
 import ForgotPassPage from 'pages/ForgotPassPage/ForgotPassPage';
+import { useAuth } from 'hooks/useAuth';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const SigninPage = lazy(() => import('../pages/SigninPage'));
@@ -16,7 +17,7 @@ const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(state => state.auth.isRefreshing);
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());

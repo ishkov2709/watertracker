@@ -6,8 +6,6 @@ import { Signin, SigninText } from './UserAuth.styled.jsx';
 
 const UserAuth = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  
-  console.log(isLoggedIn)
 
   return (
     <>

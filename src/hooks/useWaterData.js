@@ -18,7 +18,6 @@ export const useWaterData = () => {
 
   return {
     dataToday,
-    dailyNorma,
     totalTodayDailyWater,
     isLoading,
     targetDay,
