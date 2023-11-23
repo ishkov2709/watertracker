@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { refreshUser } from 'store/auth/thunk';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import SharedLayout from './SharedLayout';
 import WelcomePage from '../pages/WelcomePage';
 import RestrictedRoute from './RestrictedRoute';
