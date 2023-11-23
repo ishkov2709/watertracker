@@ -9,8 +9,8 @@ import {
 import { color } from 'styles/colors';
 import { PropTypes } from 'prop-types';
 import { removeTargetDay } from 'store/waterData/waterDataSlice';
-import { selectDailyNorma } from 'store/waterData/selectors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
 
 const firstOfFourDaysArr = [1, 2, 3, 4, 11, 12, 13, 14, 21, 22, 23, 24, 31];
 
@@ -18,7 +18,7 @@ const DaysGeneralStats = ({
   targetDay: { day, month, servings = 0, percent },
 }) => {
   const dispatch = useDispatch();
-  const dailyNorma = useSelector(selectDailyNorma);
+  const { dailyNorma } = useAuth();
 
   const handleClose = () => {
     dispatch(removeTargetDay());

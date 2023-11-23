@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
   ModalContainer,
   ModalHeader,
@@ -21,16 +20,13 @@ import {
   FakeImg,
   FirstLetter,
 } from './SettingModal.styled';
-import {
-  errorSelector,
-  successfulSelector,
-  userSelector,
-} from 'store/auth/selectors';
 import { color } from 'styles/colors';
+import { useAuth } from 'hooks/useAuth';
 import { PropTypes } from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { randomHexColor } from 'utils/randomHexColor';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { notifyError, notifySuccess } from 'utils/notify';
 import { resetError, resetSuccessful } from 'store/auth/authSlice';
 import { changeUserData, updateAvatar } from 'store/auth/thunk';
@@ -45,30 +41,26 @@ const passInitialState = {
 };
 
 const SettingsModal = ({ onClose }) => {
-  const error = useSelector(errorSelector);
-  const successful = useSelector(successfulSelector);
-  const userData = useSelector(userSelector);
+  const { error, successful, user } = useAuth();
   const [showPassword, setShowPassword] = useState({
     oldPass: false,
     newPass: false,
     repeatPass: false,
   });
   const [passFields, setPassFields] = useState({ ...passInitialState });
-  const [user, setUser] = useState({ ...userData });
+  const [userNow, setUserNow] = useState({ ...user });
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const [randomColor] = useState(randomHexColor());
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
     if (passFields.newPassword !== passFields.repeatPassword)
       return notifyError('Password mismatch');
-    if (!user.username || !user.email)
+    if (!userNow.username || !userNow.email)
       return notifyError('User or email is not filled in');
     const updatedData = {
-      username: user.username,
-      email: user.email,
-      gender: user.gender,
+      username: userNow.username,
+      email: userNow.email,
+      gender: userNow.gender,
       oldPassword: passFields.oldPassword,
       newPassword: passFields.newPassword,
       type: Object.values(passFields).some(el => el.length > 0)
@@ -90,12 +82,30 @@ const SettingsModal = ({ onClose }) => {
     onClose();
   };
 
-  const handlePhotoChange = async e => {
+  const handlePhotoChange = e => {
     const formData = new FormData();
     if (e.target.files.length > 0) {
       formData.append('avatar', e.target.files[0]);
       dispatch(updateAvatar(formData));
     }
+  };
+
+  const handleChangeInput = (nameField, callback) => {
+    const interHandler = ({ target }) =>
+      callback(prevState => ({
+        ...prevState,
+        [nameField]: target.value,
+      }));
+    return interHandler;
+  };
+
+  const toggleVisiblePass = nameField => {
+    const interHandler = () =>
+      setShowPassword(prevState => ({
+        ...prevState,
+        [nameField]: !prevState[nameField],
+      }));
+    return interHandler;
   };
 
   useEffect(() => {
@@ -143,17 +153,17 @@ const SettingsModal = ({ onClose }) => {
           <ModalBody>
             <FormRow>
               <UserPhotoUpload>
-                {userData?.avatarURL ? (
+                {user?.avatarURL ? (
                   <Img
-                    src={userData.avatarURL}
+                    src={user.avatarURL}
                     alt="User profile"
                     isLoaded={isLoaded}
                     onLoad={() => setIsLoaded(true)}
                   />
                 ) : (
-                  <FakeImg randomColor={randomColor}>
+                  <FakeImg randomColor={randomHexColor()}>
                     <FirstLetter>
-                      {user.username.slice(0, 1).toUpperCase()}
+                      {userNow.username.slice(0, 1).toUpperCase()}
                     </FirstLetter>
                   </FakeImg>
                 )}
@@ -190,9 +200,9 @@ const SettingsModal = ({ onClose }) => {
                         id="gender_girl"
                         name="gender"
                         value="girl"
-                        checked={user.gender === 'female'}
+                        checked={userNow.gender === 'female'}
                         onChange={() =>
-                          setUser(prevState => ({
+                          setUserNow(prevState => ({
                             ...prevState,
                             gender: 'female',
                           }))
@@ -206,9 +216,9 @@ const SettingsModal = ({ onClose }) => {
                         id="gender_man"
                         name="gender"
                         value="man"
-                        checked={user.gender === 'male'}
+                        checked={userNow.gender === 'male'}
                         onChange={() =>
-                          setUser(prevState => ({
+                          setUserNow(prevState => ({
                             ...prevState,
                             gender: 'male',
                           }))
@@ -223,25 +233,15 @@ const SettingsModal = ({ onClose }) => {
                   required
                   type="text"
                   id="name"
-                  value={user.username}
-                  onChange={e =>
-                    setUser(prevState => ({
-                      ...prevState,
-                      username: e.target.value,
-                    }))
-                  }
+                  value={userNow.username}
+                  onChange={handleChangeInput('username', setUserNow)}
                 />
                 <Label htmlFor="email">E-mail</Label>
                 <PasswordInput
                   type="email"
                   id="email"
-                  value={user.email}
-                  onChange={e =>
-                    setUser(prevState => ({
-                      ...prevState,
-                      email: e.target.value,
-                    }))
-                  }
+                  value={userNow.email}
+                  onChange={handleChangeInput('email', setUserNow)}
                 />
               </InputGroup>
 
@@ -253,21 +253,9 @@ const SettingsModal = ({ onClose }) => {
                     type={showPassword.oldPass ? 'text' : 'password'}
                     placeholder="Password"
                     value={passFields.oldPassword}
-                    onChange={({ target }) =>
-                      setPassFields(prevState => ({
-                        ...prevState,
-                        oldPassword: target.value,
-                      }))
-                    }
+                    onChange={handleChangeInput('oldPassword', setPassFields)}
                   />
-                  <Eye
-                    onClick={() =>
-                      setShowPassword(prevState => ({
-                        ...prevState,
-                        oldPass: !prevState.oldPass,
-                      }))
-                    }
-                  >
+                  <Eye onClick={toggleVisiblePass('oldPass')}>
                     <Icon
                       name={showPassword.oldPass ? 'eye' : 'hidden'}
                       width={16}
@@ -282,21 +270,9 @@ const SettingsModal = ({ onClose }) => {
                     type={showPassword.newPass ? 'text' : 'password'}
                     placeholder="Password"
                     value={passFields.newPassword}
-                    onChange={({ target }) =>
-                      setPassFields(prevState => ({
-                        ...prevState,
-                        newPassword: target.value,
-                      }))
-                    }
+                    onChange={handleChangeInput('newPassword', setPassFields)}
                   />
-                  <Eye
-                    onClick={() =>
-                      setShowPassword(prevState => ({
-                        ...prevState,
-                        newPass: !prevState.newPass,
-                      }))
-                    }
-                  >
+                  <Eye onClick={toggleVisiblePass('newPass')}>
                     <Icon
                       name={showPassword.newPass ? 'eye' : 'hidden'}
                       width={16}
@@ -311,21 +287,12 @@ const SettingsModal = ({ onClose }) => {
                     type={showPassword.repeatPass ? 'text' : 'password'}
                     placeholder="Password"
                     value={passFields.repeatPassword}
-                    onChange={({ target }) =>
-                      setPassFields(prevState => ({
-                        ...prevState,
-                        repeatPassword: target.value,
-                      }))
-                    }
+                    onChange={handleChangeInput(
+                      'repeatPassword',
+                      setPassFields
+                    )}
                   />
-                  <Eye
-                    onClick={() =>
-                      setShowPassword(prevState => ({
-                        ...prevState,
-                        repeatPass: !prevState.repeatPass,
-                      }))
-                    }
-                  >
+                  <Eye onClick={toggleVisiblePass('repeatPass')}>
                     <Icon
                       name={showPassword.repeatPass ? 'eye' : 'hidden'}
                       width={16}
