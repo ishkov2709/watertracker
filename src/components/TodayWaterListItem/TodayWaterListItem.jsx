@@ -7,6 +7,7 @@ import {
 } from './TodayWaterListItem.styled';
 import Icon from 'components/common/Icon';
 import { useDispatch } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { todayListModalOpen } from 'store/waterData/waterDataSlice';
 import { color } from 'styles/colors';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
@@ -67,3 +68,7 @@ const TodayWaterListItem = ({ waterInfo, handleRemove }) => {
 };
 
 export default TodayWaterListItem;
+
+TodayWaterListItem.propTypes = {
+  waterInfo: PropTypes.object,
+};

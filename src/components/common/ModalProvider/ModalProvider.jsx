@@ -1,6 +1,7 @@
 import { createContext, useState, useCallback } from 'react';
 
 import { Backdrop } from 'components/common/Loader/Loader.styled';
+import { PropTypes } from 'prop-types';
 
 export const ModalContext = createContext();
 
@@ -18,3 +19,7 @@ const ModalProvider = ({ children }) => {
 };
 
 export default ModalProvider;
+
+ModalProvider.propTypes = {
+  children: PropTypes.object,
+};

@@ -27,8 +27,9 @@ import {
   userSelector,
 } from 'store/auth/selectors';
 import { color } from 'styles/colors';
-import { randomHexColor } from 'utils/randomHexColor';
+import { PropTypes } from 'prop-types';
 import { ToastContainer } from 'react-toastify';
+import { randomHexColor } from 'utils/randomHexColor';
 import { useDispatch, useSelector } from 'react-redux';
 import { notifyError, notifySuccess } from 'utils/notify';
 import { resetError, resetSuccessful } from 'store/auth/authSlice';
@@ -348,3 +349,7 @@ const SettingsModal = ({ onClose }) => {
 };
 
 export default SettingsModal;
+
+SettingsModal.propTypes = {
+  onClose: PropTypes.func,
+};

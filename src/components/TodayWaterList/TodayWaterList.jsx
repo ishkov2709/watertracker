@@ -46,15 +46,23 @@ const TodayWaterList = () => {
   };
   //console.log(waterItems);
 
-
-    return <TodayWaterListContainer>
-        {isLoading && <Loader/>}
-        <TodayWaterListHeader>Today</TodayWaterListHeader>
-        <TodayWaterListing>
-            {waterItems.map(waterItem => <TodayWaterListItemContainer key={waterItem._id}><TodayWaterListItem waterInfo={waterItem} /></TodayWaterListItemContainer>)}
-        </TodayWaterListing>
-        <AddWaterButton onClick={handleClickAdd}> <Icon name="plus" stroke={color.primary.blue } /> Add Water</AddWaterButton>
+  return (
+    <TodayWaterListContainer>
+      {isLoading && <Loader />}
+      <TodayWaterListHeader>Today</TodayWaterListHeader>
+      <TodayWaterListing>
+        {waterItems.map(waterItem => (
+          <TodayWaterListItemContainer key={waterItem._id}>
+            <TodayWaterListItem waterInfo={waterItem} />
+          </TodayWaterListItemContainer>
+        ))}
+      </TodayWaterListing>
+      <AddWaterButton onClick={handleClickAdd}>
+        {' '}
+        <Icon name="plus" stroke={color.primary.blue} /> Add Water
+      </AddWaterButton>
     </TodayWaterListContainer>
+  );
 };
 
 export default TodayWaterList;

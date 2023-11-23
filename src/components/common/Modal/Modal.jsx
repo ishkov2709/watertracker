@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Backdrop, ModalContainer } from './Modal.styled';
+import { PropTypes } from 'prop-types';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -36,3 +37,9 @@ const Modal = ({ type = 'default', onClose, children }) => {
 };
 
 export default Modal;
+
+Modal.propTypes = {
+  type: PropTypes.string,
+  onClose: PropTypes.func,
+  children: PropTypes.object,
+};

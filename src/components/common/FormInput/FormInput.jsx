@@ -6,6 +6,7 @@ import {
   LableAddEdit,
   ErrorMessage,
 } from './FormInput.styled';
+import { PropTypes } from 'prop-types';
 
 const FormInput = ({ inputType, label, error, ...props }) => {
   switch (inputType) {
@@ -41,7 +42,15 @@ const FormInput = ({ inputType, label, error, ...props }) => {
           {error && <ErrorMessage>{error}</ErrorMessage>}
         </LableAddEdit>
       );
+    default:
+      return;
   }
 };
 
 export default FormInput;
+
+FormInput.propTypes = {
+  inputType: PropTypes.string,
+  label: PropTypes.string,
+  error: PropTypes.string,
+};

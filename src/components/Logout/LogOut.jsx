@@ -10,9 +10,10 @@ import {
   Question,
 } from './LogOut.styled';
 import { color } from 'styles/colors';
+import { logout } from 'store/auth/thunk';
+import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from 'store/auth/thunk';
 import Icon from 'components/common/Icon';
 import Modal from 'components/common/Modal';
 
@@ -50,3 +51,7 @@ const LogOut = ({ onClose }) => {
 };
 
 export default LogOut;
+
+LogOut.propTypes = {
+  onClose: PropTypes.func,
+};

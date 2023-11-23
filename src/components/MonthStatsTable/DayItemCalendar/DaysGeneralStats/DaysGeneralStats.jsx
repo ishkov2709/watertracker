@@ -7,9 +7,10 @@ import {
   Wrapper,
 } from './DaysGeneralStats.styled';
 import { color } from 'styles/colors';
-import { useDispatch, useSelector } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { removeTargetDay } from 'store/waterData/waterDataSlice';
 import { selectDailyNorma } from 'store/waterData/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 
 const firstOfFourDaysArr = [1, 2, 3, 4, 11, 12, 13, 14, 21, 22, 23, 24, 31];
 
@@ -45,3 +46,12 @@ const DaysGeneralStats = ({
 };
 
 export default DaysGeneralStats;
+
+DaysGeneralStats.propTypes = {
+  targetDay: PropTypes.shape({
+    day: PropTypes.number,
+    month: PropTypes.string,
+    servings: PropTypes.number,
+    percent: PropTypes.number,
+  }),
+};

@@ -8,6 +8,7 @@ import {
   selectDailyNorma,
   targetDaySelector,
 } from 'store/waterData/selectors';
+import { PropTypes } from 'prop-types';
 import { HomeContext } from 'pages/HomePage/HomePage';
 import DaysGeneralStats from 'components/MonthStatsTable/DayItemCalendar/DaysGeneralStats';
 
@@ -98,3 +99,7 @@ const DayItemCalendar = memo(({ day }) => {
 });
 
 export default DayItemCalendar;
+
+DayItemCalendar.propTypes = {
+  day: PropTypes.number,
+};
