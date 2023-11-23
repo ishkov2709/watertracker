@@ -12,7 +12,7 @@ export const Box = styled.div`
 
   background-image: url(${imgHomeBgButlePhone});
   background-size: 100%;
-  background-position: center bottom 20px;
+  background-position: center bottom 10px;
   background-repeat: no-repeat;
 
   @media screen and (min-width: 768px) {
@@ -199,5 +199,18 @@ export const ErrorM = styled.div`
 
   @media screen and (min-width: 1440px) {
     width: 364px;
+  }
+`;
+
+export const ResendBtn = styled.button`
+  display: block;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-decoration: none;
+  background-color: ${color.primary.white};
+  color: ${color.primary.blue};
+  @media screen and (min-width: 1440px) {
+    margin-left: 730px;
   }
 `;

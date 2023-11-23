@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { color } from 'styles/colors.js';
 import { useSelector } from 'react-redux';
+import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import { Circle, AvatarBtn, UserName, AvatarImg } from './Avatar.styled';
 import Icon from 'components/common/Icon';
-import { color } from 'styles/colors.js';
-import UserLogoModal from 'components/UserLogoModal';
-import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
-import SettingModal from 'components/SettingModal';
 import LogOut from 'components/Logout/LogOut';
+import SettingModal from 'components/SettingModal';
+import UserLogoModal from 'components/UserLogoModal';
 
 const Avatar = () => {
   const toggleModal = useContext(ModalContext);

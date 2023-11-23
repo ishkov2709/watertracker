@@ -26,15 +26,13 @@ const PaginationMonth = () => {
         year: prevState.year + 1,
         month: 0,
       }));
-      dispatch(swithChangeNote(true));
-      return;
+      return dispatch(swithChangeNote(true));
     }
     setDate(prevState => ({
       ...prevState,
       month: prevState.month + 1,
     }));
-    dispatch(swithChangeNote(true));
-    return;
+    return dispatch(swithChangeNote(true));
   };
 
   const handleDecrementMonth = () => {
@@ -44,15 +42,13 @@ const PaginationMonth = () => {
         year: prevState.year - 1,
         month: 11,
       }));
-      dispatch(swithChangeNote(true));
-      return;
+      return dispatch(swithChangeNote(true));
     }
     setDate(prevState => ({
       ...prevState,
       month: prevState.month - 1,
     }));
-    dispatch(swithChangeNote(true));
-    return;
+    return dispatch(swithChangeNote(true));
   };
 
   return (
