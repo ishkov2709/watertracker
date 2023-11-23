@@ -2,17 +2,6 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { MONTH } from '../../constants/month';
 
-// export const setToken = () => {
-// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTRiZjk5YmU5ODQ2ZGY3YmZkM2VhNCIsImlhdCI6MTcwMDE1ODM4OSwiZXhwIjoxNzAwNzYzMTg5fQ.SrlDD_A8MMJhvmJYSOqiWCSpLvaTDVdjeDeIdie3E-s"
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//  // localStorage.setItem('token', token);
-// };
-
-// export const setToken = () => {
-//   const token = localStorage.getItem('token');
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
 export const getWaterToday = createAsyncThunk(
   'waterData/getWaterToday',
   async (_, thunkAPI) => {
@@ -23,11 +12,9 @@ export const getWaterToday = createAsyncThunk(
         month: MONTH[today.getMonth()],
         year: today.getFullYear(),
       };
-      // setToken();
       const response = await axios.get(
         `https://water-tracker.onrender.com/api/records/today?day=${data.day}&month=${data.month}&year=${data.year}`
       );
-      //console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -39,7 +26,6 @@ export const deleteWaterTodayById = createAsyncThunk(
   'waterData/deleteWaterTodayById',
   async (id, thunkAPI) => {
     try {
-      // setToken();
       const response = await axios.delete(
         `https://water-tracker.onrender.com/api/records/${id}`
       );
@@ -54,12 +40,10 @@ export const saveWaterToday = createAsyncThunk(
   'waterData/saveWaterToday',
   async (data, thunkAPI) => {
     try {
-      // setToken();
       const response = await axios.post(
         `https://water-tracker.onrender.com/api/records`,
         data
       );
-      //console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -69,19 +53,16 @@ export const saveWaterToday = createAsyncThunk(
 
 export const editWaterTodayById = createAsyncThunk(
   'waterData/editWaterTodayById',
-  async ({id, data}, thunkAPI) => {
-    console.log(data);
+  async ({ id, data }, thunkAPI) => {
     const editData = {
       dosage: data.dosage,
-      time: data.time
-    }
-    console.log(editData);
+      time: data.time,
+    };
     try {
-      // setToken();
       const response = await axios.put(
-        `https://water-tracker.onrender.com/api/records/${id}`,editData
+        `https://water-tracker.onrender.com/api/records/${id}`,
+        editData
       );
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
