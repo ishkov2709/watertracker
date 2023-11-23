@@ -30,7 +30,7 @@ import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import { useDispatch } from 'react-redux';
 import { updateDailyNorma } from 'store/auth/thunk';
 
-const DailyNormaModal = ({ setModalOpen }) => {
+const DailyNormaModal = () => {
   const toggleModal = useContext(ModalContext);
   const dispatch = useDispatch();
 
