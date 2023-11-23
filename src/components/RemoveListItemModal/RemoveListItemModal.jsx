@@ -1,13 +1,12 @@
 import Modal from 'components/common/Modal';
 import Button from 'components/common/Button';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { useContext } from 'react';
-import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
-import { deleteWaterTodayById } from 'store/waterData/thunk';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import { dataTodaySelector } from 'store/waterData/selectors';
-import Icon from 'components/common/Icon';
+import { deleteWaterTodayById } from 'store/waterData/thunk';
 import {
   DeleteModalBox,
   ButtonBox,
@@ -19,6 +18,7 @@ import {
   CloseButton,
   BrSpan,
 } from './RemoveListItemModal.styled';
+import Icon from 'components/common/Icon';
 
 const RemoveListItemModal = id => {
   const WaterItem = useSelector(dataTodaySelector);
@@ -68,3 +68,7 @@ const RemoveListItemModal = id => {
 };
 
 export default RemoveListItemModal;
+
+RemoveListItemModal.propTypes = {
+  id: PropTypes.string,
+};

@@ -1,4 +1,5 @@
 import sprite from '../../../img/sprites.svg';
+import { PropTypes } from 'prop-types';
 
 const Icon = ({
   name,
@@ -22,3 +23,12 @@ const Icon = ({
 };
 
 export default Icon;
+
+Icon.propTypes = {
+  name: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  fill: PropTypes.string,
+  stroke: PropTypes.string,
+  className: PropTypes.string,
+};
