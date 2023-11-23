@@ -14,6 +14,38 @@ export const Backdrop = styled.div`
   align-items: center;
 
   background: rgba(0, 0, 0, 0.8);
+
+  @media screen and (max-height: 668px) and (orientation: portrait) {
+    padding-top: 210px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      width: 0.5em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
+
+  @media screen and (max-width: 1440px) and (orientation: landscape) {
+    padding-top: 440px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      width: 0.5em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
 `;
 
 const Container = styled.div(({ type }) => ({

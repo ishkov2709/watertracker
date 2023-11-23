@@ -15,6 +15,7 @@ import {
   SigninButton,
   ErrorM,
   StyledPasswordInput,
+  ResendBtn,
 } from '../SigninPage/Auth.styled';
 import { Wrapper } from '../HomePage/HomePage.styled';
 import { signupSchema } from 'schemas/signupSchema';
@@ -28,13 +29,24 @@ const initialValues = {
   repeatPassword: '',
 };
 
-const Signup = ({ signup }) => {
+const Signup = ({ signup, resend }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
   const successful = useSelector(successfulSelector);
   const navigate = useNavigate();
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
+
+  const storeEmailInLocalStorage = email => {
+    localStorage.setItem('registrationEmail', email);
+  };
+  const getStoredEmailFromLocalStorage = () => {
+    return localStorage.getItem('registrationEmail') || '';
+  };
+
+  const storedEmail = getStoredEmailFromLocalStorage();
+  const [email, setEmail] = useState(storedEmail);
+
   const handleSuccessfulAuthentication = useCallback(() => {
     toast.info('Success! Please, check your mail for confirmation.');
     setTimeout(() => {
@@ -53,9 +65,16 @@ const Signup = ({ signup }) => {
   }, [dispatch, successful, error, handleSuccessfulAuthentication]);
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    storeEmailInLocalStorage(values.email);
+    setEmail(values.email);
     await signup({ email: values.email, password: values.password });
 
     setSubmitting(false);
+  };
+
+  const handleResendConfirmationEmail = async () => {
+    await resend({ email });
+    toast.info('Confirmation email has been resent. Please check your email.');
   };
 
   const togglePasswordVisibility = field => {
@@ -71,7 +90,7 @@ const Signup = ({ signup }) => {
         <Box>
           <div>
             <Formik
-              initialValues={initialValues}
+              initialValues={{ email, ...initialValues }}
               validationSchema={signupSchema}
               onSubmit={handleSubmit}
             >
@@ -158,8 +177,11 @@ const Signup = ({ signup }) => {
                 </StyledForm>
               )}
             </Formik>
-            <LinkToPage to="/signin">Sign in</LinkToPage>
 
+            <LinkToPage to="/signin">Sign in</LinkToPage>
+            <ResendBtn onClick={handleResendConfirmationEmail}>
+              Resend Confirmation Email
+            </ResendBtn>
             <ToastContainer />
           </div>
         </Box>

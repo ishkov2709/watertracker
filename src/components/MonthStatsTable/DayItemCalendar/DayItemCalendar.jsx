@@ -5,6 +5,7 @@ import { memo, useContext, useEffect, useState } from 'react';
 import {
   dataTodaySelector,
   daysOfMonthSelector,
+  selectDailyNorma,
   targetDaySelector,
 } from 'store/waterData/selectors';
 import { HomeContext } from 'pages/HomePage/HomePage';
@@ -21,8 +22,7 @@ const DayItemCalendar = memo(({ day }) => {
   const targetDay = useSelector(targetDaySelector);
   const daysOfMonth = useSelector(daysOfMonthSelector);
   const dataToday = useSelector(dataTodaySelector);
-
-  const dailyNorma = 1500;
+  const dailyNorma = useSelector(selectDailyNorma);
 
   useEffect(() => {
     if (day) {
@@ -43,12 +43,12 @@ const DayItemCalendar = memo(({ day }) => {
   useEffect(() => {
     if (daysOfMonth && dayData) {
       const res =
-        dayData.overall >= dailyNorma
+        dayData.overall >= dailyNorma * 1000
           ? 100
-          : Math.round((dayData.overall / dailyNorma) * 100);
+          : Math.round((dayData.overall / (dailyNorma * 1000)) * 100);
       setPercent(res);
     }
-  }, [daysOfMonth, setPercent, dayData]);
+  }, [daysOfMonth, setPercent, dayData, dailyNorma]);
 
   useEffect(() => {
     const handleResize = () => {

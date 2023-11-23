@@ -29,7 +29,7 @@ export const ModalWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 544px;
-    height: 144px;
+    height: 120px;
     gap: 24px;
   }
 `;
