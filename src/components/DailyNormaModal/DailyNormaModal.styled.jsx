@@ -65,11 +65,14 @@ export const VolumeNorm = styled.p`
   line-height: 1.33;
 `;
 
-export const FormTitle = styled.form`
-  margin-bottom: 16px;
-
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  gap: 16px;
+`;
+
+export const FormTitle = styled.p`
+  // margin-bottom: 16px;
 
   font-size: 18px;
   font-weight: 500;
@@ -95,41 +98,10 @@ export const Genders = styled.div`
   }
 `;
 
-export const DailyNormas = styled.div`
-  margin-top: 24px;
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-`;
-
-export const YourWeight = styled.div`
-  margin-top: 16px;
-  margin-bottom: 8px;
-`;
-
-export const YourTime = styled.div`
-  margin-top: 16px;
-  margin-bottom: 8px;
-`;
-
 export const Required = styled.div`
-  margin-bottom: 8px;
-  margin-top: 16px;
-
-  width: 225px;
-  height: auto;
   display: flex;
   align-items: center;
-
-  @media screen and (min-width: 768px) {
-    width: 400px;
-    height: auto;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 600px;
-    height: auto;
-  }
+  gap: 6px;
 `;
 
 export const L = styled.b`
@@ -143,15 +115,8 @@ export const L = styled.b`
   flex-shrink: 0;
 `;
 
-export const Write = styled.div`
-  margin-top: 24px;
-  margin-bottom: 8px;
-  line-height: 20px;
-  font-weight: 500;
-`;
-
 export const SaveWrapper = styled.div`
-  margin-top: 24px;
+  margin-top: 8px;
   display: flex;
   justify-content: flex-end;
 

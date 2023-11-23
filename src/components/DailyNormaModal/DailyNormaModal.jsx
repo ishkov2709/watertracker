@@ -14,6 +14,7 @@ import {
   ItemsGenders,
   Formulas,
   VolumeNorm,
+  StyledForm,
   FormTitle,
   Genders,
   YourWeight,
@@ -116,87 +117,80 @@ const DailyNormaModal = () => {
             set 0)
           </VolumeNorm>
 
-          <FormTitle>Calculate your rate:</FormTitle>
+          <StyledForm>
+            <FormTitle>Calculate your rate:</FormTitle>
 
-          <Genders>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                checked={formik.values.gender === 'female'}
-                onChange={() => formik.setFieldValue('gender', 'female')}
-              />
-              For girl
-            </label>
+            <Genders>
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  checked={formik.values.gender === 'female'}
+                  onChange={() => formik.setFieldValue('gender', 'female')}
+                />
+                For girl
+              </label>
 
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                checked={formik.values.gender === 'male'}
-                onChange={() => formik.setFieldValue('gender', 'male')}
-              />
-              For man
-            </label>
-          </Genders>
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  checked={formik.values.gender === 'male'}
+                  onChange={() => formik.setFieldValue('gender', 'male')}
+                />
+                For man
+              </label>
+            </Genders>
 
-          <YourWeight>
-            <>Enter your weight in kilograms:</>
-          </YourWeight>
+            <FormInput
+              label="Enter your weight in kilograms:"
+              inputType="dailyNorma"
+              value={formik.values.weight}
+              onChange={e => handleInputChange(e, 'weight')}
+              onBlur={formik.handleBlur}
+              name="weight"
+              error={formik.touched.weight && formik.errors.weight}
+            />
 
-          <FormInput
-            inputType="dailyNorma"
-            value={formik.values.weight}
-            onChange={e => handleInputChange(e, 'weight')}
-            onBlur={formik.handleBlur}
-            name="weight"
-            error={formik.touched.weight && formik.errors.weight}
-          />
-          <YourTime>
-            <>
-              Enter the time of active participation in sports or other
-              activities with a high physical load:
-            </>
-          </YourTime>
+            <FormInput
+              label="Enter the time of active participation in sports or other
+                activities with a high physical load:"
+              inputType="dailyNorma"
+              value={formik.values.activityTime}
+              onChange={e => handleInputChange(e, 'activityTime')}
+              onBlur={formik.handleBlur}
+              name="activityTime"
+              error={formik.touched.activityTime && formik.errors.activityTime}
+            />
 
-          <FormInput
-            inputType="dailyNorma"
-            value={formik.values.activityTime}
-            onChange={e => handleInputChange(e, 'activityTime')}
-            onBlur={formik.handleBlur}
-            name="activityTime"
-            error={formik.touched.activityTime && formik.errors.activityTime}
-          />
+            <Required>
+              <>The required amount of water in liters per day:</>
+              <L>
+                {isNaN(calculatedWaterAmount)
+                  ? 'Invalid'
+                  : `${calculatedWaterAmount} L`}
+              </L>
+            </Required>
 
-          <Required>
-            <>The required amount of water in liters per day:</>
-            <L>
-              {isNaN(calculatedWaterAmount)
-                ? 'Invalid'
-                : `${calculatedWaterAmount} L`}
-            </L>
-          </Required>
+            <FormInput
+              label="Write down how much water you will drink:"
+              inputType="dailyNorma"
+              value={formik.values.drankWaterAmount}
+              onChange={e => handleInputChange(e, 'drankWaterAmount')}
+              onBlur={formik.handleBlur}
+              name="drankWaterAmount"
+              error={
+                formik.touched.drankWaterAmount &&
+                formik.errors.drankWaterAmount
+              }
+            />
 
-          <Write>
-            <>Write down how much water you will drink:</>
-          </Write>
-
-          <FormInput
-            inputType="dailyNorma"
-            value={formik.values.drankWaterAmount}
-            onChange={e => handleInputChange(e, 'drankWaterAmount')}
-            onBlur={formik.handleBlur}
-            name="drankWaterAmount"
-            error={
-              formik.touched.drankWaterAmount && formik.errors.drankWaterAmount
-            }
-          />
-
-          <SaveWrapper>
-            <Button type="submit" onClick={handleSubmit}>
-              Save
-            </Button>
-          </SaveWrapper>
+            <SaveWrapper>
+              <Button type="submit" onClick={handleSubmit}>
+                Save
+              </Button>
+            </SaveWrapper>
+          </StyledForm>
         </>
       </ModalBox>
     </Modal>
