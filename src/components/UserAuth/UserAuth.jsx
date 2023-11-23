@@ -1,13 +1,11 @@
 import Icon from 'components/common/Icon';
 import { color } from 'styles/colors.js';
-import { useSelector } from 'react-redux';
 import Avatar from '../Avatar/index.js';
 import { Signin, SigninText } from './UserAuth.styled.jsx';
+import { useAuth } from 'hooks/useAuth';
 
 const UserAuth = () => {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  
-  console.log(isLoggedIn)
+  const { isLoggedIn } = useAuth();
 
   return (
     <>
