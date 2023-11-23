@@ -17,53 +17,53 @@ import {
 } from './TodayListModal.styled';
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { editWaterTodayById, saveWaterToday } from 'store/waterData/thunk';
 import { MONTH } from '../../constants/month';
-//import { todayListModalClose } from "store/waterData/waterDataSlice"
 import { useContext } from 'react';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
-import { dataTodaySelector } from 'store/waterData/selectors';
 import Icon from 'components/common/Icon';
 import Modal from 'components/common/Modal';
 import Button from 'components/common/Button';
 import FormInput from 'components/common/FormInput';
+import { useWaterData } from 'hooks/useWaterData';
 
 const TodayListModal = ({ type = 'save', id }) => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const dataToday = useSelector(dataTodaySelector);
+   // const dataToday = useSelector(dataTodaySelector);
+    const {dataToday} = useWaterData() 
 
-  const [waterValue, setWaterValue] = useState(() => {
-    if (dataToday.length === 0) {
-      return Number(0);
-    }
-    const lastAddWaterDosageIndex = dataToday.length - 1;
-    return dataToday[lastAddWaterDosageIndex].dosage;
-  });
-  const [timeValue, setTimeValue] = useState(() => {
-    const dateNow = new Date();
-    let hours = dateNow.getHours().toString();
-    let minutes = dateNow.getMinutes().toString();
-    if (hours.length === 1) {
-      hours = '0' + hours;
-    }
-    if (minutes.length === 1) {
-      minutes = '0' + minutes;
-    }
-    return `${hours}:${minutes}`;
-  });
-  // console.log(timeValue);
+    const [waterValue, setWaterValue] = useState(() => {
+        if (dataToday.length === 0) {
+            return Number(0);
+        }
+        const lastAddWaterDosageIndex = dataToday.length - 1;
+        return dataToday[lastAddWaterDosageIndex].dosage;
+    });
+    
+    const [timeValue, setTimeValue] = useState(() => {
+        const dateNow = new Date();
+        let hours = dateNow.getHours().toString();
+        let minutes = dateNow.getMinutes().toString();
+        if (hours.length === 1) {
+            hours = '0' + hours;
+        }
+        if (minutes.length === 1) {
+            minutes = '0' + minutes;
+        }
+        return `${hours}:${minutes}`;
+    });
 
-  useEffect(() => {
-    if (type === 'edit') {
-      const waterRecord = dataToday.find(data => data._id === id);
-      setTimeValue(waterRecord.time);
-      setWaterValue(waterRecord.dosage);
-    }
-  }, [dataToday, id, type]);
+    useEffect(() => {
+        if (type === 'edit') {
+            const waterRecord = dataToday.find(data => data._id === id);
+            setTimeValue(waterRecord.time);
+            setWaterValue(waterRecord.dosage);
+        }
+    }, [dataToday, id, type]);
 
-  const toggleModal = useContext(ModalContext);
+    const toggleModal = useContext(ModalContext);
 
     const handleDecremetWater = () => {
         if ((waterValue - 50) <= 0) {
@@ -78,58 +78,51 @@ const TodayListModal = ({ type = 'save', id }) => {
         setWaterValue(waterValue + 50);   
     };
 
-  // const handleDecremetWater = () => {setWaterValue(Number(waterValue)- 50)}
-  // const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
-
-  const handleBlurTimeInput = event => {
-    const timeElement = document.querySelectorAll('[water_attr="timeValue"]');
-    timeElement.forEach(element => (element.innerHTML = timeValue));
-  };
+    const handleBlurTimeInput = () => {
+        const timeElement = document.querySelectorAll('[water_attr="timeValue"]');
+        timeElement.forEach(element => (element.innerHTML = timeValue));
+    };
 
     const handleChangeWaterInput = event => {
         if (event.currentTarget.value <= 0) { return setWaterValue(1) }
         if (event.currentTarget.value >= 3000) { return setWaterValue(3000) }
         setWaterValue(event.currentTarget.value)
     }
-  const handleBlurWaterInput = event => {
-    setWaterValue(Number(event.currentTarget.value));
-    const waterElement = document.querySelectorAll('[water_attr="waterValue"]');
-    waterElement.forEach(element => (element.innerHTML = waterValue));
-  };
 
-  
-
-  const handleChangeTimeInput = event => {
-    setTimeValue(event.currentTarget.value);
-  };
-
-  const hadleClickSave = () => {
-    const today = new Date();
-    const data = {
-      dosage: waterValue,
-      time: timeValue,
-      day: today.getDate(),
-      month: MONTH[today.getMonth()],
-      year: today.getFullYear(),
+    const handleBlurWaterInput = event => {
+        setWaterValue(Number(event.currentTarget.value));
+        const waterElement = document.querySelectorAll('[water_attr="waterValue"]');
+        waterElement.forEach(element => (element.innerHTML = waterValue));
     };
-    if (type === 'edit') {
-      dispatch(editWaterTodayById({ id, data }));
-    } else {
-      dispatch(saveWaterToday(data));
-    }
-    toggleModal();
-  };
 
-  const onClickCloseBtn = () => {
-    toggleModal();
-  };
+    const handleChangeTimeInput = event => {
+        setTimeValue(event.currentTarget.value);
+    };
+
+    const hadleClickSave = () => {
+        const today = new Date();
+        const data = {
+            dosage: waterValue,
+            time: timeValue,
+            day: today.getDate(),
+            month: MONTH[today.getMonth()],
+            year: today.getFullYear(),
+        };
+        if (type === 'edit') {
+            dispatch(editWaterTodayById({ id, data }));
+        } else {
+            dispatch(saveWaterToday(data));
+        }
+        toggleModal();
+    };
+
+    const onClickCloseBtn = () => {
+        toggleModal();
+    };
 
   return (
     <Modal onClose={toggleModal}>
       <CommonContainer>
-        {/* <CloseButton onClick={onClickCloseBtn}>
-          <Icon width="12" height="12" name="close" />
-        </CloseButton> */}
         {type === 'edit' ? (
           <TodayModalListHeader>
             Edit the entered amount of water

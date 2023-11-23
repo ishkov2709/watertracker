@@ -6,15 +6,17 @@ import {
   DailyNormaHeader,
   DailyNormaWaterNorma,
 } from './DailyNorma.styled';
-import { selectDailyNorma } from 'store/waterData/selectors';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import { useContext } from 'react';
 import DailyNormaModal from 'components/DailyNormaModal/DailyNormaModal';
+import { useAuth } from 'hooks/useAuth';
 
 const DailyNorma = () => {
   const toggleModal = useContext(ModalContext);
 
-  const dailyNorma = useSelector(selectDailyNorma);
+  //const dailyNorma = useSelector(selectDailyNorma);
+
+  const {dailyNorma} = useAuth();
 
   const openDailyNormaModal = () => {
     toggleModal(<DailyNormaModal />);
