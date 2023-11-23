@@ -39,6 +39,12 @@ export const GenderFormulas = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+  }
 `;
 
 export const ItemsGenders = styled.p`
