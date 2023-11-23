@@ -12,7 +12,7 @@ export const Box = styled.div`
 
   background-image: url(${imgHomeBgButlePhone});
   background-size: 100%;
-  background-position: center bottom 20px;
+  background-position: center bottom 10px;
   background-repeat: no-repeat;
 
   @media screen and (min-width: 768px) {
@@ -54,7 +54,6 @@ export const Title = styled.h1`
 
   @media screen and (min-width: 1440px) {
     min-width: 384px;
-    //margin-right: 198px;
     margin-left: 833px;
     margin-top: 113px;
   }
@@ -66,10 +65,6 @@ export const StyledForm = styled(Form)`
   margin-bottom: 16px;
 
   align-content: flex-start;
-  /* 
-  &:not(:first-child) {
-    align-items: center;
-  } */
 
   margin-top: 24px;
   @media screen and (min-width: 768px) {
@@ -207,12 +202,15 @@ export const ErrorM = styled.div`
   }
 `;
 
-export const CaughtError = styled.h4`
-  color: ${color.secondary.tomato};
-  margin-top: 15px;
-
+export const ResendBtn = styled.button`
+  display: block;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-decoration: none;
+  background-color: ${color.primary.white};
+  color: ${color.primary.blue};
   @media screen and (min-width: 1440px) {
     margin-left: 730px;
-    margin-bottom: -70px;
   }
 `;

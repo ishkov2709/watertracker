@@ -7,8 +7,9 @@ import {
   Wrapper,
 } from './DaysGeneralStats.styled';
 import { color } from 'styles/colors';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeTargetDay } from 'store/waterData/waterDataSlice';
+import { selectDailyNorma } from 'store/waterData/selectors';
 
 const firstOfFourDaysArr = [1, 2, 3, 4, 11, 12, 13, 14, 21, 22, 23, 24, 31];
 
@@ -16,12 +17,11 @@ const DaysGeneralStats = ({
   targetDay: { day, month, servings = 0, percent },
 }) => {
   const dispatch = useDispatch();
+  const dailyNorma = useSelector(selectDailyNorma);
 
   const handleClose = () => {
     dispatch(removeTargetDay());
   };
-
-  const dailyNorma = 1500;
 
   return (
     <Wrapper isToLeft={firstOfFourDaysArr.includes(day)}>
@@ -32,7 +32,7 @@ const DaysGeneralStats = ({
         {day}, {month}
       </DateMonthTitle>
       <MarkTitle>
-        Daily norma: <Mark>{dailyNorma / 1000} L</Mark>
+        Daily norma: <Mark>{dailyNorma} L</Mark>
       </MarkTitle>
       <MarkTitle>
         Fulfillment of the daily norm: <Mark>{percent}%</Mark>

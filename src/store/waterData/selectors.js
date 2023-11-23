@@ -11,7 +11,6 @@ export const selectTotalTodayDailyWater = createSelector(
     const totalTodayWater = waterData.reduce((total, waterData) => {
       return total + waterData.dosage;
     }, 0);
-    // console.log(norma );
     return Number((totalTodayWater / 1000 / norma) * 100).toFixed(0);
   }
 );

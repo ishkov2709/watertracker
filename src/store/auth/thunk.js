@@ -28,6 +28,15 @@ export const signUpUser = createAsyncThunk('auth/signup', async newUser => {
   return response.data;
 });
 
+export const resendEmail = createAsyncThunk('auth/resend', async user => {
+  return await axios.post('/users/verify', user);
+});
+
+export const restoreUser = createAsyncThunk('auth/restore', async user => {
+  const response = await axios.post('/users/restore', user);
+  return response.data;
+});
+
 export const logOut = createAsyncThunk(`auth/logout`, async token => {
   return await axios.post(`/users/logout`, token);
 });
@@ -49,3 +58,37 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const updateAvatar = createAsyncThunk(
+  'user/updateAvatar',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await axios.patch('/users/avatars', formData);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const changeUserData = createAsyncThunk(
+  'user/changeData',
+  async (newUserData, thunkAPI) => {
+    try {
+      const res = await axios.put('/users', newUserData);
+
+      return res.data.user;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
+  try {
+    const res = await axios.post('/users/logout');
+    return res.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});

@@ -4,7 +4,6 @@ import { Wrapper } from 'pages/HomePage/HomePage.styled';
 import {
   Box,
   AllForm,
-  CaughtError,
   ErrorM,
   Label,
   LinkToPage,
@@ -13,33 +12,54 @@ import {
   StyledInput,
   Title,
 } from 'pages/SigninPage/Auth.styled';
-import { useSelector } from 'react-redux';
+import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import { forgotpassSchema } from 'schemas/forgotpassSchema';
-import { errorSelector } from 'store/auth/selectors';
+import { resetError, resetSuccessful } from 'store/auth/authSlice';
+import { errorSelector, successfulSelector } from 'store/auth/selectors';
 
 const initialValues = {
   email: '',
 };
 
-const ForgotPass = () => {
+const ForgotPass = ({ restore }) => {
   const error = useSelector(errorSelector);
-  //const dispatch = useDispatch();
+  const successful = useSelector(successfulSelector);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const handleSubmit = async (values, { setSubmitting }) => {
-  //   signin(values);
-  //   setSubmitting(false);
-  // };
+  const handleSuccessful = useCallback(() => {
+    toast.info('Success! Please, check your mail for new temporary password.');
+    setTimeout(() => {
+      navigate('/signin');
+    }, 6000);
+    dispatch(resetSuccessful());
+  }, [dispatch, navigate]);
+
+  const handleSubmit = async (email, { setSubmitting }) => {
+    await restore(email);
+    setSubmitting(false);
+  };
+
+  useEffect(() => {
+    successful && !error && handleSuccessful();
+    if (error) {
+      toast.error(error);
+      dispatch(resetError());
+    }
+  }, [dispatch, successful, error, handleSuccessful]);
 
   return (
     <Wrapper>
       <Container>
         <Box>
           <AllForm>
-            {error && <CaughtError>{error}</CaughtError>}
             <Formik
               initialValues={initialValues}
               validationSchema={forgotpassSchema}
-              //onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
             >
               {({ isSubmitting, errors, touched }) => (
                 <StyledForm>
@@ -68,6 +88,7 @@ const ForgotPass = () => {
             </Formik>
 
             <LinkToPage to="/signin">Back to Sign In</LinkToPage>
+            <ToastContainer />
           </AllForm>
         </Box>
       </Container>
