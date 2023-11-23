@@ -55,6 +55,7 @@ const waterDataSlice = createSlice({
       })
       .addCase(saveWaterToday.rejected, state => {
         state.error = 'Error';
+        state.isLoading = false;
       })
       .addCase(editWaterTodayById.pending, (state, action) => {
         state.isLoading = true;
