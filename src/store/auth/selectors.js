@@ -5,3 +5,4 @@ export const errorSelector = state => state.auth.error;
 export const isRefreshingSelector = state => state.auth.isRefreshing;
 export const isLoggedInSelector = state => state.auth.isLoggedIn;
 export const successfulSelector = state => state.auth.successful;
+export const dailyNormaSelector = state => state.auth.user.dailyNorma;

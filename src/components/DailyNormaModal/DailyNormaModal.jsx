@@ -6,19 +6,17 @@ import Button from 'components/common/Button';
 import Icon from 'components/common/Icon/Icon';
 import Modal from 'components/common/Modal';
 import Loader from 'components/common/Loader';
-
 import {
   ModalBox,
   ModalHeader,
   CloseButton,
-  ColorTextNormal,
-  ItemeGender,
-  TiltleGender,
+  GenderFormulas,
+  ItemsGenders,
+  Formulas,
   VolumeNorm,
-  TextNormal,
-  CalculateYourRate,
-  FrameParent,
-  FrameItem,
+  StyledForm,
+  FormTitle,
+  Genders,
   YourWeight,
   YourTime,
   Required,
@@ -26,48 +24,27 @@ import {
   Write,
   SaveWrapper,
 } from './DailyNormaModal.styled';
+import { useContext } from 'react';
+import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
+import { useDispatch } from 'react-redux';
+import { updateDailyNorma } from 'store/auth/thunk';
+import { useAuth } from 'hooks/useAuth';
 
-const DailyNormaModal = ({ setModalOpen }) => {
+const DailyNormaModal = () => {
+  const toggleModal = useContext(ModalContext);
+  const dispatch = useDispatch();
+
+  const { user } = useAuth();
+
   const [calculatedWaterAmount, setCalculatedWaterAmount] = useState(0);
-  const [isLoader, setIsLoader] = useState(false);
-  const [isSendFormDane, setIsSendFormDane] = useState(false);
-
-  const closeModal = useCallback(() => {
-    setModalOpen(false);
-  }, [setModalOpen]);
 
   const calculateWaterAmount = useCallback(values => {
-    const weightCoefficient = values.gender === 'forGirl' ? 0.03 : 0.04;
-    const timeCoefficient = values.gender === 'forGirl' ? 0.4 : 0.6;
+    const weightCoefficient = values.gender === 'female' ? 0.03 : 0.04;
+    const timeCoefficient = values.gender === 'female' ? 0.4 : 0.6;
     const calculatedAmount =
       values.weight * weightCoefficient + values.activityTime * timeCoefficient;
     setCalculatedWaterAmount(calculatedAmount.toFixed(2));
   }, []);
-
-  const sendDataToBackend = async data => {
-    try {
-      const response = await fetch(
-        'https://water-tracker.onrender.com/api/records',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            // Якщо потрібно авторизацію, включіть токен
-            // 'Authorization': `Bearer ${yourAccessToken}`
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      return response;
-    } catch (error) {
-      console.error(
-        'An error occurred while sending data to the backend:',
-        error
-      );
-      throw error; // Передаємо помилку наверх для обробки викликаючим кодом
-    }
-  };
 
   const handleInputChange = (e, fieldName) => {
     formik.handleChange(e);
@@ -80,38 +57,14 @@ const DailyNormaModal = ({ setModalOpen }) => {
   };
 
   const handleSubmit = async () => {
-    try {
-      setIsLoader(true);
-
-      // Отримання даних форми
-      const values = formik.values;
-
-      // Відправка даних на бекенд
-      const response = await sendDataToBackend(values);
-
-      if (response.ok) {
-        // Успішне відправлення на бекенд
-        formik.resetForm();
-        setIsLoader(false);
-        setIsSendFormDane(true);
-        setTimeout(() => {
-          closeModal();
-        }, 2000);
-      } else {
-        // Помилка при відправленні на бекенд
-        const errorData = await response.json(); // отримуємо дані про помилку
-        setIsLoader(false);
-        console.error('Failed to save data. Please try again.', errorData);
-      }
-    } catch (error) {
-      setIsLoader(false);
-      console.error('An error occurred while sending data:', error);
-    }
+    dispatch(updateDailyNorma(parseFloat(calculatedWaterAmount)));
+    formik.resetForm();
+    toggleModal();
   };
 
   const formik = useFormik({
     initialValues: {
-      gender: 'forGirl',
+      gender: user.gender,
       weight: 0,
       activityTime: 0,
       drankWaterAmount: 0,
@@ -124,73 +77,73 @@ const DailyNormaModal = ({ setModalOpen }) => {
     calculateWaterAmount(formik.values);
   }, [calculateWaterAmount, formik.values]);
 
-  useEffect(() => {
-    if (isSendFormDane) {
-      setTimeout(() => {
-        closeModal();
-      }, 2000);
-    }
-  }, [isSendFormDane, closeModal]);
+  const onClickModalClose = () => {
+    toggleModal();
+  };
 
   return (
-    <Modal onClose={closeModal}>
+    <Modal onClose={toggleModal}>
       <ModalBox>
-        {!isSendFormDane && (
-          <>
-            <ModalHeader>
-              My daily norma
-              <CloseButton onClick={closeModal}>
-                <Icon
-                  name="plus"
-                  width={24}
-                  height={24}
-                  fill="#ffffff00"
-                  stroke="#000000"
-                  className="icon"
+        <>
+          <ModalHeader>
+            My daily norma
+            <CloseButton onClick={onClickModalClose}>
+              <Icon
+                name="close"
+                width={12}
+                height={12}
+                fill="#ffffff00"
+                stroke="#407bff"
+                className="icon"
+              />
+            </CloseButton>
+          </ModalHeader>
+
+          <GenderFormulas>
+            <ItemsGenders>
+              For girl:
+              <Formulas> V=(M*0.03) + (T*0.4)</Formulas>
+            </ItemsGenders>
+            <ItemsGenders>
+              For man:
+              <Formulas> V=(M*0.04) + (T*0.6)</Formulas>
+            </ItemsGenders>
+          </GenderFormulas>
+
+          <VolumeNorm>
+            *V is the volume of the water norm in liters per day, M is your body
+            weight, T is the time of active sports, or another type of activity
+            commensurate in terms of loads (in the absence of these, you must
+            set 0)
+          </VolumeNorm>
+
+          <StyledForm>
+            <FormTitle>Calculate your rate:</FormTitle>
+
+            <Genders>
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  checked={formik.values.gender === 'female'}
+                  onChange={() => formik.setFieldValue('gender', 'female')}
                 />
-              </CloseButton>
-            </ModalHeader>
-            <TiltleGender>
-              <ItemeGender>
-                For girl:
-                <ColorTextNormal> V=(M*0.03) + (T*0.4)</ColorTextNormal>
-              </ItemeGender>
-              <ItemeGender>
-                For man:
-                <ColorTextNormal> V=(M*0.04) + (T*0.6)</ColorTextNormal>
-              </ItemeGender>
-            </TiltleGender>
-            <VolumeNorm>
-              <TextNormal>
-                *V is the volume of the water norm in liters per day, M is your
-                body weight, T is the time of active sports, or another type of
-                activity commensurate in terms of loads (in the absence of
-                these, you must set 0)
-              </TextNormal>
-            </VolumeNorm>
-            <CalculateYourRate>Calculate your rate:</CalculateYourRate>
-            <FrameParent>
-              <FrameItem
-                type="radio"
-                id="forGirl"
-                name="gender"
-                checked={formik.values.gender === 'forGirl'}
-                onChange={() => formik.setFieldValue('gender', 'forGirl')}
-              />
-              <>For girl</>
-              <FrameItem
-                type="radio"
-                id="forMan"
-                name="gender"
-                checked={formik.values.gender === 'forMan'}
-                onChange={() => formik.setFieldValue('gender', 'forMan')}
-              />
-              <>For man</>
-            </FrameParent>
-            <YourWeight>
-              <>Enter your weight in kilograms:</>
-            </YourWeight>
+                For girl
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  checked={formik.values.gender === 'male'}
+                  onChange={() => formik.setFieldValue('gender', 'male')}
+                />
+                For man
+              </label>
+            </Genders>
+
             <FormInput
+              label="Enter your weight in kilograms:"
               inputType="dailyNorma"
               value={formik.values.weight}
               onChange={e => handleInputChange(e, 'weight')}
@@ -198,13 +151,10 @@ const DailyNormaModal = ({ setModalOpen }) => {
               name="weight"
               error={formik.touched.weight && formik.errors.weight}
             />
-            <YourTime>
-              <>
-                Enter the time of active participation in sports or other
-                activities with a high physical load:
-              </>
-            </YourTime>
+
             <FormInput
+              label="Enter the time of active participation in sports or other
+                activities with a high physical load:"
               inputType="dailyNorma"
               value={formik.values.activityTime}
               onChange={e => handleInputChange(e, 'activityTime')}
@@ -212,6 +162,7 @@ const DailyNormaModal = ({ setModalOpen }) => {
               name="activityTime"
               error={formik.touched.activityTime && formik.errors.activityTime}
             />
+
             <Required>
               <>The required amount of water in liters per day:</>
               <L>
@@ -220,10 +171,9 @@ const DailyNormaModal = ({ setModalOpen }) => {
                   : `${calculatedWaterAmount} L`}
               </L>
             </Required>
-            <Write>
-              <>Write down how much water you will drink:</>
-            </Write>
+
             <FormInput
+              label="Write down how much water you will drink:"
               inputType="dailyNorma"
               value={formik.values.drankWaterAmount}
               onChange={e => handleInputChange(e, 'drankWaterAmount')}
@@ -234,16 +184,14 @@ const DailyNormaModal = ({ setModalOpen }) => {
                 formik.errors.drankWaterAmount
               }
             />
+
             <SaveWrapper>
               <Button type="submit" onClick={handleSubmit}>
                 Save
               </Button>
             </SaveWrapper>
-          </>
-        )}
-
-        {isLoader && <Loader />}
-        {isSendFormDane && <div>Form sent successfully</div>}
+          </StyledForm>
+        </>
       </ModalBox>
     </Modal>
   );

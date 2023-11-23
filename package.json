@@ -2,7 +2,7 @@
   "name": "watertracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ishkov2709.github.io/watertracker/",
+  "homepage": "/",
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",
     "@reduxjs/toolkit": "^1.9.7",
@@ -53,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prop-types": "^15.8.1"
   }
 }

@@ -3,15 +3,15 @@ import { Btn, MonthAndYear, Wrapper } from './PaginationMonth.styled';
 import Icon from 'components/common/Icon';
 import { color } from 'styles/colors';
 import { HomeContext } from 'pages/HomePage/HomePage';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { swithChangeNote } from 'store/waterData/waterDataSlice';
 import { defineMonth } from 'utils/defineMonth';
-import { isLoadingSelector } from 'store/waterData/selectors';
+import { useWaterData } from 'hooks/useWaterData';
 
 const PaginationMonth = () => {
   const { date, setDate, titleMonth, setTitleMonth } = useContext(HomeContext);
   const dispatch = useDispatch();
-  const isLoading = useSelector(isLoadingSelector);
+  const { isLoading } = useWaterData();
 
   useEffect(() => {
     if (date) {

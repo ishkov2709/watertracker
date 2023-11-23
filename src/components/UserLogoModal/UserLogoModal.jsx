@@ -4,10 +4,11 @@ import {
   SettingIcon,
   LogoutIcon,
 } from './UserLogoModal.styled';
-import SettingsModal from 'components/SettingModal/SettingModal';
-import LogOut from 'components/Logout/LogOut';
-import Icon from 'components/common/Icon';
 import { color } from 'styles/colors';
+import { PropTypes } from 'prop-types';
+import Icon from 'components/common/Icon';
+import LogOut from 'components/Logout/LogOut';
+import SettingsModal from 'components/SettingModal/SettingModal';
 
 const UserLogoModal = ({
   isMenuVisible,
@@ -52,3 +53,11 @@ const UserLogoModal = ({
   );
 };
 export default UserLogoModal;
+
+UserLogoModal.propTypes = {
+  isMenuVisible: PropTypes.bool,
+  toggleSettings: PropTypes.func,
+  toggleLogout: PropTypes.func,
+  isSettingsVisible: PropTypes.bool,
+  isLogoutVisible: PropTypes.bool,
+};

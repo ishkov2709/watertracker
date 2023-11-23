@@ -1,5 +1,3 @@
-import Modal from 'components/common/Modal';
-import Icon from 'components/common/Icon';
 import { color } from 'styles/colors';
 import {
   TodayModalListHeader,
@@ -17,8 +15,7 @@ import {
   AmountWaterContainer,
   CloseButton,
 } from './TodayListModal.styled';
-import FormInput from 'components/common/FormInput';
-import Button from 'components/common/Button';
+import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editWaterTodayById, saveWaterToday } from 'store/waterData/thunk';
@@ -27,6 +24,10 @@ import { MONTH } from '../../constants/month';
 import { useContext } from 'react';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import { dataTodaySelector } from 'store/waterData/selectors';
+import Icon from 'components/common/Icon';
+import Modal from 'components/common/Modal';
+import Button from 'components/common/Button';
+import FormInput from 'components/common/FormInput';
 
 const TodayListModal = ({ type = 'save', id }) => {
   const dispatch = useDispatch();
@@ -207,3 +208,8 @@ const TodayListModal = ({ type = 'save', id }) => {
 };
 
 export default TodayListModal;
+
+TodayListModal.propTypes = {
+  type: PropTypes.string,
+  id: PropTypes.string,
+};

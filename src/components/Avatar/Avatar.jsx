@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { color } from 'styles/colors.js';
-import { useSelector } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import { Circle, AvatarBtn, UserName, AvatarImg } from './Avatar.styled';
 import Icon from 'components/common/Icon';
@@ -11,11 +11,10 @@ import UserLogoModal from 'components/UserLogoModal';
 const Avatar = () => {
   const toggleModal = useContext(ModalContext);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const name = useSelector(state => state.auth.user.username);
-  const avatar = useSelector(state => state.auth.user.avatarURL);
-  const firstLetter = name.slice(0, 1);
-  const index = name.indexOf('@');
-  const emailName = name.slice(0, index);
+  const { user: { username, avatarURL} } = useAuth();
+  const firstLetter = username.slice(0, 1);
+  const index = username.indexOf('@');
+  const emailName = username.slice(0, index);
 
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
@@ -38,14 +37,14 @@ const Avatar = () => {
         toggleSettings={toggleSettings}
         toggleLogout={toggleLogout}
       />
-      {name.includes('@') ? (
+      {username.includes('@') ? (
         <UserName>{emailName}</UserName>
       ) : (
-        <UserName>{name}</UserName>
+        <UserName>{username}</UserName>
       )}
       <Circle>
-        {avatar ? (
-          <AvatarImg src={avatar} alt="logo" />
+        {avatarURL ? (
+          <AvatarImg src={avatarURL} alt="logo" />
         ) : (
           <p>{firstLetter.toUpperCase()}</p>
         )}
