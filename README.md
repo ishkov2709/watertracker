@@ -50,3 +50,36 @@ npm start
 ## Demo
 
 ![Demo](./public/demo.jpg)
+
+## Used Libraries
+
+**_Frontend_**
+
+- **React.js**
+- **React Router**
+- **Redux Toolkit**
+- **Redux Persist**
+- **React-Toastify**
+- **React Spinners**
+- **styled-components**
+- **Formik**
+- **Yup**
+- **react-range**
+- **date-fns**
+- **Axios**
+- **PropTypes**
+
+**_Backend_**
+
+- **Node.js**
+- **Express**
+- **MongoDB**
+- **Mongoose**
+- **Joy**
+- **Nodemailer**
+- **Cloudinary**
+- **Swagger**
+
+## Swagger
+
+[Swagger API Documentation](https://water-tracker.onrender.com/api/docs)
