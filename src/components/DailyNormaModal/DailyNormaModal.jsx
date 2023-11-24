@@ -57,7 +57,7 @@ const DailyNormaModal = () => {
   };
 
   const handleSubmit = async () => {
-    dispatch(updateDailyNorma(parseFloat(calculatedWaterAmount)));
+    dispatch(updateDailyNorma(formik.values.drankWaterAmount));
     formik.resetForm();
     toggleModal();
   };

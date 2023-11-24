@@ -15,6 +15,7 @@ export const useWaterData = () => {
   const targetDay = useSelector(targetDaySelector);
   const daysOfTheMonth = useSelector(daysOfMonthSelector);
   const isChangeNote = useSelector(isChangeNoteSelector);
+  const daysOfMonth = useSelector(daysOfMonthSelector);
 
   return {
     dataToday,
@@ -23,5 +24,6 @@ export const useWaterData = () => {
     targetDay,
     daysOfTheMonth,
     isChangeNote,
+    daysOfMonth,
   };
 };

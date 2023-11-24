@@ -26,7 +26,7 @@ const DayItemCalendar = memo(({ day }) => {
           dateNow.getMonth() === date.month &&
           dateNow.getDate() === day
           ? {
-              day: day.day,
+              day: day,
               overall: dataToday.reduce((acc, el) => el.dosage + acc, 0),
               servings: dataToday.length,
             }

@@ -1,14 +1,14 @@
+import { useAuth } from 'hooks/useAuth';
+import { refreshUser } from 'store/auth/thunk';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
-import { refreshUser } from 'store/auth/thunk';
-import { useDispatch, useSelector } from 'react-redux';
-import SharedLayout from './SharedLayout';
-import WelcomePage from '../pages/WelcomePage';
-import RestrictedRoute from './RestrictedRoute';
-import PrivateRoute from './PrivateRoute';
 import Loader from './common/Loader';
+import WelcomePage from '../pages/WelcomePage';
+import PrivateRoute from './PrivateRoute';
+import SharedLayout from './SharedLayout';
 import ForgotPassPage from 'pages/ForgotPassPage/ForgotPassPage';
-import { useAuth } from 'hooks/useAuth';
+import RestrictedRoute from './RestrictedRoute';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const SigninPage = lazy(() => import('../pages/SigninPage'));

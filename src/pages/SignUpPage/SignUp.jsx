@@ -1,9 +1,8 @@
 import Container from 'components/common/Container';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
-import { errorSelector, successfulSelector } from '../../store/auth/selectors';
 import sprite from '../../img/sprites.svg';
 import {
   Label,
@@ -22,6 +21,7 @@ import { signupSchema } from 'schemas/signupSchema';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { resetError, resetSuccessful } from 'store/auth/authSlice';
+import { useAuth } from 'hooks/useAuth';
 
 const initialValues = {
   email: '',
@@ -32,9 +32,8 @@ const initialValues = {
 const Signup = ({ signup, resend }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
-  const successful = useSelector(successfulSelector);
   const navigate = useNavigate();
-  const error = useSelector(errorSelector);
+  const { error, successful } = useAuth();
   const dispatch = useDispatch();
 
   const storeEmailInLocalStorage = email => {
@@ -73,8 +72,12 @@ const Signup = ({ signup, resend }) => {
   };
 
   const handleResendConfirmationEmail = async () => {
-    await resend({ email });
-    toast.info('Confirmation email has been resent. Please check your email.');
+    if (email) {
+      await resend({ email });
+      handleSuccessfulAuthentication();
+    } else {
+      toast.error('You have not entered any email yet.');
+    }
   };
 
   const togglePasswordVisibility = field => {

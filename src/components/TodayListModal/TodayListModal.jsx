@@ -94,6 +94,38 @@ const TodayListModal = ({ type = 'save', id }) => {
         const waterElement = document.querySelectorAll('[water_attr="waterValue"]');
         waterElement.forEach(element => (element.innerHTML = waterValue));
     };
+  
+    const handleDecremetWater = () => {
+        if ((waterValue - 50) <= 0) {
+            setWaterValue(0)
+        }
+        else {
+            setWaterValue(waterValue - 50);
+        }
+    };
+    
+    const handleIncremetWater = () => {
+        setWaterValue(waterValue + 50);   
+    };
+
+  // const handleDecremetWater = () => {setWaterValue(Number(waterValue)- 50)}
+  // const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
+
+  const handleBlurTimeInput = event => {
+    const timeElement = document.querySelectorAll('[water_attr="timeValue"]');
+    timeElement.forEach(element => (element.innerHTML = timeValue));
+  };
+
+    const handleChangeWaterInput = event => {
+        if (event.currentTarget.value <= 0) { return setWaterValue(1) }
+        if (event.currentTarget.value >= 3000) { return setWaterValue(3000) }
+        setWaterValue(event.currentTarget.value)
+    }
+  const handleBlurWaterInput = event => {
+    setWaterValue(Number(event.currentTarget.value));
+    const waterElement = document.querySelectorAll('[water_attr="waterValue"]');
+    waterElement.forEach(element => (element.innerHTML = waterValue));
+  };
 
     const handleChangeTimeInput = event => {
         setTimeValue(event.currentTarget.value);
