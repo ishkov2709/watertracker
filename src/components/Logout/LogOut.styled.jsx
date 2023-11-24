@@ -54,7 +54,7 @@ export const ButtonGroup = styled.div`
 
   @media (min-width: 1440px) {
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
 `;
 
