@@ -32,3 +32,21 @@ npm install
 ```
 npm start
 ```
+
+## Project Structure
+
+**src**
+
+- **components**: Reusable React components
+- **constants**
+- **hooks**: Custom React hooks
+- **img**
+- **pages**: Components representing individual pages of the application.
+- **schemas**: Field validation schemes
+- **store**: Redux Store
+- **styles**: Style files
+- **utils**: Helper functions
+
+## Demo
+
+![Demo](./public/demo.jpg)
