@@ -35,7 +35,7 @@ npm start
 
 ## Project Structure
 
-**src**
+**src**:
 
 - **components**: Reusable React components
 - **constants**
