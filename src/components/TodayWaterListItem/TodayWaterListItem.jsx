@@ -6,37 +6,24 @@ import {
   WaterTime,
 } from './TodayWaterListItem.styled';
 import Icon from 'components/common/Icon';
-import { useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { todayListModalOpen } from 'store/waterData/waterDataSlice';
 import { color } from 'styles/colors';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
 import { useContext } from 'react';
 import RemoveListItemModal from 'components/RemoveListItemModal/RemoveListItemModal';
 import TodayListModal from 'components/TodayListModal/TodayListModal';
 
-const TodayWaterListItem = ({ waterInfo, handleRemove }) => {
+const TodayWaterListItem = ({ waterInfo }) => {
+  
   const toggleModal = useContext(ModalContext);
 
-  // const toggleModal = useContext(ModalContext);
-
-  // const dispatch = useDispatch()
-
   const handleClickEdit = id => {
-    // console.log(id);
     toggleModal(<TodayListModal type="edit" id={id} />);
-    // dispatch(todayListModalOpen())
   };
 
   const handleClickDelete = id => {
     toggleModal(<RemoveListItemModal id={id} />);
   };
-
-  //const handleClickDelete = (id)=> { console.log(id); dispatch(deleteWaterTodayById(id))}
-
-  // const  waterItem  = props
-  // console.log("WaterInfo");
-  // console.log(waterInfo.id);
 
   return (
     <>

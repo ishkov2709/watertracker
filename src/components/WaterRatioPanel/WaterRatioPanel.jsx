@@ -17,12 +17,15 @@ import { selectTotalTodayDailyWater } from "store/waterData/selectors";
 import TodayListModal from "components/TodayListModal/TodayListModal";
 import { ModalContext } from "components/common/ModalProvider/ModalProvider";
 import { useContext } from "react";
+import { useWaterData } from 'hooks/useWaterData';
 
 const WaterRatioPanel = () => {
-  //const [rangeWaterPercentage, setRangeWaterPercentage] = useState([30]);
+  
   const toggleModal = useContext(ModalContext);
 
-  const rangeWaterPercentage = useSelector(selectTotalTodayDailyWater);
+  //const rangeWaterPercentage = useSelector(selectTotalTodayDailyWater);
+  
+  const {totalTodayDailyWater} = useWaterData()
   
   const handleClickAdd = () => {
      toggleModal(<TodayListModal/>)
@@ -31,15 +34,15 @@ const WaterRatioPanel = () => {
   useEffect(() => {
     const ele = document.querySelector('#mark');
     if (ele) {
-      let newVal = Number(((rangeWaterPercentage - 0) * 100) / (100 - 0));
+      let newVal = Number(((totalTodayDailyWater - 0) * 100) / (100 - 0));
       newVal = newVal >= 100 ? 100 : newVal;
       ele.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
     }
-  }, [rangeWaterPercentage]);
+  }, [totalTodayDailyWater]);
 
   const getBackgroundSize = () => {
     return {
-      backgroundSize: `${rangeWaterPercentage}%`
+      backgroundSize: `${totalTodayDailyWater}%`
     };
   };
 
@@ -51,14 +54,14 @@ const WaterRatioPanel = () => {
             type="range"
             maxValue={100}
             minValue={0}
-            value={rangeWaterPercentage}
+            value={totalTodayDailyWater}
             readOnly={true}
             style={getBackgroundSize()}
         />
         <MarksContainer>
           <LeftMark>0%</LeftMark>
           <Mark id="mark">{`${
-            rangeWaterPercentage > 100 ? 100 : rangeWaterPercentage
+            totalTodayDailyWater > 100 ? 100 : totalTodayDailyWater
           }%`}</Mark>
           <RightMark>100%</RightMark>
         </MarksContainer>
