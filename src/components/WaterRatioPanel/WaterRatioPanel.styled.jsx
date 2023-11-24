@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { color } from '../../styles/colors';
 
 export const WaterRatioPanelContainer = styled.div`
-    width: 280px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 8px;
+  width: 280px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
 
-    @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 704px;
     gap: 24px;
     flex-direction: row;
@@ -23,13 +23,15 @@ export const WaterRatioPanelContainer = styled.div`
 
 export const WaterRange = styled.input`
   &[type='range'] {
-    //  overflow: hidden;
     -webkit-appearance: none;
     margin: 5px 0;
     width: 100%;
     border-radius: 10px;
     background-color: ${color.secondary.azure};
-    background-image: linear-gradient(${color.primary.blue},${color.primary.blue});
+    background-image: linear-gradient(
+      ${color.primary.blue},
+      ${color.primary.blue}
+    );
     background-repeat: no-repeat;
   }
 
@@ -42,7 +44,7 @@ export const WaterRange = styled.input`
     height: 8px;
     animate: 0.2s;
     border-radius: 10px;
-     -webkit-appearance: none;
+    -webkit-appearance: none;
     box-shadow: none;
     border: none;
     background: transparent;
@@ -54,14 +56,12 @@ export const WaterRange = styled.input`
     border-radius: 50%;
     background: ${color.primary.white};
     border: solid 1px ${color.primary.blue};
-    // box-shadow: -80px 0 4px 0px rgba(0,0,0, 1);
     -webkit-appearance: none;
     margin-top: -4px;
   }
 
-  &[type=range]:focus::-webkit-slider-runnable-track {
-    //background: #000;
-   }
+  &[type='range']:focus::-webkit-slider-runnable-track {
+  }
 `;
 
 export const WaterRangeHeader = styled.p`
@@ -74,19 +74,16 @@ export const WaterRangeHeader = styled.p`
 `;
 export const WaterRangeContainer = styled.div`
   position: relative;
-  //width: 391px;
-  height: 102px;   
+  height: 102px;
   display: flex;
   flex-direction: column;
-  //gap: 10px;
 
-    @media screen and (min-width: 768px) {
-      width:356px;
-      height: 90px; 
+  @media screen and (min-width: 768px) {
+    width: 356px;
+    height: 90px;
   }
 
   @media screen and (min-width: 1440px) {
- 
   }
 `;
 
@@ -119,24 +116,24 @@ export const Mark = styled.span`
 `;
 
 export const LeftMark = styled.span`
-    transform: translateX(-50%);
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: ${color.primary.blue};
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: ${color.primary.blue};
 
   &::before {
-  color: ${color.secondary.azure};
-  display: flex;
-  gap:4px
-  flex-direction: column;
-  content: '|';
-  justify-content: center;
-  align-items: center;
-
-}`;
+    color: ${color.secondary.azure};
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    content: '|';
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 export const RightMark = styled.span`
   transform: translateX(50%);
@@ -163,19 +160,19 @@ export const AddWaterButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  padding 6px 76px 6px 76px;
+  padding: 6px 76px 6px 76px;
   background-color: ${color.primary.blue};
   color: ${color.primary.white};
   border: none;
 
-     @media screen and (min-width: 768px) {
-    width:336px;
-    padding 10px 104px 10px 104px;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    padding: 10px 104px 10px 104px;
   }
 
   @media screen and (min-width: 1440px) {
-  width: 178px;
-  height: 44px;
-  padding: 10px 30px 10px 30px;
+    width: 178px;
+    height: 44px;
+    padding: 10px 30px 10px 30px;
   }
 `;

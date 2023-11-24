@@ -55,7 +55,6 @@ const Signup = ({ signup, resend }) => {
   }, [dispatch, navigate]);
 
   useEffect(() => {
-    console.log(successful);
     successful && !error && handleSuccessfulAuthentication();
     if (error) {
       toast.error(error);

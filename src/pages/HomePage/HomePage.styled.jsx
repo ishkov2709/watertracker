@@ -47,7 +47,6 @@ flex-direction: column;
 
   @media screen and (min-width: 1440px) {
     display: flex;
-    /* justify-content: flex-end; */
     flex-direction: row;
     gap: 32px;
     background-image: url(${imgHomeBgButle});

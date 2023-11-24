@@ -5,7 +5,6 @@ import FormInput from 'components/common/FormInput/FormInput';
 import Button from 'components/common/Button';
 import Icon from 'components/common/Icon/Icon';
 import Modal from 'components/common/Modal';
-import Loader from 'components/common/Loader';
 import {
   ModalBox,
   ModalHeader,
@@ -17,11 +16,8 @@ import {
   StyledForm,
   FormTitle,
   Genders,
-  YourWeight,
-  YourTime,
   Required,
   L,
-  Write,
   SaveWrapper,
 } from './DailyNormaModal.styled';
 import { useContext } from 'react';

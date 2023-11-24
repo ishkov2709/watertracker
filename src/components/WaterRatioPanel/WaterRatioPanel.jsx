@@ -12,24 +12,19 @@ import {
   Mark,
   AddWaterButton,
 } from './WaterRatioPanel.styled';
-import { useSelector } from "react-redux";
-import { selectTotalTodayDailyWater } from "store/waterData/selectors";
-import TodayListModal from "components/TodayListModal/TodayListModal";
-import { ModalContext } from "components/common/ModalProvider/ModalProvider";
-import { useContext } from "react";
+import TodayListModal from 'components/TodayListModal/TodayListModal';
+import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
+import { useContext } from 'react';
 import { useWaterData } from 'hooks/useWaterData';
 
 const WaterRatioPanel = () => {
-  
   const toggleModal = useContext(ModalContext);
 
-  //const rangeWaterPercentage = useSelector(selectTotalTodayDailyWater);
-  
-  const {totalTodayDailyWater} = useWaterData()
-  
+  const { totalTodayDailyWater } = useWaterData();
+
   const handleClickAdd = () => {
-     toggleModal(<TodayListModal/>)
-    }
+    toggleModal(<TodayListModal />);
+  };
 
   useEffect(() => {
     const ele = document.querySelector('#mark');
@@ -42,7 +37,7 @@ const WaterRatioPanel = () => {
 
   const getBackgroundSize = () => {
     return {
-      backgroundSize: `${totalTodayDailyWater}%`
+      backgroundSize: `${totalTodayDailyWater}%`,
     };
   };
 
@@ -51,12 +46,12 @@ const WaterRatioPanel = () => {
       <WaterRangeContainer>
         <WaterRangeHeader>Today</WaterRangeHeader>
         <WaterRange
-            type="range"
-            maxValue={100}
-            minValue={0}
-            value={totalTodayDailyWater}
-            readOnly={true}
-            style={getBackgroundSize()}
+          type="range"
+          maxValue={100}
+          minValue={0}
+          value={totalTodayDailyWater}
+          readOnly={true}
+          style={getBackgroundSize()}
         />
         <MarksContainer>
           <LeftMark>0%</LeftMark>

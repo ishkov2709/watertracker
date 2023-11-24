@@ -3,9 +3,7 @@ import Button from 'components/common/Button';
 import { PropTypes } from 'prop-types';
 import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { ModalContext } from 'components/common/ModalProvider/ModalProvider';
-import { dataTodaySelector } from 'store/waterData/selectors';
 import { deleteWaterTodayById } from 'store/waterData/thunk';
 import {
   DeleteModalBox,
@@ -21,7 +19,6 @@ import {
 import Icon from 'components/common/Icon';
 
 const RemoveListItemModal = id => {
-  const WaterItem = useSelector(dataTodaySelector);
   const toggleModal = useContext(ModalContext);
 
   const dispatch = useDispatch();

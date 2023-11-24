@@ -29,128 +29,97 @@ import FormInput from 'components/common/FormInput';
 import { useWaterData } from 'hooks/useWaterData';
 
 const TodayListModal = ({ type = 'save', id }) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const { dataToday } = useWaterData();
 
-   // const dataToday = useSelector(dataTodaySelector);
-    const {dataToday} = useWaterData() 
-
-    const [waterValue, setWaterValue] = useState(() => {
-        if (dataToday.length === 0) {
-            return Number(0);
-        }
-        const lastAddWaterDosageIndex = dataToday.length - 1;
-        return dataToday[lastAddWaterDosageIndex].dosage;
-    });
-    
-    const [timeValue, setTimeValue] = useState(() => {
-        const dateNow = new Date();
-        let hours = dateNow.getHours().toString();
-        let minutes = dateNow.getMinutes().toString();
-        if (hours.length === 1) {
-            hours = '0' + hours;
-        }
-        if (minutes.length === 1) {
-            minutes = '0' + minutes;
-        }
-        return `${hours}:${minutes}`;
-    });
-
-    useEffect(() => {
-        if (type === 'edit') {
-            const waterRecord = dataToday.find(data => data._id === id);
-            setTimeValue(waterRecord.time);
-            setWaterValue(waterRecord.dosage);
-        }
-    }, [dataToday, id, type]);
-
-    const toggleModal = useContext(ModalContext);
-
-    const handleDecremetWater = () => {
-        if ((waterValue - 50) <= 0) {
-            setWaterValue(0)
-        }
-        else {
-            setWaterValue(waterValue - 50);
-        }
-    };
-    
-    const handleIncremetWater = () => {
-        setWaterValue(waterValue + 50);   
-    };
-
-    const handleBlurTimeInput = () => {
-        const timeElement = document.querySelectorAll('[water_attr="timeValue"]');
-        timeElement.forEach(element => (element.innerHTML = timeValue));
-    };
-
-    const handleChangeWaterInput = event => {
-        if (event.currentTarget.value <= 0) { return setWaterValue(1) }
-        if (event.currentTarget.value >= 3000) { return setWaterValue(3000) }
-        setWaterValue(event.currentTarget.value)
+  const [waterValue, setWaterValue] = useState(() => {
+    if (dataToday.length === 0) {
+      return Number(0);
     }
+    const lastAddWaterDosageIndex = dataToday.length - 1;
+    return dataToday[lastAddWaterDosageIndex].dosage;
+  });
 
-    const handleBlurWaterInput = event => {
-        setWaterValue(Number(event.currentTarget.value));
-        const waterElement = document.querySelectorAll('[water_attr="waterValue"]');
-        waterElement.forEach(element => (element.innerHTML = waterValue));
-    };
-  
-    const handleDecremetWater = () => {
-        if ((waterValue - 50) <= 0) {
-            setWaterValue(0)
-        }
-        else {
-            setWaterValue(waterValue - 50);
-        }
-    };
-    
-    const handleIncremetWater = () => {
-        setWaterValue(waterValue + 50);   
-    };
+  const [timeValue, setTimeValue] = useState(() => {
+    const dateNow = new Date();
+    let hours = dateNow.getHours().toString();
+    let minutes = dateNow.getMinutes().toString();
+    if (hours.length === 1) {
+      hours = '0' + hours;
+    }
+    if (minutes.length === 1) {
+      minutes = '0' + minutes;
+    }
+    return `${hours}:${minutes}`;
+  });
 
-  // const handleDecremetWater = () => {setWaterValue(Number(waterValue)- 50)}
-  // const handleIncremetWater = () => {setWaterValue(Number(waterValue) + 50)}
+  useEffect(() => {
+    if (type === 'edit') {
+      const waterRecord = dataToday.find(data => data._id === id);
+      setTimeValue(waterRecord.time);
+      setWaterValue(waterRecord.dosage);
+    }
+  }, [dataToday, id, type]);
 
-  const handleBlurTimeInput = event => {
+  const toggleModal = useContext(ModalContext);
+
+  const handleBlurTimeInput = () => {
     const timeElement = document.querySelectorAll('[water_attr="timeValue"]');
     timeElement.forEach(element => (element.innerHTML = timeValue));
   };
 
-    const handleChangeWaterInput = event => {
-        if (event.currentTarget.value <= 0) { return setWaterValue(1) }
-        if (event.currentTarget.value >= 3000) { return setWaterValue(3000) }
-        setWaterValue(event.currentTarget.value)
+  const handleChangeWaterInput = event => {
+    if (event.currentTarget.value <= 0) {
+      return setWaterValue(1);
     }
+    if (event.currentTarget.value >= 3000) {
+      return setWaterValue(3000);
+    }
+    setWaterValue(event.currentTarget.value);
+  };
+
+  const handleDecremetWater = () => {
+    if (waterValue - 50 <= 0) {
+      setWaterValue(0);
+    } else {
+      setWaterValue(waterValue - 50);
+    }
+  };
+
+  const handleIncremetWater = () => {
+    setWaterValue(waterValue + 50);
+  };
+
   const handleBlurWaterInput = event => {
     setWaterValue(Number(event.currentTarget.value));
     const waterElement = document.querySelectorAll('[water_attr="waterValue"]');
     waterElement.forEach(element => (element.innerHTML = waterValue));
   };
 
-    const handleChangeTimeInput = event => {
-        setTimeValue(event.currentTarget.value);
-    };
+  const handleChangeTimeInput = event => {
+    setTimeValue(event.currentTarget.value);
+  };
 
-    const hadleClickSave = () => {
-        const today = new Date();
-        const data = {
-            dosage: waterValue,
-            time: timeValue,
-            day: today.getDate(),
-            month: MONTH[today.getMonth()],
-            year: today.getFullYear(),
-        };
-        if (type === 'edit') {
-            dispatch(editWaterTodayById({ id, data }));
-        } else {
-            dispatch(saveWaterToday(data));
-        }
-        toggleModal();
+  const hadleClickSave = () => {
+    const today = new Date();
+    const data = {
+      dosage: waterValue,
+      time: timeValue,
+      day: today.getDate(),
+      month: MONTH[today.getMonth()],
+      year: today.getFullYear(),
     };
+    if (type === 'edit') {
+      dispatch(editWaterTodayById({ id, data }));
+    } else {
+      dispatch(saveWaterToday(data));
+    }
+    toggleModal();
+  };
 
-    const onClickCloseBtn = () => {
-        toggleModal();
-    };
+  const onClickCloseBtn = () => {
+    toggleModal();
+  };
 
   return (
     <Modal onClose={toggleModal}>
@@ -216,7 +185,9 @@ const TodayListModal = ({ type = 'save', id }) => {
           max="3000"
           onBlur={handleBlurWaterInput}
           onChange={handleChangeWaterInput}
-          onClick={()=>{if (waterValue === 0) return setWaterValue('')}}
+          onClick={() => {
+            if (waterValue === 0) return setWaterValue('');
+          }}
           inputType="addEdit"
           label="Enter the value of the water used:"
           value={waterValue}

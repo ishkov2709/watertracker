@@ -107,12 +107,6 @@ const waterDataSlice = createSlice({
   },
 });
 
-//   extraReducers: builder =>
-//     builder
-//       .addCase(getMonthDays.pending, getMonthDaysPending)
-//       .addCase(getMonthDays.fulfilled, getMonthDaysFulfilled),
-// });
-
 export const waterDataReducer = waterDataSlice.reducer;
 
 export const {

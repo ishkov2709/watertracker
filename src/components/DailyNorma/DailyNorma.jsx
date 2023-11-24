@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import {
   DailyNormaButton,
   DailyNormaContainer,
@@ -14,9 +13,7 @@ import { useAuth } from 'hooks/useAuth';
 const DailyNorma = () => {
   const toggleModal = useContext(ModalContext);
 
-  //const dailyNorma = useSelector(selectDailyNorma);
-
-  const {dailyNorma} = useAuth();
+  const { dailyNorma } = useAuth();
 
   const openDailyNormaModal = () => {
     toggleModal(<DailyNormaModal />);

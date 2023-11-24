@@ -5,12 +5,6 @@ import imgBgTab from '../../img/background/mainPage/tab/img_bg.png';
 import imgBgMob from '../../img/background/mainPage/mob/img_bg.png';
 
 export const WelcomeWrapper = styled.div`
-  /* width: 280px;
-    min-height: 840px;
-    
-    @media screen and (min-width: 768px) {
-    width: 704px;
-    } */
   padding-top: 24px;
 
   @media screen and (min-width: 768px) {
@@ -20,7 +14,6 @@ export const WelcomeWrapper = styled.div`
   @media screen and (min-width: 1440px) {
     display: flex;
     gap: 81px;
-    /* width: 1014px; */
     padding-top: 80px;
     padding: 80px 98px 185px 104px;
   }

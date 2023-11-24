@@ -51,13 +51,12 @@ export const CommonContainer = styled.div`
 `;
 
 export const WaterInfoContainer = styled.div`
-width: 254px;
-//height: 52px;
-display flex;
-padding: 8px 24px 8px 24px;
-border-radius: 10px;
-gap: 12px;
-background-color: ${color.secondary.gray}
+  width: 254px;
+  display: flex;
+  padding: 8px 24px 8px 24px;
+  border-radius: 10px;
+  gap: 12px;
+  background-color: ${color.secondary.gray};
 `;
 
 export const WaterInfo = styled.p`
@@ -76,20 +75,20 @@ export const WaterTime = styled.p`
 `;
 
 export const AmountWaterContainer = styled.div`
-width: 194px;
-display flex;
-flex-direction: column;
-gap: 12px;
+  width: 194px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 export const AmountWaterButtonContainer = styled.div`
-width: 194px;
-display flex;
-justify-content:center;
-align-items: center;
-padding: 8px 24px 8px 24px;
-border-radius: 10px;
-gap: 12px;
+  width: 194px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px 8px 24px;
+  border-radius: 10px;
+  gap: 12px;
 `;
 
 export const WaterValueContainer = styled.div`
@@ -132,8 +131,6 @@ export const SaveContainer = styled.div`
   align-items: center;
   gap: 24px;
 
-  //background-color: ${color.secondary.gray}
-
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
@@ -142,14 +139,11 @@ export const SaveContainer = styled.div`
   }
 `;
 export const CloseButton = styled.button`
-  // position: absolute;
   width: 24px;
   height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  // top: 0;
-  // right: 0;
   border: none;
   background: none;
 
