@@ -1,5 +1,6 @@
 import Container from 'components/common/Container';
 import { ErrorMessage, Field, Formik } from 'formik';
+import { useAuth } from 'hooks/useAuth';
 import { Wrapper } from 'pages/HomePage/HomePage.styled';
 import {
   Box,
@@ -13,20 +14,18 @@ import {
   Title,
 } from 'pages/SigninPage/Auth.styled';
 import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { forgotpassSchema } from 'schemas/forgotpassSchema';
 import { resetError, resetSuccessful } from 'store/auth/authSlice';
-import { errorSelector, successfulSelector } from 'store/auth/selectors';
 
 const initialValues = {
   email: '',
 };
 
 const ForgotPass = ({ restore }) => {
-  const error = useSelector(errorSelector);
-  const successful = useSelector(successfulSelector);
+  const { error, successful } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

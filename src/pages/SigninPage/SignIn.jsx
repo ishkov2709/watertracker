@@ -1,7 +1,6 @@
 import Container from 'components/common/Container';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { errorSelector } from '../../store/auth/selectors';
+import { useDispatch } from 'react-redux';
 import sprite from '../../img/sprites.svg';
 import {
   Box,
@@ -20,6 +19,7 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import { singinSchema } from 'schemas/singinSchema';
 import { ToastContainer, toast } from 'react-toastify';
 import { resetError } from 'store/auth/authSlice';
+import { useAuth } from 'hooks/useAuth';
 
 const initialValues = {
   email: '',
@@ -28,7 +28,7 @@ const initialValues = {
 
 const Signin = ({ signin }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const error = useSelector(errorSelector);
+  const { error } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,6 +41,7 @@ const Signin = ({ signin }) => {
   const handleSubmit = async (values, { setSubmitting }) => {
     signin(values);
     setSubmitting(false);
+    localStorage.setItem('registrationEmail', '');
   };
 
   const togglePasswordVisibility = () => {
