@@ -42,28 +42,4 @@ export const ModalContainer = styled(Container)`
   @media (min-width: 768px) {
     padding: 32px 24px;
   }
-
-  /* @media screen and (max-width: 1439px) {
-    transform: scale(0.6);
-  } */
-
-  /* @media screen and (max-width: 1024px) {
-    transform: scale(0.5);
-  } */
-
-  @media screen and (max-height: 1024px) and (orientation: landscape) {
-    transform: scale(0.9);
-  }
-
-  @media screen and (max-height: 768px) and (orientation: landscape) {
-    transform: scale(0.5);
-  }
-
-  @media screen and (max-height: 414px) and (orientation: landscape) {
-    transform: scale(0.5);
-  }
-
-  @media screen and (max-width: 414px) and (orientation: portrait) {
-    transform: scale(0.8);
-  }
 `;
