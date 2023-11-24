@@ -1,5 +1,7 @@
 # WaterTracker
 
+![Logo](./src/img/logo/Logo.png)
+
 ## Description
 
 **WaterTracker is a recycling application designed to monitor water consumption.
