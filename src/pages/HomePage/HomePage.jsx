@@ -10,12 +10,15 @@ import TodayWaterList from 'components/TodayWaterList/TodayWaterList';
 import TodayListModal from 'components/TodayListModal/TodayListModal';
 import MonthStatsTable from 'components/MonthStatsTable';
 import WaterRatioPanel from 'components/WaterRatioPanel/WaterRatioPanel';
+import Loader from 'components/common/Loader';
 
 const dateNow = new Date();
 
 export const HomeContext = createContext();
 
 const HomePage = () => {
+  const { isLoading } = useWaterData();
+
   const [date, setDate] = useState({
     year: dateNow.getFullYear(),
     month: dateNow.getMonth(),
@@ -57,6 +60,7 @@ const HomePage = () => {
               <TodayWaterList />
               <MonthStatsTable />
             </WaterList>
+            {isLoading && <Loader />}
           </Box>
         </Container>
       </Wrapper>
