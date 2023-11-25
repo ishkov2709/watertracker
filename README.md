@@ -75,7 +75,7 @@ npm start
 - **Express**
 - **MongoDB**
 - **Mongoose**
-- **Joy**
+- **Joi**
 - **Nodemailer**
 - **Cloudinary**
 - **Swagger**
